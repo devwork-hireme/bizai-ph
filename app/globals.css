@@ -1,26 +1,248 @@
 @import "tailwindcss";
 
+/* ============================================================
+   THEME — Tailwind v4 CSS-based config
+   ============================================================ */
+@theme {
+  --color-black: #06060f;
+  --color-deep: #08081a;
+  --color-surface: #0c0c1e;
+  --color-card: #10102a;
+  --color-card-hover: #13133a;
+  --color-blue: #3D6FFF;
+  --color-blue-light: #6B93FF;
+  --color-cyan: #00C8FF;
+  --color-green: #00E5A0;
+  --color-white: #eeeef8;
+  --color-soft: #aaaacc;
+  --color-muted: #666688;
+
+  --font-outfit: "Outfit", sans-serif;
+  --font-baskerville: "Libre Baskerville", serif;
+}
+
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black:       #06060f;
+  --deep:        #08081a;
+  --surface:     #0c0c1e;
+  --card:        #10102a;
+  --card-hover:  #13133a;
+  --border:      rgba(82, 130, 255, 0.12);
+  --border-mid:  rgba(82, 130, 255, 0.25);
+  --blue:        #3D6FFF;
+  --blue-light:  #6B93FF;
+  --blue-pale:   rgba(61, 111, 255, 0.08);
+  --cyan:        #00C8FF;
+  --green:       #00E5A0;
+  --white:       #eeeef8;
+  --soft:        #aaaacc;
+  --muted:       #666688;
+  --glow:        rgba(61, 111, 255, 0.2);
+  --glow-strong: rgba(61, 111, 255, 0.35);
+  --announcement-bar-height: 44px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: "Outfit", sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grain texture — fixed, pointer-events none */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: rgba(107,147,255,0.35); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(107,147,255,0.55); }
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+.section-pad {
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+@media (max-width: 768px) {
+  .section-inner { padding-left: 24px; padding-right: 24px; }
+  .section-pad { padding-top: 80px; padding-bottom: 80px; }
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.h2 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 18px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--blue-light), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 15px 34px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: "Outfit", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 0 40px var(--glow);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+  box-shadow: 0 0 60px var(--glow-strong);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 15px 34px;
+  background: transparent;
+  color: var(--white);
+  font-family: "Outfit", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-mid);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--blue);
+  color: var(--blue-light);
+  background: var(--blue-pale);
+}
+
+/* ============================================================
+   FORM FIELDS
+   ============================================================ */
+.field {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 13px 16px;
+  color: var(--white);
+  font-family: "Outfit", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s ease;
+  appearance: none;
+}
+.field:focus { border-color: var(--blue); }
+.field::placeholder { color: var(--muted); }
+.field-error { border-color: rgba(255, 80, 80, 0.5) !important; }
+
+/* ============================================================
+   TOOL TAGS / RESULT TAGS
+   ============================================================ */
+.tool-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--blue-light);
+  background: var(--blue-pale);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+.result-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--blue-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--green); }
+  50% { opacity: 0.4; box-shadow: 0 0 4px var(--green); }
+}
+@keyframes float-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 24px var(--glow); }
+  50% { transform: scale(1.06); box-shadow: 0 4px 40px var(--glow-strong); }
+}
+@keyframes chat-blink {
+  0%, 80%, 100% { opacity: 0; }
+  40% { opacity: 1; }
 }
