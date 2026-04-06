@@ -139,27 +139,45 @@ export default function FAQ() {
   return (
     <section
       id="faq"
+      className="faq-section"
       style={{
         background: "var(--deep)",
-        borderTop: "1px solid var(--border)",
-        padding: "6.5rem 1.5rem",
+        borderTop: "1px solid var(--card-border)",
+        padding: "130px 64px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         <motion.div
           ref={headRef}
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{ textAlign: "center", marginBottom: "3.5rem" }}
+          style={{ textAlign: "center", marginBottom: "56px" }}
         >
           <p className="section-label">FAQ</p>
           <h2
             style={{
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              lineHeight: 1.1,
+              lineHeight: 1.0,
               color: "var(--white)",
             }}
           >
@@ -217,6 +235,11 @@ export default function FAQ() {
           </a>
         </motion.div>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .faq-section { padding: 80px 24px !important; }
+        }
+      `}</style>
     </section>
   );
 }

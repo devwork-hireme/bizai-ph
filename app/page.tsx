@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import FloatingCTA from "@/components/layout/FloatingCTA";
 import Hero from "@/components/sections/Hero";
 import ResultsBar from "@/components/sections/ResultsBar";
 import Problem from "@/components/sections/Problem";
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <FloatingCTA />
       <main>
         <Hero />
         <ResultsBar />

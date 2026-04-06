@@ -40,27 +40,45 @@ export default function Footer() {
     <footer
       style={{
         background: "var(--deep)",
-        borderTop: "1px solid var(--border)",
-        padding: "5rem 1.5rem 2.5rem",
+        borderTop: "1px solid var(--card-border)",
+        padding: "80px 64px 40px",
         position: "relative",
+        overflow: "hidden",
       }}
+      className="footer-outer"
     >
-      {/* Floating CTA button */}
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(82,130,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.02) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Floating CTA card */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         style={{
-          maxWidth: "1100px",
-          margin: "0 auto 5rem",
+          maxWidth: "1200px",
+          margin: "0 auto 80px",
           background: "var(--card)",
-          border: "1px solid var(--border-mid)",
+          border: "1px solid var(--card-border)",
           borderRadius: "20px",
-          padding: "3rem",
+          padding: "64px 48px",
           textAlign: "center",
           position: "relative",
           overflow: "hidden",
+          zIndex: 1,
         }}
       >
         {/* Glow accent */}
@@ -148,7 +166,7 @@ export default function Footer() {
       </motion.div>
 
       {/* Footer columns */}
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         <div
           style={{
             display: "grid",
@@ -297,7 +315,7 @@ export default function Footer() {
             justifyContent: "space-between",
             alignItems: "center",
             paddingTop: "2rem",
-            borderTop: "1px solid var(--border)",
+            borderTop: "1px solid var(--card-border)",
             flexWrap: "wrap",
             gap: "1rem",
           }}
@@ -313,6 +331,7 @@ export default function Footer() {
 
       <style>{`
         @media (max-width: 900px) {
+          .footer-outer { padding: 60px 24px 32px !important; }
           .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
         }
         @media (max-width: 560px) {

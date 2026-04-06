@@ -1,16 +1,16 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
 import { TrendingUp, Star } from "lucide-react";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay, ease: "easeOut" },
+    transition: { duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] },
   }),
 };
 
@@ -30,7 +30,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Messenger Auto-Reply Bot",
-    body: "Answers inquiries, qualifies leads, takes orders, and books appointments automatically — through Facebook Messenger, 24/7. Responds in under 30 seconds.",
+    body: "Answers inquiries, qualifies leads, takes orders, and books appointments automatically — 24/7.",
     tag: "Facebook Messenger",
     badge: { text: "MOST POPULAR", style: "blue" },
   },
@@ -42,7 +42,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "AI Lead Qualification",
-    body: "Automatically score, sort, and respond to leads based on their intent — so your sales effort goes to prospects who are ready to buy.",
+    body: "Score, sort, and respond to leads based on intent — so your sales effort goes to prospects ready to buy.",
     tag: "Messenger · Instagram",
   },
   {
@@ -52,7 +52,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Appointment Booking System",
-    body: "Customers book, reschedule, and receive reminders automatically. No more no-shows. No more back-and-forth scheduling over chat.",
+    body: "Customers book, reschedule, and receive reminders automatically. No more no-shows.",
     tag: "Google Calendar · Messenger",
   },
   {
@@ -63,7 +63,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Order Processing Automation",
-    body: "Customer orders captured from Messenger, logged to your sheet, confirmation sent — all without you touching a keyboard. Zero order errors.",
+    body: "Orders captured from Messenger, logged to your sheet, confirmation sent — zero errors.",
     tag: "Google Sheets · Messenger",
   },
   {
@@ -73,7 +73,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Customer Follow-Up Sequences",
-    body: "Automated follow-up messages sent at the right time — post-inquiry, post-purchase, and re-engagement. Leads never go cold again.",
+    body: "Automated follow-up messages at the right time — post-inquiry, post-purchase, re-engagement.",
     tag: "Messenger · Email",
   },
   {
@@ -84,7 +84,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Social Media Auto-Reply",
-    body: "Every comment, DM, and story reply handled automatically. Consistent brand voice, instant response, across Facebook and Instagram.",
+    body: "Every comment, DM, and story reply handled automatically across Facebook and Instagram.",
     tag: "Facebook · Instagram",
   },
   {
@@ -94,7 +94,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Business Intelligence Reports",
-    body: "Daily and weekly performance reports delivered automatically to your phone — sales, inquiries, bookings, and trends. Know your numbers without logging in.",
+    body: "Daily performance reports — sales, inquiries, bookings — delivered automatically to your phone.",
     tag: "Google Sheets · Viber",
   },
   {
@@ -104,7 +104,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Review Collection Bot",
-    body: "Automatically request Google and Facebook reviews from happy customers after purchase or service completion. Build your reputation on autopilot.",
+    body: "Automatically request Google and Facebook reviews from happy customers after service completion.",
     tag: "Google · Facebook",
   },
   {
@@ -115,7 +115,7 @@ const automations: AutomationCard[] = [
       </svg>
     ),
     title: "Inventory Alert System",
-    body: "Get notified automatically when stock runs low, orders exceed threshold, or new supplier quotes arrive. Never miss a restocking window again.",
+    body: "Get notified automatically when stock runs low or orders exceed threshold. Never miss a restocking window.",
     tag: "Google Sheets · Viber",
   },
 ];
@@ -126,6 +126,274 @@ const impactMetrics = [
   "3-day automated sequence",
 ];
 
+// Messenger chat animation data
+type ChatMessage = { from: "customer" | "bot"; text: string };
+const chatScript: { delay: number; type: "message" | "typing_start" | "typing_end"; from?: "customer" | "bot"; text?: string }[] = [
+  { delay: 200, type: "message", from: "customer", text: "Hi! Magkano ang menu nyo at may delivery ba?" },
+  { delay: 800, type: "typing_start" },
+  { delay: 2000, type: "typing_end" },
+  { delay: 2100, type: "message", from: "bot", text: "Hi! Welcome to Aling Rosa's Kitchen 🍛 Yes, we deliver to Taguig and BGC! Our full menu starts at ₱120. What would you like to order?" },
+  { delay: 3600, type: "message", from: "customer", text: "Paki-order ng 2 pcs chicken adobo + 1 rice. COD lang please." },
+  { delay: 4400, type: "typing_start" },
+  { delay: 5900, type: "typing_end" },
+  { delay: 6000, type: "message", from: "bot", text: "Order confirmed! ✅\n2x Chicken Adobo + 1x Rice — ₱280\nCOD. Estimated delivery: 45 mins.\nKindly provide your delivery address." },
+  { delay: 8000, type: "message", from: "customer", text: "Salamat! 123 Kalayaan Ave, Taguig." },
+  { delay: 8800, type: "typing_start" },
+  { delay: 10200, type: "typing_end" },
+  { delay: 10300, type: "message", from: "bot", text: "Perfect! Your order is on its way 🛵\nWe'll message you when our rider departs. Thank you for ordering!" },
+];
+const LOOP_DURATION = 13000;
+
+function MessengerDemo() {
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [typing, setTyping] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let timeouts: ReturnType<typeof setTimeout>[] = [];
+
+    function run() {
+      setMessages([]);
+      setTyping(false);
+
+      chatScript.forEach((event) => {
+        const t = setTimeout(() => {
+          if (event.type === "typing_start") {
+            setTyping(true);
+          } else if (event.type === "typing_end") {
+            setTyping(false);
+          } else if (event.type === "message" && event.from && event.text) {
+            const msg: ChatMessage = { from: event.from, text: event.text };
+            setMessages((prev) => [...prev, msg]);
+          }
+          // Auto-scroll
+          if (containerRef.current) {
+            containerRef.current.scrollTop = containerRef.current.scrollHeight;
+          }
+        }, event.delay);
+        timeouts.push(t);
+      });
+
+      const loopTimer = setTimeout(run, LOOP_DURATION);
+      timeouts.push(loopTimer);
+    }
+
+    run();
+    return () => timeouts.forEach(clearTimeout);
+  }, []);
+
+  // Auto-scroll on new message
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [messages, typing]);
+
+  return (
+    <div
+      style={{
+        background: "var(--card)",
+        border: "1px solid var(--card-border)",
+        borderRadius: "20px",
+        overflow: "hidden",
+        boxShadow:
+          "0 0 0 1px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.6), 0 0 120px rgba(61,111,255,0.1)",
+      }}
+    >
+      {/* Fake browser bar */}
+      <div
+        style={{
+          background: "var(--surface)",
+          padding: "12px 16px",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          borderBottom: "1px solid var(--card-border)",
+        }}
+      >
+        {/* Traffic lights */}
+        <div style={{ display: "flex", gap: "6px" }}>
+          {["#FF5F57", "#FFBD2E", "#28C840"].map((c) => (
+            <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
+          ))}
+        </div>
+        {/* URL bar */}
+        <div
+          style={{
+            flex: 1,
+            maxWidth: "300px",
+            margin: "0 auto",
+            background: "rgba(255,255,255,0.05)",
+            borderRadius: "6px",
+            padding: "5px 12px",
+            fontSize: "0.72rem",
+            color: "var(--muted)",
+            textAlign: "center",
+          }}
+        >
+          m.me/bizaiph
+        </div>
+      </div>
+
+      {/* Messenger interface */}
+      <div>
+        {/* Header — Messenger blue */}
+        <div
+          style={{
+            background: "#0084FF",
+            padding: "14px 16px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <div
+            style={{
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              background: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "0.9rem",
+              fontWeight: 700,
+              color: "#0084FF",
+              flexShrink: 0,
+            }}
+          >
+            B
+          </div>
+          <div>
+            <div style={{ fontSize: "0.9rem", fontWeight: 600, color: "white" }}>BizAI PH</div>
+            <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.8)" }}>Active now</div>
+          </div>
+        </div>
+
+        {/* Messages area — white Messenger style */}
+        <div
+          ref={containerRef}
+          style={{
+            background: "#FFFFFF",
+            padding: "16px",
+            minHeight: "320px",
+            maxHeight: "320px",
+            overflowY: "auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+          }}
+        >
+          {/* Time stamp */}
+          <div style={{ fontSize: "0.65rem", color: "#999", textAlign: "center", margin: "4px 0" }}>
+            Today {new Date().toLocaleTimeString("en-PH", { hour: "2-digit", minute: "2-digit" })}
+          </div>
+
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                justifyContent: msg.from === "customer" ? "flex-end" : "flex-start",
+              }}
+            >
+              <div
+                style={{
+                  maxWidth: "75%",
+                  padding: "10px 14px",
+                  borderRadius:
+                    msg.from === "customer"
+                      ? "18px 18px 4px 18px"
+                      : "18px 18px 18px 4px",
+                  background: msg.from === "customer" ? "#0084FF" : "#F0F0F0",
+                  color: msg.from === "customer" ? "white" : "#000",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.5,
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {msg.text}
+              </div>
+            </div>
+          ))}
+
+          {/* Typing indicator */}
+          {typing && (
+            <div style={{ display: "flex", justifyContent: "flex-start" }}>
+              <div
+                style={{
+                  background: "#F0F0F0",
+                  borderRadius: "18px",
+                  padding: "12px 16px",
+                  display: "flex",
+                  gap: "4px",
+                  alignItems: "center",
+                }}
+              >
+                {[0, 0.2, 0.4].map((delay, i) => (
+                  <span
+                    key={i}
+                    style={{
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      background: "#999",
+                      animation: `bounce-dot 1.4s ${delay}s infinite`,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Input bar */}
+        <div
+          style={{
+            background: "#FFFFFF",
+            padding: "10px 16px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            borderTop: "1px solid #F0F0F0",
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              background: "#F5F5F5",
+              borderRadius: "20px",
+              padding: "8px 14px",
+              fontSize: "0.82rem",
+              color: "#999",
+            }}
+          >
+            Aa
+          </div>
+          <div
+            style={{
+              width: "32px",
+              height: "32px",
+              borderRadius: "50%",
+              background: "#0084FF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Automations() {
   const headRef = useRef(null);
   const headInView = useInView(headRef, { once: true, margin: "-50px" });
@@ -135,30 +403,65 @@ export default function Automations() {
   return (
     <section
       id="automations"
+      className="automations-section"
       style={{
         background: "var(--black)",
-        borderTop: "1px solid var(--border)",
-        padding: "6.5rem 1.5rem",
+        borderTop: "1px solid var(--card-border)",
+        padding: "130px 64px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Cyan glow */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "20%",
+          right: "-200px",
+          width: "600px",
+          height: "600px",
+          background: "rgba(0,200,255,0.05)",
+          filter: "blur(80px)",
+          borderRadius: "50%",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <motion.div
           ref={headRef}
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{ textAlign: "center", marginBottom: "4rem" }}
+          style={{ textAlign: "center", marginBottom: "64px" }}
         >
           <p className="section-label">Our Services</p>
           <h2
             style={{
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              lineHeight: 1.1,
+              lineHeight: 1.0,
               color: "var(--white)",
-              marginBottom: "1.25rem",
+              marginBottom: "20px",
             }}
           >
             Everything Your Business Does Manually —{" "}
@@ -180,9 +483,9 @@ export default function Automations() {
             style={{
               fontSize: "1rem",
               color: "var(--soft)",
-              maxWidth: "580px",
+              maxWidth: "560px",
               margin: "0 auto",
-              lineHeight: 1.78,
+              lineHeight: 1.85,
               fontWeight: 300,
             }}
           >
@@ -191,26 +494,26 @@ export default function Automations() {
           </p>
         </motion.div>
 
-        {/* Featured card */}
+        {/* Featured card — with real Messenger demo */}
         <motion.div
           ref={featuredRef}
           variants={fadeUp}
           initial="hidden"
           animate={featuredInView ? "visible" : "hidden"}
+          className="featured-card"
           style={{
             background: "var(--card)",
-            border: "1px solid var(--border-mid)",
+            border: "1px solid var(--card-border)",
             borderRadius: "20px",
-            padding: "2.5rem",
-            marginBottom: "2rem",
+            padding: "40px",
+            marginBottom: "32px",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "3rem",
+            gap: "48px",
             alignItems: "center",
             position: "relative",
             overflow: "hidden",
           }}
-          className="featured-card"
         >
           {/* Glow accent */}
           <div
@@ -222,15 +525,25 @@ export default function Automations() {
               width: "400px",
               height: "400px",
               borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(61,111,255,0.12) 0%, transparent 65%)",
+              background: "radial-gradient(circle, rgba(61,111,255,0.12) 0%, transparent 65%)",
               pointerEvents: "none",
+            }}
+          />
+          {/* Top accent line */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: "1px",
+              background: "linear-gradient(90deg, transparent, var(--blue), var(--cyan), transparent)",
             }}
           />
 
           {/* Left — copy */}
           <div style={{ position: "relative", zIndex: 1 }}>
-            {/* HIGHEST ROI badge */}
             <div
               style={{
                 display: "inline-flex",
@@ -240,7 +553,7 @@ export default function Automations() {
                 background: "rgba(0,229,160,0.1)",
                 border: "1px solid rgba(0,229,160,0.3)",
                 borderRadius: "6px",
-                marginBottom: "1.5rem",
+                marginBottom: "24px",
               }}
             >
               <TrendingUp size={14} color="var(--green)" />
@@ -264,7 +577,7 @@ export default function Automations() {
                 letterSpacing: "-0.03em",
                 color: "var(--white)",
                 lineHeight: 1.15,
-                marginBottom: "1rem",
+                marginBottom: "16px",
               }}
             >
               Lead Capture and Follow-Up System
@@ -273,16 +586,15 @@ export default function Automations() {
               style={{
                 fontSize: "0.95rem",
                 color: "var(--soft)",
-                lineHeight: 1.78,
-                marginBottom: "1.75rem",
+                lineHeight: 1.85,
+                marginBottom: "24px",
                 fontWeight: 300,
               }}
             >
               Most Philippine businesses lose more than 60% of their leads to
               slow response times and inconsistent follow-up. This system captures
               every inquiry instantly — from Facebook, Messenger, or your website
-              — logs it automatically, and triggers a personalized 3-day
-              follow-up sequence so no opportunity is ever lost.
+              — and triggers a personalized 3-day follow-up sequence.
             </p>
 
             <div
@@ -290,7 +602,7 @@ export default function Automations() {
                 display: "flex",
                 flexWrap: "wrap",
                 gap: "0.5rem",
-                marginBottom: "1.75rem",
+                marginBottom: "24px",
               }}
             >
               {[
@@ -313,31 +625,17 @@ export default function Automations() {
                 display: "flex",
                 alignItems: "center",
                 gap: "1rem",
-                marginBottom: "1.75rem",
+                marginBottom: "28px",
                 flexWrap: "wrap",
               }}
             >
               {impactMetrics.map((metric, i) => (
                 <div key={metric} style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                  <span
-                    style={{
-                      fontSize: "0.82rem",
-                      fontWeight: 600,
-                      color: "var(--soft)",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
+                  <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--soft)", whiteSpace: "nowrap" }}>
                     {metric}
                   </span>
                   {i < impactMetrics.length - 1 && (
-                    <div
-                      style={{
-                        width: "1px",
-                        height: "16px",
-                        background: "var(--border)",
-                        flexShrink: 0,
-                      }}
-                    />
+                    <div style={{ width: "1px", height: "16px", background: "var(--border)", flexShrink: 0 }} />
                   )}
                 </div>
               ))}
@@ -355,96 +653,23 @@ export default function Automations() {
             </a>
           </div>
 
-          {/* Right — chat mockup */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.75rem",
-            }}
-          >
-            {[
-              { from: "customer", text: "Hi! Magkano ang menu nyo at may delivery ba?" },
-              {
-                from: "bot",
-                text: "Hi! Welcome to Aling Rosa's Kitchen 🍛 Yes, we deliver to Taguig and BGC! Our full menu is here: [link]. What would you like to order?",
-              },
-              { from: "customer", text: "Paki-order ng 2 pcs chicken adobo + 1 rice. COD lang please." },
-              {
-                from: "bot",
-                text: "Order confirmed! ✅\n2x Chicken Adobo + 1x Rice — ₱280\nCOD. Estimated delivery: 45 mins.\nKindly provide your delivery address.",
-              },
-            ].map((msg, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  justifyContent: msg.from === "customer" ? "flex-start" : "flex-end",
-                }}
-              >
-                <div
-                  style={{
-                    maxWidth: "80%",
-                    padding: "0.7rem 1rem",
-                    borderRadius:
-                      msg.from === "customer"
-                        ? "4px 14px 14px 14px"
-                        : "14px 4px 14px 14px",
-                    background:
-                      msg.from === "customer"
-                        ? "rgba(255,255,255,0.06)"
-                        : "var(--blue)",
-                    fontSize: "0.8rem",
-                    color: "var(--white)",
-                    lineHeight: 1.55,
-                    whiteSpace: "pre-line",
-                  }}
-                >
-                  {msg.text}
-                </div>
-              </div>
-            ))}
-
-            {/* Typing indicator */}
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <div
-                style={{
-                  padding: "0.7rem 1rem",
-                  borderRadius: "14px 4px 14px 14px",
-                  background: "var(--blue-pale)",
-                  border: "1px solid var(--border)",
-                  display: "flex",
-                  gap: "4px",
-                  alignItems: "center",
-                }}
-              >
-                {[0, 0.2, 0.4].map((delay, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      width: "6px",
-                      height: "6px",
-                      borderRadius: "50%",
-                      background: "var(--blue-light)",
-                      animation: `chat-blink 1.4s ${delay}s infinite`,
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+          {/* Right — Messenger demo */}
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <MessengerDemo />
           </div>
         </motion.div>
 
         {/* 9-card grid */}
         <div
+          className="auto-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "1rem",
+            gap: "1px",
+            background: "var(--card-border)",
+            borderRadius: "14px",
+            overflow: "hidden",
           }}
-          className="auto-grid"
         >
           {automations.map((auto, i) => (
             <motion.div
@@ -455,15 +680,21 @@ export default function Automations() {
               custom={0.05 * i}
               style={{
                 background: "var(--card)",
-                border: "1px solid var(--border)",
-                borderRadius: "12px",
-                padding: "1.5rem",
-                transition: "border-color 0.2s ease",
+                padding: "28px 24px",
                 position: "relative",
+                overflow: "hidden",
+                transition: "background 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+                cursor: "default",
               }}
               whileHover={{ y: -4 }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--card-hover)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--card)";
+              }}
             >
-              {/* Optional badge */}
+              {/* Top accent on hover handled via CSS */}
               {auto.badge && (
                 <div
                   style={{
@@ -471,31 +702,22 @@ export default function Automations() {
                     alignItems: "center",
                     gap: "5px",
                     padding: "3px 8px",
-                    background:
-                      auto.badge.style === "blue"
-                        ? "rgba(61,111,255,0.1)"
-                        : "rgba(0,229,160,0.1)",
-                    border:
-                      auto.badge.style === "blue"
-                        ? "1px solid rgba(61,111,255,0.3)"
-                        : "1px solid rgba(0,229,160,0.3)",
+                    background: auto.badge.style === "blue" ? "rgba(61,111,255,0.1)" : "rgba(0,229,160,0.1)",
+                    border: auto.badge.style === "blue" ? "1px solid rgba(61,111,255,0.3)" : "1px solid rgba(0,229,160,0.3)",
                     borderRadius: "4px",
-                    marginBottom: "0.75rem",
+                    marginBottom: "12px",
                   }}
                 >
                   {auto.badge.style === "blue" ? (
-                    <Star size={14} color="var(--blue-light)" />
+                    <Star size={12} color="var(--blue-light)" />
                   ) : (
-                    <TrendingUp size={14} color="var(--green)" />
+                    <TrendingUp size={12} color="var(--green)" />
                   )}
                   <span
                     style={{
-                      fontSize: "0.68rem",
+                      fontSize: "0.65rem",
                       fontWeight: 700,
-                      color:
-                        auto.badge.style === "blue"
-                          ? "var(--blue-light)"
-                          : "var(--green)",
+                      color: auto.badge.style === "blue" ? "var(--blue-light)" : "var(--green)",
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                     }}
@@ -516,7 +738,7 @@ export default function Automations() {
                   alignItems: "center",
                   justifyContent: "center",
                   color: "var(--blue-light)",
-                  marginBottom: "1rem",
+                  marginBottom: "16px",
                   flexShrink: 0,
                 }}
               >
@@ -524,10 +746,11 @@ export default function Automations() {
               </div>
               <h4
                 style={{
-                  fontSize: "0.95rem",
+                  fontSize: "1.05rem",
                   fontWeight: 700,
+                  letterSpacing: "-0.01em",
                   color: "var(--white)",
-                  marginBottom: "0.5rem",
+                  marginBottom: "8px",
                   lineHeight: 1.3,
                 }}
               >
@@ -537,8 +760,9 @@ export default function Automations() {
                 style={{
                   fontSize: "0.82rem",
                   color: "var(--muted)",
-                  lineHeight: 1.65,
-                  marginBottom: "1rem",
+                  lineHeight: 1.7,
+                  marginBottom: "16px",
+                  fontWeight: 300,
                 }}
               >
                 {auto.body}
@@ -562,12 +786,10 @@ export default function Automations() {
       </div>
 
       <style>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
+          .automations-section { padding: 80px 24px !important; }
+          .featured-card { grid-template-columns: 1fr !important; gap: 32px !important; }
           .auto-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 768px) {
-          .featured-card { grid-template-columns: 1fr !important; }
-          .auto-grid { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 480px) {
           .auto-grid { grid-template-columns: 1fr !important; }
