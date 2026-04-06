@@ -5,11 +5,11 @@ import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay, ease: "easeOut" },
+    transition: { duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] },
   }),
 };
 
@@ -58,30 +58,65 @@ export default function Solution() {
   return (
     <section
       id="solution"
+      className="solution-section"
       style={{
         background: "var(--deep)",
-        borderTop: "1px solid var(--border)",
-        padding: "6.5rem 1.5rem",
+        borderTop: "1px solid var(--card-border)",
+        padding: "130px 64px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Blue glow left */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "30%",
+          left: "-200px",
+          width: "600px",
+          height: "600px",
+          background: "rgba(61,111,255,0.06)",
+          filter: "blur(100px)",
+          borderRadius: "50%",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <motion.div
           ref={headRef}
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{ textAlign: "center", marginBottom: "4rem" }}
+          style={{ textAlign: "center", marginBottom: "64px" }}
         >
           <p className="section-label">The Solution</p>
           <h2
             style={{
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              lineHeight: 1.1,
+              lineHeight: 1.0,
               color: "var(--white)",
-              marginBottom: "1.25rem",
+              marginBottom: "20px",
             }}
           >
             Your Business on{" "}
@@ -103,9 +138,9 @@ export default function Solution() {
             style={{
               fontSize: "1rem",
               color: "var(--soft)",
-              maxWidth: "580px",
+              maxWidth: "560px",
               margin: "0 auto",
-              lineHeight: 1.78,
+              lineHeight: 1.85,
               fontWeight: 300,
             }}
           >
@@ -121,21 +156,22 @@ export default function Solution() {
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
           custom={0.1}
+          className="compare-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "1.25rem",
-            marginBottom: "5rem",
+            gap: "1px",
+            background: "var(--card-border)",
+            borderRadius: "16px",
+            overflow: "hidden",
+            marginBottom: "80px",
           }}
-          className="compare-grid"
         >
           {/* Before */}
           <div
             style={{
-              background: "rgba(239,68,68,0.04)",
-              border: "1px solid rgba(239,68,68,0.15)",
-              borderRadius: "16px",
-              padding: "2rem",
+              background: "rgba(239,68,68,0.03)",
+              padding: "40px 36px",
             }}
           >
             <div
@@ -143,7 +179,7 @@ export default function Solution() {
                 display: "flex",
                 alignItems: "center",
                 gap: "0.6rem",
-                marginBottom: "1.5rem",
+                marginBottom: "28px",
               }}
             >
               <span
@@ -157,38 +193,36 @@ export default function Solution() {
               />
               <span
                 style={{
-                  fontSize: "0.78rem",
+                  fontSize: "0.72rem",
                   fontWeight: 700,
                   textTransform: "uppercase",
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0.16em",
                   color: "rgba(239,68,68,0.7)",
                 }}
               >
                 Before BizAI PH
               </span>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {beforeItems.map((item) => (
                 <div
                   key={item}
-                  style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}
+                  style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}
                 >
                   <svg
                     width="16"
                     height="16"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="rgba(239,68,68,0.6)"
+                    stroke="rgba(239,68,68,0.5)"
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    style={{ flexShrink: 0, marginTop: "2px" }}
+                    style={{ flexShrink: 0, marginTop: "3px" }}
                   >
                     <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
-                  <span
-                    style={{ fontSize: "0.9rem", color: "var(--muted)", lineHeight: 1.55 }}
-                  >
+                  <span style={{ fontSize: "0.9rem", color: "var(--muted)", lineHeight: 1.6, fontWeight: 300 }}>
                     {item}
                   </span>
                 </div>
@@ -199,10 +233,8 @@ export default function Solution() {
           {/* After */}
           <div
             style={{
-              background: "rgba(0,229,160,0.04)",
-              border: "1px solid rgba(0,229,160,0.18)",
-              borderRadius: "16px",
-              padding: "2rem",
+              background: "rgba(0,229,160,0.03)",
+              padding: "40px 36px",
             }}
           >
             <div
@@ -210,7 +242,7 @@ export default function Solution() {
                 display: "flex",
                 alignItems: "center",
                 gap: "0.6rem",
-                marginBottom: "1.5rem",
+                marginBottom: "28px",
               }}
             >
               <span
@@ -225,21 +257,21 @@ export default function Solution() {
               />
               <span
                 style={{
-                  fontSize: "0.78rem",
+                  fontSize: "0.72rem",
                   fontWeight: 700,
                   textTransform: "uppercase",
-                  letterSpacing: "0.1em",
+                  letterSpacing: "0.16em",
                   color: "var(--green)",
                 }}
               >
                 After BizAI PH
               </span>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {afterItems.map((item) => (
                 <div
                   key={item}
-                  style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}
+                  style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}
                 >
                   <svg
                     width="16"
@@ -250,13 +282,11 @@ export default function Solution() {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    style={{ flexShrink: 0, marginTop: "2px" }}
+                    style={{ flexShrink: 0, marginTop: "3px" }}
                   >
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  <span
-                    style={{ fontSize: "0.9rem", color: "var(--soft)", lineHeight: 1.55 }}
-                  >
+                  <span style={{ fontSize: "0.9rem", color: "var(--soft)", lineHeight: 1.6, fontWeight: 300 }}>
                     {item}
                   </span>
                 </div>
@@ -271,14 +301,15 @@ export default function Solution() {
             variants={fadeUp}
             initial="hidden"
             animate={stepsInView ? "visible" : "hidden"}
-            style={{ textAlign: "center", marginBottom: "3rem" }}
+            style={{ textAlign: "center", marginBottom: "48px" }}
           >
             <p className="section-label">How It Works</p>
             <h3
               style={{
-                fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+                fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
                 fontWeight: 900,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.04em",
+                lineHeight: 1.0,
                 color: "var(--white)",
               }}
             >
@@ -287,12 +318,15 @@ export default function Solution() {
           </motion.div>
 
           <div
+            className="steps-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "2rem",
+              gap: "1px",
+              background: "var(--card-border)",
+              borderRadius: "14px",
+              overflow: "hidden",
             }}
-            className="steps-grid"
           >
             {steps.map((step, i) => (
               <motion.div
@@ -303,21 +337,25 @@ export default function Solution() {
                 custom={0.08 * i}
                 style={{
                   background: "var(--card)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "14px",
-                  padding: "2rem",
+                  padding: "40px 32px",
                   position: "relative",
+                  transition: "background 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "var(--card-hover)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "var(--card)";
                 }}
               >
                 <div
                   style={{
-                    fontSize: "2.8rem",
+                    fontSize: "3.5rem",
                     fontWeight: 900,
                     letterSpacing: "-0.06em",
-                    color: "var(--border-mid)",
+                    color: "rgba(82,130,255,0.12)",
                     lineHeight: 1,
-                    marginBottom: "1.25rem",
-                    fontFamily: "var(--font-outfit), sans-serif",
+                    marginBottom: "20px",
                   }}
                 >
                   {step.number}
@@ -326,8 +364,9 @@ export default function Solution() {
                   style={{
                     fontSize: "1.05rem",
                     fontWeight: 700,
+                    letterSpacing: "-0.01em",
                     color: "var(--white)",
-                    marginBottom: "0.65rem",
+                    marginBottom: "12px",
                   }}
                 >
                   {step.title}
@@ -335,8 +374,9 @@ export default function Solution() {
                 <p
                   style={{
                     fontSize: "0.875rem",
-                    color: "var(--muted)",
-                    lineHeight: 1.72,
+                    color: "var(--soft)",
+                    lineHeight: 1.8,
+                    fontWeight: 300,
                     margin: 0,
                   }}
                 >
@@ -349,7 +389,8 @@ export default function Solution() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+          .solution-section { padding: 80px 24px !important; }
           .compare-grid { grid-template-columns: 1fr !important; }
           .steps-grid { grid-template-columns: 1fr !important; }
         }

@@ -29,7 +29,9 @@ export default function AnnouncementBar() {
     const closed = localStorage.getItem(LS_KEY);
     if (!closed) {
       setVisible(true);
-      document.documentElement.style.setProperty("--announcement-bar-height", "44px");
+      document.documentElement.style.setProperty("--announcement-bar-height", "48px");
+    } else {
+      document.documentElement.style.setProperty("--announcement-bar-height", "0px");
     }
   }, []);
 
@@ -57,53 +59,64 @@ export default function AnnouncementBar() {
         left: 0,
         right: 0,
         zIndex: 200,
-        height: "44px",
+        height: "48px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         gap: "16px",
-        background: "linear-gradient(135deg, var(--blue), var(--cyan))",
-        padding: "0 16px",
+        background: "linear-gradient(90deg, rgba(61,111,255,0.15), rgba(0,200,255,0.1), rgba(61,111,255,0.15))",
+        borderBottom: "1px solid rgba(82,130,255,0.2)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+        padding: "0 48px",
       }}
     >
-      {/* Left — badge + text */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-        <span
-          style={{
-            background: "rgba(255,255,255,0.15)",
-            borderRadius: "100px",
-            padding: "3px 10px",
-            fontSize: "0.72rem",
-            fontWeight: 700,
-            color: "white",
-            textTransform: "uppercase",
-            letterSpacing: "0.06em",
-            whiteSpace: "nowrap",
-          }}
-        >
-          🔥 Launch Offer
-        </span>
-        <span
-          style={{
-            fontSize: "0.82rem",
-            fontWeight: 500,
-            color: "white",
-            whiteSpace: "nowrap",
-          }}
-          className="announcement-text"
-        >
-          50% off all monthly plans — April to May 2025 only
-        </span>
-      </div>
+      {/* Launch badge */}
+      <span
+        style={{
+          background: "rgba(0,229,160,0.15)",
+          border: "1px solid rgba(0,229,160,0.3)",
+          borderRadius: "100px",
+          padding: "3px 12px",
+          fontSize: "0.68rem",
+          fontWeight: 700,
+          color: "var(--green)",
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+          whiteSpace: "nowrap",
+          flexShrink: 0,
+        }}
+      >
+        LAUNCH OFFER
+      </span>
 
-      {/* Right — countdown */}
-      <div style={{ display: "flex", gap: "8px", alignItems: "center", flexShrink: 0 }}>
-        {expired ? (
-          <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>
-            Offer Ended
-          </span>
-        ) : (
-          [
+      {/* Center text */}
+      <span
+        className="announcement-text"
+        style={{
+          fontSize: "0.82rem",
+          fontWeight: 400,
+          color: "var(--soft)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        50% off all packages — ends May 31, 2025
+      </span>
+
+      {/* Countdown */}
+      {!expired && (
+        <div
+          style={{
+            background: "rgba(0,0,0,0.3)",
+            borderRadius: "6px",
+            padding: "2px 0",
+            display: "flex",
+            gap: "4px",
+            alignItems: "center",
+            flexShrink: 0,
+          }}
+        >
+          {[
             { v: time.days, l: "d" },
             { v: time.hours, l: "h" },
             { v: time.minutes, l: "m" },
@@ -112,10 +125,10 @@ export default function AnnouncementBar() {
             <div
               key={l}
               style={{
-                background: "rgba(0,0,0,0.2)",
+                background: "rgba(255,255,255,0.08)",
                 borderRadius: "4px",
                 padding: "2px 8px",
-                fontSize: "0.8rem",
+                fontSize: "0.78rem",
                 fontWeight: 700,
                 color: "white",
                 fontFamily: "monospace",
@@ -126,9 +139,14 @@ export default function AnnouncementBar() {
             >
               {pad(v)}{l}
             </div>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
+      {expired && (
+        <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>
+          Offer Ended
+        </span>
+      )}
 
       {/* Close */}
       <button
@@ -136,20 +154,20 @@ export default function AnnouncementBar() {
         aria-label="Close announcement"
         style={{
           position: "absolute",
-          right: "12px",
+          right: "16px",
           top: "50%",
           transform: "translateY(-50%)",
           background: "none",
           border: "none",
           cursor: "pointer",
-          color: "rgba(255,255,255,0.7)",
+          color: "rgba(255,255,255,0.5)",
           padding: "4px",
           lineHeight: 1,
-          fontSize: "1rem",
+          fontSize: "0.9rem",
           transition: "color 0.2s ease",
         }}
         onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
       >
         ✕
       </button>

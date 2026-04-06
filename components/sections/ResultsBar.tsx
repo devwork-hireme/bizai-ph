@@ -18,6 +18,13 @@ const stats: Stat[] = [
   { prefix: "₱", value: 1500, suffix: "/mo", label: "Starting Retainer", sub: "No Lock-In Contracts" },
 ];
 
+const trustSignals = [
+  "30-Day Performance Guarantee",
+  "Month-to-Month, No Lock-In",
+  "Zero Technical Knowledge Required",
+  "Setup in 48 Hours",
+];
+
 function CountUp({ value, prefix = "", suffix, active }: { value: number; prefix?: string; suffix: string; active: boolean }) {
   const [display, setDisplay] = useState(0);
   const started = useRef(false);
@@ -25,7 +32,7 @@ function CountUp({ value, prefix = "", suffix, active }: { value: number; prefix
   useEffect(() => {
     if (!active || started.current) return;
     started.current = true;
-    const duration = 1400;
+    const duration = 2200;
     const start = performance.now();
     function frame(now: number) {
       const progress = Math.min((now - start) / duration, 1);
@@ -43,6 +50,12 @@ function CountUp({ value, prefix = "", suffix, active }: { value: number; prefix
   );
 }
 
+const CheckIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue-light)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
 export default function ResultsBar() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -52,30 +65,30 @@ export default function ResultsBar() {
       ref={ref}
       style={{
         background: "var(--surface)",
-        borderTop: "1px solid var(--border)",
-        borderBottom: "1px solid var(--border)",
-        padding: "3.5rem 1.5rem",
+        borderTop: "1px solid var(--card-border)",
+        borderBottom: "1px solid var(--card-border)",
       }}
     >
+      {/* Stats row */}
       <div
+        className="results-stats-grid"
         style={{
-          maxWidth: "1100px",
+          maxWidth: "1200px",
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "2rem",
+          borderBottom: "1px solid var(--card-border)",
         }}
-        className="results-bar-grid"
       >
         {stats.map((stat, i) => (
           <div
             key={i}
+            className="results-stat-cell"
             style={{
+              padding: "36px 48px",
               textAlign: "center",
-              padding: "0 1rem",
-              borderRight: i < stats.length - 1 ? "1px solid var(--border)" : "none",
+              borderRight: i < stats.length - 1 ? "1px solid var(--card-border)" : "none",
             }}
-            className="results-bar-item"
           >
             <div
               style={{
@@ -83,8 +96,8 @@ export default function ResultsBar() {
                 fontWeight: 900,
                 letterSpacing: "-0.04em",
                 lineHeight: 1,
-                marginBottom: "0.5rem",
-                background: "linear-gradient(135deg, var(--white) 0%, var(--blue-light) 100%)",
+                marginBottom: "6px",
+                background: "linear-gradient(135deg, #3D6FFF 0%, #00C8FF 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -99,29 +112,73 @@ export default function ResultsBar() {
             </div>
             <p
               style={{
-                fontSize: "0.92rem",
-                fontWeight: 700,
-                color: "var(--white)",
-                marginBottom: "0.2rem",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--muted)",
+                margin: 0,
+                lineHeight: 1.4,
               }}
             >
               {stat.label}
-            </p>
-            <p style={{ fontSize: "0.76rem", color: "var(--muted)", margin: 0 }}>
-              {stat.sub}
             </p>
           </div>
         ))}
       </div>
 
+      {/* Trust signals row */}
+      <div
+        className="trust-signals-row"
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "40px",
+          padding: "24px 64px",
+          flexWrap: "wrap",
+        }}
+      >
+        {trustSignals.map((signal, i) => (
+          <div key={signal} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            {i > 0 && (
+              <span
+                style={{
+                  width: "1px",
+                  height: "16px",
+                  background: "var(--card-border)",
+                  flexShrink: 0,
+                  marginRight: "32px",
+                }}
+              />
+            )}
+            <CheckIcon />
+            <span
+              style={{
+                fontSize: "0.8rem",
+                fontWeight: 500,
+                color: "var(--soft)",
+              }}
+            >
+              {signal}
+            </span>
+          </div>
+        ))}
+      </div>
+
       <style>{`
-        @media (max-width: 768px) {
-          .results-bar-grid { grid-template-columns: 1fr 1fr !important; }
-          .results-bar-item { border-right: none !important; padding: 1rem 0.5rem; }
-          .results-bar-item:nth-child(odd) { border-right: 1px solid var(--border) !important; }
+        @media (max-width: 900px) {
+          .results-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .results-stat-cell { border-right: none !important; }
+          .results-stat-cell:nth-child(odd) { border-right: 1px solid var(--card-border) !important; }
+          .results-stat-cell:nth-child(1),
+          .results-stat-cell:nth-child(2) { border-bottom: 1px solid var(--card-border) !important; }
         }
-        @media (max-width: 480px) {
-          .results-bar-grid { grid-template-columns: 1fr 1fr !important; }
+        @media (max-width: 768px) {
+          .results-stat-cell { padding: 28px 24px !important; }
+          .trust-signals-row { padding: 20px 24px !important; gap: 16px !important; }
         }
       `}</style>
     </section>

@@ -111,30 +111,48 @@ export default function Results() {
   return (
     <section
       id="results"
+      className="results-section"
       style={{
-        background: "var(--surface)",
-        borderTop: "1px solid var(--border)",
-        padding: "6.5rem 1.5rem",
+        background: "var(--deep)",
+        borderTop: "1px solid var(--card-border)",
+        padding: "130px 64px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <motion.div
           ref={headRef}
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{ textAlign: "center", marginBottom: "4rem" }}
+          style={{ textAlign: "center", marginBottom: "64px" }}
         >
           <p className="section-label">Client Results</p>
           <h2
             style={{
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              lineHeight: 1.1,
+              lineHeight: 1.0,
               color: "var(--white)",
-              marginBottom: "1.25rem",
+              marginBottom: "20px",
             }}
           >
             Proof Over{" "}
@@ -178,10 +196,10 @@ export default function Results() {
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: "0",
             background: "var(--card)",
-            border: "1px solid var(--border)",
+            border: "1px solid var(--card-border)",
             borderRadius: "14px",
             overflow: "hidden",
-            marginBottom: "3.5rem",
+            marginBottom: "56px",
           }}
           className="metrics-strip"
         >
@@ -191,7 +209,7 @@ export default function Results() {
               style={{
                 padding: "2rem 1.5rem",
                 textAlign: "center",
-                borderRight: i < metrics.length - 1 ? "1px solid var(--border)" : "none",
+                borderRight: i < metrics.length - 1 ? "1px solid var(--card-border)" : "none",
               }}
               className="metric-cell"
             >
@@ -219,12 +237,15 @@ export default function Results() {
 
         {/* Case study cards */}
         <div
+          className="case-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.25rem",
+            gap: "1px",
+            background: "var(--card-border)",
+            borderRadius: "14px",
+            overflow: "hidden",
           }}
-          className="case-grid"
         >
           {caseStudies.map((cs, i) => (
             <motion.div
@@ -235,12 +256,17 @@ export default function Results() {
               custom={0.15 + 0.08 * i}
               style={{
                 background: "var(--card)",
-                border: "1px solid var(--border)",
-                borderRadius: "14px",
-                padding: "1.75rem",
+                padding: "36px 28px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "1.25rem",
+                gap: "20px",
+                transition: "background 0.25s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--card-hover)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--card)";
               }}
             >
               {/* Business info */}
@@ -378,11 +404,12 @@ export default function Results() {
 
       <style>{`
         @media (max-width: 900px) {
-          .case-grid { grid-template-columns: 1fr !important; max-width: 560px; margin-left: auto; margin-right: auto; }
+          .results-section { padding: 80px 24px !important; }
+          .case-grid { grid-template-columns: 1fr !important; }
           .metrics-strip { grid-template-columns: 1fr 1fr !important; }
-          .metric-cell { border-right: none !important; border-bottom: 1px solid var(--border); }
+          .metric-cell { border-right: none !important; border-bottom: 1px solid var(--card-border); }
           .metric-cell:nth-child(2), .metric-cell:nth-child(4) { border-bottom: none; }
-          .metric-cell:nth-child(odd) { border-right: 1px solid var(--border) !important; }
+          .metric-cell:nth-child(odd) { border-right: 1px solid var(--card-border) !important; }
         }
         @media (max-width: 480px) {
           .metrics-strip { grid-template-columns: 1fr 1fr !important; }

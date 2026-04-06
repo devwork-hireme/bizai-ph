@@ -100,30 +100,64 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
+      className="pricing-section"
       style={{
         background: "var(--deep)",
-        borderTop: "1px solid var(--border)",
-        padding: "6.5rem 1.5rem",
+        borderTop: "1px solid var(--card-border)",
+        padding: "130px 64px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Blue glow top */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "-200px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "800px",
+          height: "400px",
+          background: "rgba(61,111,255,0.08)",
+          filter: "blur(120px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <motion.div
           ref={headRef}
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{ textAlign: "center", marginBottom: "2.5rem" }}
+          style={{ textAlign: "center", marginBottom: "40px" }}
         >
           <p className="section-label">Launch Pricing</p>
           <h2
             style={{
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              lineHeight: 1.1,
+              lineHeight: 1.0,
               color: "var(--white)",
-              marginBottom: "1rem",
+              marginBottom: "20px",
             }}
           >
             50% Off —{" "}
@@ -364,13 +398,16 @@ export default function Pricing() {
 
         {/* Pricing cards */}
         <div
+          className="pricing-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.25rem",
-            marginBottom: "2rem",
+            gap: "1px",
+            background: "var(--card-border)",
+            borderRadius: "16px",
+            overflow: "hidden",
+            marginBottom: "32px",
           }}
-          className="pricing-grid"
         >
           {tiers.map((tier, i) => (
             <motion.div
@@ -380,17 +417,18 @@ export default function Pricing() {
               animate={compareInView ? "visible" : "hidden"}
               custom={0.08 * i}
               style={{
-                background: tier.highlight
-                  ? "linear-gradient(145deg, rgba(61,111,255,0.15), rgba(0,200,255,0.08))"
-                  : "var(--card)",
-                border: tier.highlight
-                  ? "1px solid rgba(107,147,255,0.4)"
-                  : "1px solid var(--border)",
-                borderRadius: "16px",
-                padding: "2rem",
+                background: tier.highlight ? "#111130" : "var(--card)",
+                border: tier.highlight ? "1px solid rgba(61,111,255,0.3)" : "none",
+                margin: tier.highlight ? "-1px" : "0",
+                zIndex: tier.highlight ? 1 : 0,
+                boxShadow: tier.highlight
+                  ? "0 0 0 1px rgba(61,111,255,0.2), 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(61,111,255,0.15)"
+                  : "none",
+                padding: "36px 28px",
                 position: "relative",
                 display: "flex",
                 flexDirection: "column",
+                borderRadius: tier.highlight ? "14px" : "0",
               }}
             >
               {/* Most Popular badge */}
@@ -398,18 +436,19 @@ export default function Pricing() {
                 <div
                   style={{
                     position: "absolute",
-                    top: "-12px",
+                    top: "-1px",
                     left: "50%",
                     transform: "translateX(-50%)",
-                    background: "var(--cyan)",
-                    color: "var(--black)",
+                    background: "linear-gradient(135deg, var(--blue), var(--blue-light))",
+                    color: "white",
                     fontSize: "0.68rem",
-                    fontWeight: 800,
-                    letterSpacing: "0.08em",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    padding: "4px 14px",
-                    borderRadius: "100px",
+                    padding: "5px 18px",
+                    borderRadius: "0 0 8px 8px",
                     whiteSpace: "nowrap",
+                    boxShadow: "0 4px 12px rgba(61,111,255,0.4)",
                   }}
                 >
                   Most Popular
@@ -778,7 +817,8 @@ export default function Pricing() {
 
       <style>{`
         @media (max-width: 900px) {
-          .pricing-grid { grid-template-columns: 1fr !important; max-width: 480px; margin-left: auto; margin-right: auto; }
+          .pricing-section { padding: 80px 24px !important; }
+          .pricing-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 600px) {
           .guarantee-row { flex-direction: column; text-align: center; }

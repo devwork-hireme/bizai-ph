@@ -98,30 +98,48 @@ export default function Industries() {
   return (
     <section
       id="industries"
+      className="industries-section"
       style={{
-        background: "var(--surface)",
-        borderTop: "1px solid var(--border)",
-        padding: "6.5rem 1.5rem",
+        background: "var(--deep)",
+        borderTop: "1px solid var(--card-border)",
+        padding: "130px 64px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <motion.div
           ref={headRef}
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{ textAlign: "center", marginBottom: "4rem" }}
+          style={{ textAlign: "center", marginBottom: "64px" }}
         >
           <p className="section-label">Industries We Serve</p>
           <h2
             style={{
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
               fontWeight: 900,
               letterSpacing: "-0.04em",
-              lineHeight: 1.1,
+              lineHeight: 1.0,
               color: "var(--white)",
-              marginBottom: "1.25rem",
+              marginBottom: "20px",
             }}
           >
             Built for Your{" "}
@@ -145,7 +163,7 @@ export default function Industries() {
               color: "var(--soft)",
               maxWidth: "560px",
               margin: "0 auto",
-              lineHeight: 1.78,
+              lineHeight: 1.85,
               fontWeight: 300,
             }}
           >
@@ -154,14 +172,17 @@ export default function Industries() {
           </p>
         </motion.div>
 
-        {/* 3×2 grid */}
+        {/* 3×2 grid — hairline */}
         <div
+          className="industries-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.25rem",
+            gap: "1px",
+            background: "var(--card-border)",
+            borderRadius: "14px",
+            overflow: "hidden",
           }}
-          className="industries-grid"
         >
           {industries.map((ind, i) => (
             <motion.div
@@ -172,14 +193,18 @@ export default function Industries() {
               custom={0.07 * i}
               style={{
                 background: "var(--card)",
-                border: "1px solid var(--border)",
-                borderRadius: "14px",
-                padding: "1.75rem",
+                padding: "36px 28px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "1rem",
+                gap: "16px",
+                transition: "background 0.25s ease",
               }}
-              whileHover={{ borderColor: "var(--border-mid)" }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--card-hover)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--card)";
+              }}
             >
               {/* Icon + name */}
               <div>
@@ -270,6 +295,7 @@ export default function Industries() {
 
       <style>{`
         @media (max-width: 900px) {
+          .industries-section { padding: 80px 24px !important; }
           .industries-grid { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 580px) {
