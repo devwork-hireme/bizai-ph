@@ -1,12 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Libre_Baskerville } from "next/font/google";
+import { Syne, DM_Sans, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 
-const outfit = Outfit({
+const syne = Syne({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-outfit",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-syne",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
@@ -19,23 +26,24 @@ const libreBaskerville = Libre_Baskerville({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#06060f",
+  themeColor: "#0A1628",
   colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bizaiph.com"),
-  title: "BizAI PH — We Automate Your Business. You Grow It.",
+  title: "BizAI PH — Done-For-You Digital Growth for Filipino SMBs",
   description:
-    "BizAI PH builds and manages done-for-you AI automation systems for Philippine businesses. Messenger bots, lead capture, appointment booking, order processing — fully set up and managed for you. Starting at ₱1,500/month.",
+    "BizAI PH builds your website, automates your leads, and manages your social media — 100% done for you. Serving Philippine SMBs. Launch promo: 50% off April to May 2026.",
   keywords: [
-    "AI automation Philippines",
-    "business automation Philippines",
-    "Messenger bot Philippines",
-    "lead capture automation",
-    "appointment booking automation Philippines",
-    "done-for-you automation",
+    "digital growth philippines",
+    "website design philippines",
+    "AI automation philippines",
+    "Filipino SMB digital marketing",
+    "done for you marketing philippines",
     "BizAI PH",
+    "business website Philippines",
+    "lead automation Philippines",
   ],
   authors: [{ name: "BizAI PH" }],
   creator: "BizAI PH",
@@ -45,15 +53,16 @@ export const metadata: Metadata = {
     locale: "en_PH",
     url: "https://bizaiph.com",
     siteName: "BizAI PH",
-    title: "BizAI PH — We Automate Your Business. You Grow It.",
+    title: "BizAI PH — Done-For-You Digital Growth for Filipino SMBs",
     description:
-      "Done-for-you AI automation for Philippine businesses. Messenger bots, lead capture, appointment booking, and order processing — fully managed. Starting at ₱1,500/month.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BizAI PH" }],
+      "BizAI PH builds your website, automates your leads, and manages your social media — 100% done for you. Serving Philippine SMBs. Launch promo: 50% off April to May 2026.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BizAI PH — Done-For-You Digital Growth" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BizAI PH — We Automate Your Business. You Grow It.",
-    description: "Done-for-you AI automation for Philippine businesses. Starting at ₱1,500/month.",
+    title: "BizAI PH — Done-For-You Digital Growth for Filipino SMBs",
+    description:
+      "Website, AI automation, leads, and social media — fully set up and managed for you. Launch promo: 50% off April to May 2026.",
     images: ["/og-image.png"],
   },
   alternates: { canonical: "https://bizaiph.com" },
@@ -68,7 +77,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-PH" className={`${outfit.variable} ${libreBaskerville.variable}`}>
+    <html lang="en-PH" className={`${syne.variable} ${dmSans.variable} ${libreBaskerville.variable}`}>
       <body className="min-h-screen antialiased">
         <AnnouncementBar />
         {children}

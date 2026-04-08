@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 
-const DEADLINE = new Date("2025-05-31T23:59:00+08:00").getTime();
-const LS_KEY = "bizai-announcement-closed";
+const DEADLINE = new Date("2026-05-31T23:59:00+08:00").getTime();
+const LS_KEY = "bizai-announcement-closed-v2";
 
 type TimeLeft = { days: number; hours: number; minutes: number; seconds: number };
 
@@ -64,8 +64,8 @@ export default function AnnouncementBar() {
         alignItems: "center",
         justifyContent: "center",
         gap: "16px",
-        background: "linear-gradient(90deg, rgba(61,111,255,0.15), rgba(0,200,255,0.1), rgba(61,111,255,0.15))",
-        borderBottom: "1px solid rgba(82,130,255,0.2)",
+        background: "linear-gradient(90deg, rgba(245,197,24,0.12), rgba(255,217,74,0.08), rgba(245,197,24,0.12))",
+        borderBottom: "1px solid rgba(245,197,24,0.25)",
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
         padding: "0 48px",
@@ -74,20 +74,20 @@ export default function AnnouncementBar() {
       {/* Launch badge */}
       <span
         style={{
-          background: "rgba(0,229,160,0.15)",
-          border: "1px solid rgba(0,229,160,0.3)",
+          background: "rgba(245,197,24,0.15)",
+          border: "1px solid rgba(245,197,24,0.35)",
           borderRadius: "100px",
           padding: "3px 12px",
           fontSize: "0.68rem",
           fontWeight: 700,
-          color: "var(--green)",
+          color: "#F5C518",
           textTransform: "uppercase",
           letterSpacing: "0.1em",
           whiteSpace: "nowrap",
           flexShrink: 0,
         }}
       >
-        LAUNCH OFFER
+        LAUNCH PROMO
       </span>
 
       {/* Center text */}
@@ -96,11 +96,11 @@ export default function AnnouncementBar() {
         style={{
           fontSize: "0.82rem",
           fontWeight: 400,
-          color: "var(--soft)",
+          color: "rgba(255,255,255,0.8)",
           whiteSpace: "nowrap",
         }}
       >
-        50% off all packages — ends May 31, 2025
+        50% off all packages — April to May 2026 only
       </span>
 
       {/* Countdown */}
@@ -125,12 +125,13 @@ export default function AnnouncementBar() {
             <div
               key={l}
               style={{
-                background: "rgba(255,255,255,0.08)",
+                background: "rgba(245,197,24,0.12)",
+                border: "1px solid rgba(245,197,24,0.2)",
                 borderRadius: "4px",
                 padding: "2px 8px",
                 fontSize: "0.78rem",
                 fontWeight: 700,
-                color: "white",
+                color: "#F5C518",
                 fontFamily: "monospace",
                 whiteSpace: "nowrap",
                 minWidth: "36px",

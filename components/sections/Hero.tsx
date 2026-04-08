@@ -16,16 +16,10 @@ const item: Variants = {
   },
 };
 
-const pills = [
-  { text: "More Customers Captured", color: "var(--green)" },
-  { text: "20+ Hours Saved Weekly", color: "var(--blue-light)" },
-  { text: "Revenue Without Extra Staff", color: "var(--cyan)" },
-];
-
-const proof = [
-  "100+ Businesses Automated",
-  "Live in 48 Hours",
-  "Starting at ₱1,500/month",
+const stats = [
+  { text: "24/7 AI Working" },
+  { text: "From ₱3,999 Launch Price" },
+  { text: "100% Done For You" },
 ];
 
 export default function Hero() {
@@ -56,7 +50,7 @@ export default function Hero() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+            "linear-gradient(rgba(245,197,24,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.03) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage:
             "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
@@ -67,24 +61,25 @@ export default function Hero() {
         }}
       />
 
-      {/* Glow — blue top-left */}
+      {/* Glow — gold top */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          top: "-200px",
-          left: "-200px",
-          width: "800px",
-          height: "800px",
+          top: "-100px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "900px",
+          height: "500px",
           borderRadius: "50%",
-          background: "rgba(61,111,255,0.07)",
+          background: "rgba(245,197,24,0.06)",
           filter: "blur(120px)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
 
-      {/* Glow — cyan bottom-right */}
+      {/* Glow — navy mid blue bottom-right */}
       <div
         aria-hidden="true"
         style={{
@@ -94,7 +89,7 @@ export default function Hero() {
           width: "600px",
           height: "600px",
           borderRadius: "50%",
-          background: "rgba(0,200,255,0.04)",
+          background: "rgba(17,34,64,0.8)",
           filter: "blur(100px)",
           pointerEvents: "none",
           zIndex: 0,
@@ -111,7 +106,7 @@ export default function Hero() {
           width: "1px",
           height: "100%",
           background:
-            "linear-gradient(to bottom, transparent, rgba(82,130,255,0.12) 30%, rgba(0,200,255,0.08) 70%, transparent)",
+            "linear-gradient(to bottom, transparent, rgba(245,197,24,0.1) 30%, rgba(255,217,74,0.06) 70%, transparent)",
           transform: "skewX(-5deg)",
           pointerEvents: "none",
           zIndex: 0,
@@ -126,21 +121,21 @@ export default function Hero() {
         style={{
           position: "relative",
           zIndex: 1,
-          maxWidth: "900px",
+          maxWidth: "860px",
           width: "100%",
           textAlign: "center",
         }}
       >
         {/* Eyebrow badge */}
-        <motion.div variants={item} style={{ marginBottom: "40px" }}>
+        <motion.div variants={item} style={{ marginBottom: "32px" }}>
           <span
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
               padding: "8px 20px",
-              background: "rgba(61,111,255,0.06)",
-              border: "1px solid rgba(82,130,255,0.2)",
+              background: "rgba(245,197,24,0.07)",
+              border: "1px solid rgba(245,197,24,0.22)",
               borderRadius: "100px",
             }}
           >
@@ -149,8 +144,8 @@ export default function Hero() {
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                background: "var(--green)",
-                boxShadow: "0 0 0 0 rgba(0,229,160,0.4)",
+                background: "#22C55E",
+                boxShadow: "0 0 0 0 rgba(34,197,94,0.4)",
                 animation: "pulse-ring 2s infinite",
                 flexShrink: 0,
               }}
@@ -159,120 +154,80 @@ export default function Hero() {
               style={{
                 fontSize: "0.72rem",
                 fontWeight: 600,
-                color: "var(--blue-light)",
+                color: "#F5C518",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
+                fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              AI Automation — Built for Philippine Business
+              Done-For-You Digital Growth — Filipino SMBs
             </span>
           </span>
         </motion.div>
 
-        {/* H1 — line 1 */}
+        {/* H1 */}
         <motion.h1
           variants={item}
           style={{
-            fontSize: "clamp(3rem, 7vw, 5.5rem)",
-            fontWeight: 900,
-            letterSpacing: "-0.04em",
-            lineHeight: 1.0,
-            color: "var(--white)",
-            marginBottom: "0.2rem",
+            fontSize: "clamp(2.6rem, 6.5vw, 5rem)",
+            fontWeight: 800,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.05,
+            color: "#FFFFFF",
+            marginBottom: "24px",
+            fontFamily: "var(--font-syne), sans-serif",
           }}
         >
-          We Automate Your Business.
-        </motion.h1>
-
-        {/* H1 — line 2 italic gradient */}
-        <motion.h1
-          variants={item}
-          style={{
-            fontSize: "clamp(3rem, 7vw, 5.5rem)",
-            fontWeight: 400,
-            letterSpacing: "-0.04em",
-            lineHeight: 1.0,
-            fontFamily: "var(--font-baskerville), 'Libre Baskerville', serif",
-            fontStyle: "italic",
-            background: "linear-gradient(135deg, var(--blue-light) 0%, var(--cyan) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            marginBottom: "32px",
-          }}
-        >
-          You Grow It.
+          We Build, Automate, and{" "}
+          <span
+            style={{
+              background: "linear-gradient(135deg, #F5C518 0%, #FFD94A 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Grow Your Business Online
+          </span>
         </motion.h1>
 
         {/* Subheadline */}
         <motion.p
           variants={item}
           style={{
-            fontSize: "1.15rem",
-            color: "var(--soft)",
-            maxWidth: "640px",
-            margin: "0 auto 40px",
+            fontSize: "1.1rem",
+            color: "rgba(255,255,255,0.62)",
+            maxWidth: "620px",
+            margin: "0 auto 32px",
             lineHeight: 1.8,
-            fontWeight: 300,
+            fontWeight: 400,
+            fontFamily: "var(--font-dm-sans), sans-serif",
           }}
         >
-          BizAI PH builds and manages intelligent automation systems for
-          Philippine SMBs — Messenger bots, lead capture, appointment booking,
-          and order processing. Fully built. Fully managed. Zero technical
-          knowledge required.
+          Website, AI automation, leads, and social media — fully set up and managed for you.
+          No technical knowledge needed. Focus on your business, we handle everything else.
         </motion.p>
 
-        {/* Benefit pills */}
-        <motion.div
-          variants={item}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "12px",
-            marginBottom: "44px",
-          }}
-        >
-          {pills.map((pill) => (
-            <span
-              key={pill.text}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "7px 16px",
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid var(--card-border)",
-                borderRadius: "100px",
-                fontSize: "0.8rem",
-                fontWeight: 500,
-                color: "var(--soft)",
-                backdropFilter: "blur(8px)",
-                transition: "background 0.2s ease, border-color 0.2s ease",
-                cursor: "default",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.07)";
-                e.currentTarget.style.borderColor = "rgba(82,130,255,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-                e.currentTarget.style.borderColor = "var(--card-border)";
-              }}
-            >
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: pill.color,
-                  boxShadow: `0 0 6px ${pill.color}`,
-                  flexShrink: 0,
-                }}
-              />
-              {pill.text}
-            </span>
-          ))}
+        {/* Promo pill */}
+        <motion.div variants={item} style={{ marginBottom: "28px" }}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "6px 18px",
+              background: "rgba(245,197,24,0.1)",
+              border: "1px solid rgba(245,197,24,0.3)",
+              borderRadius: "100px",
+              fontSize: "0.8rem",
+              fontWeight: 700,
+              color: "#F5C518",
+              fontFamily: "var(--font-dm-sans), sans-serif",
+            }}
+          >
+            <span style={{ fontSize: "1rem" }}>🔥</span>
+            50% Off — April to May 2026 Only
+          </span>
         </motion.div>
 
         {/* CTA buttons */}
@@ -283,30 +238,34 @@ export default function Hero() {
             gap: "12px",
             justifyContent: "center",
             flexWrap: "wrap",
-            marginBottom: "60px",
+            marginBottom: "64px",
           }}
         >
           <a
-            href="https://calendly.com/devwork2025-proton/free-ai-automation-audit"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="btn-primary"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("contact");
+            }}
+            style={{ fontSize: "1rem" }}
           >
-            Get Your Free Audit
+            Book Free 30-Min Session
           </a>
           <a
-            href="#automations"
+            href="#pricing"
             className="btn-ghost"
             onClick={(e) => {
               e.preventDefault();
-              scrollTo("automations");
+              scrollTo("pricing");
             }}
+            style={{ fontSize: "1rem" }}
           >
-            See Our Automations
+            See Our Packages
           </a>
         </motion.div>
 
-        {/* Social proof strip */}
+        {/* Stats row */}
         <motion.div
           variants={item}
           style={{
@@ -317,9 +276,9 @@ export default function Hero() {
             gap: 0,
           }}
         >
-          {proof.map((text, i) => (
+          {stats.map((stat, i) => (
             <span
-              key={text}
+              key={stat.text}
               style={{ display: "flex", alignItems: "center" }}
             >
               {i > 0 && (
@@ -327,21 +286,22 @@ export default function Hero() {
                   style={{
                     width: "1px",
                     height: "14px",
-                    background: "var(--border)",
-                    margin: "0 32px",
+                    background: "rgba(245,197,24,0.2)",
+                    margin: "0 28px",
                     flexShrink: 0,
                   }}
                 />
               )}
               <span
                 style={{
-                  fontSize: "0.8rem",
-                  fontWeight: 500,
-                  color: "var(--muted)",
+                  fontSize: "0.82rem",
+                  fontWeight: 600,
+                  color: "rgba(255,255,255,0.5)",
                   letterSpacing: "0.02em",
+                  fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                {text}
+                {stat.text}
               </span>
             </span>
           ))}

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
+import { CalendarCheck, Wrench, Rocket, BarChart3 } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -24,47 +25,31 @@ type Step = {
 const steps: Step[] = [
   {
     number: "01",
-    title: "Free Automation Audit",
+    title: "Book Free 30-Min Session",
     duration: "30 minutes",
-    body: "We map your current workflow and identify the 3 highest-impact processes to automate first. No cost. No obligation. You leave with a clear picture of what is possible.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-    ),
+    body: "We understand your business, your goals, and your biggest challenges. We then recommend the right package for you. No obligation. No technical knowledge needed.",
+    icon: <CalendarCheck size={20} />,
   },
   {
     number: "02",
-    title: "We Design Your System",
-    duration: "Within 24 hours",
-    body: "Our team maps the exact automation workflow, selects the right tools, and sends you a clear proposal with expected outcomes. You approve — we build.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-      </svg>
-    ),
+    title: "We Build Everything",
+    duration: "Days 1–3",
+    body: "Website, automations, bots — we build it all. You just provide basic business info (name, services, photos). We handle every technical detail from setup to launch.",
+    icon: <Wrench size={20} />,
   },
   {
     number: "03",
-    title: "Build and Test",
-    duration: "Within 48 hours",
-    body: "We build, configure, and thoroughly test every part of your automation system. You review it live on a test environment. Nothing goes live until you are fully satisfied.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-      </svg>
-    ),
+    title: "Go Live in 3–5 Days",
+    duration: "Day 3–5",
+    body: "Your business goes live online. Customers can find you on Google, message your bot, and book automatically — all while you focus on running your business.",
+    icon: <Rocket size={20} />,
   },
   {
     number: "04",
-    title: "Go Live + Ongoing Management",
-    duration: "Day 3 onward",
-    body: "Your system launches. We monitor performance, fix any issues before they reach you, and optimize based on real data. You grow. We handle the technology.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-      </svg>
-    ),
+    title: "We Manage and Grow",
+    duration: "Ongoing",
+    body: "Monthly reports, maintenance, content posting, lead tracking — all handled for you. We stay with you and make sure your digital presence keeps growing.",
+    icon: <BarChart3 size={20} />,
   },
 ];
 
@@ -80,7 +65,7 @@ export default function Process() {
       className="process-section"
       style={{
         background: "var(--black)",
-        borderTop: "1px solid var(--card-border)",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
@@ -93,7 +78,7 @@ export default function Process() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
@@ -113,47 +98,45 @@ export default function Process() {
           <p className="section-label">How It Works</p>
           <h2
             style={{
-              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
-              fontWeight: 900,
-              letterSpacing: "-0.04em",
-              lineHeight: 1.0,
-              color: "var(--white)",
+              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              color: "#FFFFFF",
               marginBottom: "20px",
+              fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Live in 48 Hours.{" "}
+            Live in 3–5 Days.{" "}
             <span
               style={{
-                fontFamily: "var(--font-baskerville), serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                background: "linear-gradient(135deg, var(--blue-light), var(--cyan))",
+                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              Not 48 Days.
+              Not 3–5 Months.
             </span>
           </h2>
           <p
             style={{
               fontSize: "1rem",
-              color: "var(--soft)",
-              maxWidth: "540px",
+              color: "rgba(255,255,255,0.55)",
+              maxWidth: "520px",
               margin: "0 auto",
               lineHeight: 1.78,
-              fontWeight: 300,
+              fontWeight: 400,
+              fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            A clear, no-nonsense process from first call to fully operational
-            automation — with zero technical knowledge required on your end.
+            A simple, four-step process from first call to fully operational digital presence —
+            with zero technical work required on your end.
           </p>
         </motion.div>
 
-        {/* Steps — horizontal track */}
+        {/* Steps */}
         <div ref={stepsRef}>
-          {/* Desktop: horizontal connector line */}
           <div
             style={{ position: "relative" }}
             className="process-track"
@@ -168,7 +151,7 @@ export default function Process() {
                 right: "10%",
                 height: "1px",
                 background:
-                  "linear-gradient(90deg, transparent, var(--border-mid), var(--border-mid), transparent)",
+                  "linear-gradient(90deg, transparent, rgba(245,197,24,0.25), rgba(245,197,24,0.25), transparent)",
                 pointerEvents: "none",
               }}
               className="process-connector"
@@ -198,13 +181,13 @@ export default function Process() {
                       width: "56px",
                       height: "56px",
                       borderRadius: "50%",
-                      background: "var(--card)",
-                      border: "1px solid var(--border-mid)",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(245,197,24,0.3)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       margin: "0 auto 1.5rem",
-                      color: "var(--blue-light)",
+                      color: "#F5C518",
                       position: "relative",
                       zIndex: 1,
                     }}
@@ -219,8 +202,9 @@ export default function Process() {
                       fontWeight: 700,
                       textTransform: "uppercase",
                       letterSpacing: "0.12em",
-                      color: "var(--blue-light)",
+                      color: "#F5C518",
                       marginBottom: "0.5rem",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
                     Step {step.number}
@@ -231,9 +215,10 @@ export default function Process() {
                     style={{
                       fontSize: "1rem",
                       fontWeight: 700,
-                      color: "var(--white)",
+                      color: "#FFFFFF",
                       lineHeight: 1.3,
                       marginBottom: "0.4rem",
+                      fontFamily: "var(--font-syne), sans-serif",
                     }}
                   >
                     {step.title}
@@ -246,11 +231,12 @@ export default function Process() {
                         display: "inline-block",
                         fontSize: "0.72rem",
                         fontWeight: 600,
-                        color: "var(--green)",
-                        background: "rgba(0,229,160,0.07)",
-                        border: "1px solid rgba(0,229,160,0.18)",
+                        color: "#22C55E",
+                        background: "rgba(34,197,94,0.08)",
+                        border: "1px solid rgba(34,197,94,0.2)",
                         padding: "2px 10px",
                         borderRadius: "100px",
+                        fontFamily: "var(--font-dm-sans), sans-serif",
                       }}
                     >
                       {step.duration}
@@ -261,32 +247,14 @@ export default function Process() {
                   <p
                     style={{
                       fontSize: "0.85rem",
-                      color: "var(--muted)",
+                      color: "rgba(255,255,255,0.5)",
                       lineHeight: 1.7,
                       margin: 0,
+                      fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
                     {step.body}
                   </p>
-                  {i === 0 && (
-                    <a
-                      href="https://calendly.com/devwork2025-proton/free-ai-automation-audit"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: "inline-block",
-                        marginTop: "12px",
-                        fontSize: "0.85rem",
-                        fontWeight: 600,
-                        color: "var(--blue-light)",
-                        textDecoration: "none",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cyan)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--blue-light)")}
-                    >
-                      Book your free audit →
-                    </a>
-                  )}
                 </motion.div>
               ))}
             </div>
@@ -304,11 +272,12 @@ export default function Process() {
           <p
             style={{
               fontSize: "0.9rem",
-              color: "var(--soft)",
+              color: "rgba(255,255,255,0.5)",
               marginBottom: "1.5rem",
+              fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Ready to start? The first step is a free 30-minute call.
+            Ready to start? The first step is a free 30-minute session.
           </p>
           <a
             href="#contact"
@@ -318,7 +287,7 @@ export default function Process() {
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Book Your Free Audit
+            Book Free 30-Min Session
           </a>
         </motion.div>
       </div>

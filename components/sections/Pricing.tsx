@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
+import { Check, Clock, Users, Zap, Lock } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -13,82 +14,109 @@ const fadeUp: Variants = {
   }),
 };
 
-type PricingTier = {
+const comparisonRows = [
+  { label: "Monthly Cost", human: "₱15,000–₱25,000", bizai: "From ₱2,999/mo" },
+  { label: "Works 24/7", human: "No", bizai: "Yes" },
+  { label: "Response Time", human: "30 min–4 hrs", bizai: "Under 30 seconds" },
+  { label: "Handles 100+ chats at once", human: "No", bizai: "Yes" },
+  { label: "Zero sick days or absences", human: "No", bizai: "Yes" },
+  { label: "Monthly performance reports", human: "Manual", bizai: "Automated" },
+];
+
+type Tier = {
   key: string;
   name: string;
-  launchPrice: string;
-  regularPrice: string;
-  setupFee: string;
+  badge?: string;
+  tagline: string;
+  forWho: string;
+  originalSetup: string;
+  launchSetup: string;
+  originalMonthly?: string;
+  launchMonthly?: string;
+  isOneTime?: boolean;
   features: string[];
-  bestFor: string;
-  highlight: boolean;
-  popularBadge: boolean;
+  dotColor: string;
+  isPopular?: boolean;
+  isComingSoon?: boolean;
+  ctaLabel: string;
+  ctaStyle: "gold" | "outline" | "waitlist";
 };
 
-const tiers: PricingTier[] = [
+const tiers: Tier[] = [
+  {
+    key: "basic",
+    name: "Basic",
+    tagline: "Get your business online",
+    forWho: "Businesses with no website",
+    originalSetup: "₱7,999",
+    launchSetup: "₱3,999",
+    isOneTime: true,
+    features: [
+      "5-Page Professional Website (Home, About, Services, Contact, Gallery)",
+      "Mobile-Friendly Design",
+      "Contact Form",
+      "Free 1 Year Domain",
+      "Free 1 Year Hosting",
+      "Professional Email (hello@yourbusiness.com)",
+    ],
+    dotColor: "#6B7A99",
+    ctaLabel: "Get Started",
+    ctaStyle: "outline",
+  },
   {
     key: "starter",
     name: "Starter",
-    launchPrice: "₱750",
-    regularPrice: "₱1,500",
-    setupFee: "₱2,999",
-    bestFor: "New and small businesses",
+    badge: "MOST POPULAR",
+    tagline: "Get your business found",
+    forWho: "Businesses online but invisible",
+    originalSetup: "₱15,999",
+    launchSetup: "₱7,999",
+    originalMonthly: "₱5,999",
+    launchMonthly: "₱2,999",
     features: [
-      "1 automation system (your choice)",
-      "Full setup and configuration",
-      "Messenger bot or booking system",
-      "30-day performance guarantee",
-      "Email support",
-      "Monthly system health check",
+      "Everything in Basic",
+      "Custom Website (3 professional layouts)",
+      "SEO Foundation Setup",
+      "24/7 Messenger Bot",
+      "Lead Capture System",
+      "Google My Business Setup",
+      "Google Review Automation",
+      "Automated Facebook Posts — 3x/week",
+      "Monthly Performance Report via WhatsApp",
+      "Bug Fixes and Maintenance",
+      "WhatsApp Support",
     ],
-    highlight: false,
-    popularBadge: true,
+    dotColor: "#22C55E",
+    isPopular: true,
+    ctaLabel: "Get Started",
+    ctaStyle: "gold",
   },
   {
     key: "growth",
     name: "Growth",
-    launchPrice: "₱1,500",
-    regularPrice: "₱2,999",
-    setupFee: "₱4,999",
-    bestFor: "Growing businesses with multiple channels",
+    badge: "COMING SOON",
+    tagline: "Get your business customers",
+    forWho: "Businesses visible but not converting",
+    originalSetup: "₱29,999",
+    launchSetup: "₱14,999",
+    originalMonthly: "₱15,999",
+    launchMonthly: "₱7,999",
     features: [
-      "Up to 3 automation systems",
-      "Messenger bot + booking + follow-up",
-      "Business performance dashboard",
-      "Priority WhatsApp support",
-      "Weekly optimization review",
-      "30-day performance guarantee",
+      "Everything in Starter",
+      "Advanced AI Messenger Bot (Facebook + Instagram)",
+      "3-Day Lead Follow-Up Sequence",
+      "Appointment Booking System",
+      "Local SEO Growth (monthly content)",
+      "Automated Facebook Posts — 5x/week",
+      "Live Business Dashboard",
+      "WhatsApp Lead Alerts",
+      "Priority Support (4-hour response)",
     ],
-    highlight: true,
-    popularBadge: false,
+    dotColor: "#F5C518",
+    isComingSoon: true,
+    ctaLabel: "Join Waitlist",
+    ctaStyle: "waitlist",
   },
-  {
-    key: "business",
-    name: "Business",
-    launchPrice: "₱2,500",
-    regularPrice: "₱4,999",
-    setupFee: "₱9,999",
-    bestFor: "Established businesses at scale",
-    features: [
-      "Unlimited automation systems",
-      "Custom workflow design",
-      "Dedicated automation manager",
-      "Real-time reporting dashboard",
-      "24/7 priority support",
-      "30-day performance guarantee",
-    ],
-    highlight: false,
-    popularBadge: false,
-  },
-];
-
-const comparisonRows = [
-  { label: "Monthly Cost", human: "₱15,000–₱20,000", bizai: "From ₱750" },
-  { label: "Works 24/7", human: "No", bizai: "Yes" },
-  { label: "Response Time", human: "30 min–4 hrs", bizai: "Under 30 seconds" },
-  { label: "Handles 100+ chats at once", human: "No", bizai: "Yes" },
-  { label: "Zero sick days", human: "No", bizai: "Yes" },
-  { label: "Training required", human: "Weeks", bizai: "None" },
 ];
 
 export default function Pricing() {
@@ -97,13 +125,17 @@ export default function Pricing() {
   const compareRef = useRef(null);
   const compareInView = useInView(compareRef, { once: true, margin: "-50px" });
 
+  function scrollToContact() {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <section
       id="pricing"
       className="pricing-section"
       style={{
         background: "var(--deep)",
-        borderTop: "1px solid var(--card-border)",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
@@ -116,7 +148,7 @@ export default function Pricing() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
@@ -124,7 +156,7 @@ export default function Pricing() {
           zIndex: 0,
         }}
       />
-      {/* Blue glow top */}
+      {/* Gold glow top */}
       <div
         aria-hidden="true"
         style={{
@@ -134,12 +166,13 @@ export default function Pricing() {
           transform: "translateX(-50%)",
           width: "800px",
           height: "400px",
-          background: "rgba(61,111,255,0.08)",
+          background: "rgba(245,197,24,0.05)",
           filter: "blur(120px)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
+
       <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <motion.div
@@ -149,122 +182,460 @@ export default function Pricing() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "40px" }}
         >
-          <p className="section-label">Launch Pricing</p>
+          <p className="section-label">Packages & Pricing</p>
           <h2
             style={{
-              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
-              fontWeight: 900,
-              letterSpacing: "-0.04em",
-              lineHeight: 1.0,
-              color: "var(--white)",
+              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              color: "#FFFFFF",
               marginBottom: "20px",
+              fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            50% Off —{" "}
+            Simple Packages,{" "}
             <span
               style={{
-                fontFamily: "var(--font-baskerville), serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                background: "linear-gradient(135deg, var(--blue-light), var(--cyan))",
+                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              April to May Only
+              Real Results
             </span>
           </h2>
           <p
             style={{
               fontSize: "1rem",
-              color: "var(--soft)",
+              color: "rgba(255,255,255,0.55)",
               maxWidth: "520px",
               margin: "0 auto 2rem",
               lineHeight: 1.78,
-              fontWeight: 300,
+              fontWeight: 400,
+              fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            All plans include full setup, configuration, and ongoing management.
-            Month-to-month. Cancel anytime.
+            Everything is done for you. Pick the package that fits your stage and start growing.
           </p>
+        </motion.div>
 
-          {/* Urgency row */}
-          <div
-            className="urgency-row"
-            style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}
+        {/* PROMO BANNER */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={headInView ? "visible" : "hidden"}
+          custom={0.1}
+          style={{
+            background: "linear-gradient(135deg, rgba(245,197,24,0.12) 0%, rgba(255,217,74,0.08) 100%)",
+            border: "1px solid rgba(245,197,24,0.35)",
+            borderRadius: "14px",
+            padding: "1.5rem 2rem",
+            marginBottom: "2.5rem",
+            textAlign: "center",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "1.05rem",
+              fontWeight: 700,
+              color: "#F5C518",
+              marginBottom: "0.35rem",
+              fontFamily: "var(--font-syne), sans-serif",
+            }}
           >
-            {[
-              {
-                icon: (
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--cyan)" stroke="none">
-                    <path d="M12 2c0 6-6 8-6 14a6 6 0 0 0 12 0c0-6-6-8-6-14zm0 17a2 2 0 0 1-2-2c0-2 2-3.5 2-3.5s2 1.5 2 3.5a2 2 0 0 1-2 2z" />
-                  </svg>
-                ),
-                text: "Limited Time Offer",
-              },
-              {
-                icon: (
-                  <svg
-                    width="13"
-                    height="13"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="var(--cyan)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                  </svg>
-                ),
-                text: "Ends May 31, 2025",
-              },
-              {
-                icon: (
-                  <svg
-                    width="13"
-                    height="13"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="var(--cyan)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                ),
-                text: "Only 20 Slots Available",
-              },
-            ].map(({ icon, text }) => (
+            🔥 Launch Promo — 50% Off All Packages
+          </p>
+          <p
+            style={{
+              fontSize: "0.875rem",
+              color: "rgba(255,255,255,0.65)",
+              margin: 0,
+              fontFamily: "var(--font-dm-sans), sans-serif",
+            }}
+          >
+            Limited slots available. Promo runs{" "}
+            <strong style={{ color: "rgba(255,255,255,0.85)" }}>April to May 2026 only</strong>.
+            Original prices shown. Launch price applied at checkout.
+          </p>
+        </motion.div>
+
+        {/* Pricing cards */}
+        <div
+          className="pricing-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1.5rem",
+            marginBottom: "3rem",
+            alignItems: "start",
+          }}
+        >
+          {tiers.map((tier, i) => (
+            <motion.div
+              key={tier.key}
+              variants={fadeUp}
+              initial="hidden"
+              animate={headInView ? "visible" : "hidden"}
+              custom={0.15 + 0.08 * i}
+              style={{
+                background: tier.isPopular
+                  ? "linear-gradient(180deg, rgba(34,197,94,0.07) 0%, rgba(255,255,255,0.04) 100%)"
+                  : "rgba(255,255,255,0.04)",
+                border: tier.isPopular
+                  ? "1px solid rgba(34,197,94,0.3)"
+                  : "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "16px",
+                padding: "36px 28px",
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: tier.isPopular
+                  ? "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(34,197,94,0.15)"
+                  : "none",
+              }}
+            >
+              {/* Badge */}
+              {tier.badge && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-13px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    background: tier.isPopular
+                      ? "linear-gradient(135deg, #22C55E, #16A34A)"
+                      : "rgba(245,197,24,0.15)",
+                    border: tier.isComingSoon ? "1px solid rgba(245,197,24,0.4)" : "none",
+                    color: tier.isPopular ? "#FFFFFF" : "#F5C518",
+                    fontSize: "0.65rem",
+                    fontWeight: 800,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    padding: "4px 16px",
+                    borderRadius: "100px",
+                    whiteSpace: "nowrap",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "5px",
+                  }}
+                >
+                  {tier.isComingSoon && <Lock size={10} />}
+                  {tier.badge}
+                </div>
+              )}
+
+              {/* Dot + Name */}
               <div
-                key={text}
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "6px",
-                  background: "rgba(0,200,255,0.06)",
-                  border: "1px solid rgba(0,200,255,0.15)",
-                  borderRadius: "100px",
-                  padding: "6px 14px",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  color: "var(--soft)",
+                  gap: "10px",
+                  marginBottom: "0.5rem",
+                  marginTop: tier.badge ? "8px" : "0",
                 }}
               >
-                {icon}
-                {text}
+                <span
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    background: tier.dotColor,
+                    boxShadow: `0 0 8px ${tier.dotColor}60`,
+                    flexShrink: 0,
+                  }}
+                />
+                <h3
+                  style={{
+                    fontSize: "0.88rem",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: tier.isPopular ? "#22C55E" : "rgba(255,255,255,0.6)",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                    margin: 0,
+                  }}
+                >
+                  {tier.name}
+                </h3>
               </div>
-            ))}
-          </div>
-        </motion.div>
+
+              {/* Tagline */}
+              <p
+                style={{
+                  fontSize: "1.15rem",
+                  fontWeight: 700,
+                  color: "#FFFFFF",
+                  marginBottom: "0.25rem",
+                  fontFamily: "var(--font-syne), sans-serif",
+                }}
+              >
+                {tier.tagline}
+              </p>
+              <p
+                style={{
+                  fontSize: "0.82rem",
+                  color: "rgba(255,255,255,0.45)",
+                  marginBottom: "1.5rem",
+                  fontFamily: "var(--font-dm-sans), sans-serif",
+                }}
+              >
+                For: {tier.forWho}
+              </p>
+
+              {/* Price */}
+              <div
+                style={{
+                  marginBottom: "1.5rem",
+                  paddingBottom: "1.5rem",
+                  borderBottom: "1px solid rgba(255,255,255,0.07)",
+                }}
+              >
+                {/* Setup price */}
+                <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "4px" }}>
+                  <span
+                    style={{
+                      fontSize: "2.4rem",
+                      fontWeight: 900,
+                      letterSpacing: "-0.04em",
+                      color: "#FFFFFF",
+                      fontFamily: "var(--font-syne), sans-serif",
+                    }}
+                  >
+                    {tier.launchSetup}
+                  </span>
+                  <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                    {tier.isOneTime ? "one-time" : "setup"}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "rgba(239,68,68,0.6)",
+                      textDecoration: "line-through",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
+                    }}
+                  >
+                    {tier.originalSetup}
+                  </span>
+                </div>
+
+                {/* Monthly price */}
+                {tier.launchMonthly && (
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+                    <span
+                      style={{
+                        fontSize: "1.5rem",
+                        fontWeight: 800,
+                        color: tier.isPopular ? "#22C55E" : "rgba(255,255,255,0.8)",
+                        fontFamily: "var(--font-syne), sans-serif",
+                      }}
+                    >
+                      {tier.launchMonthly}
+                    </span>
+                    <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-dm-sans), sans-serif" }}>/month</span>
+                    <span
+                      style={{
+                        fontSize: "0.85rem",
+                        color: "rgba(239,68,68,0.5)",
+                        textDecoration: "line-through",
+                        fontFamily: "var(--font-dm-sans), sans-serif",
+                      }}
+                    >
+                      {tier.originalMonthly}
+                    </span>
+                  </div>
+                )}
+
+                {/* Launch price badge */}
+                <div style={{ marginTop: "10px" }}>
+                  <span
+                    style={{
+                      display: "inline-block",
+                      fontSize: "0.68rem",
+                      fontWeight: 700,
+                      color: tier.isComingSoon ? "#F5C518" : "#0A1628",
+                      background: tier.isComingSoon ? "rgba(245,197,24,0.15)" : "#F5C518",
+                      border: tier.isComingSoon ? "1px solid rgba(245,197,24,0.4)" : "none",
+                      borderRadius: "100px",
+                      padding: "3px 12px",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
+                    }}
+                  >
+                    {tier.isComingSoon ? "WAITLIST ONLY" : "LAUNCH PRICE"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Features */}
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.65rem",
+                  marginBottom: "2rem",
+                }}
+              >
+                {tier.features.map((f) => (
+                  <div
+                    key={f}
+                    style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}
+                  >
+                    <Check
+                      size={14}
+                      style={{
+                        flexShrink: 0,
+                        marginTop: "3px",
+                        color: tier.isPopular ? "#22C55E" : tier.isComingSoon ? "#F5C518" : "#6B7A99",
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontSize: "0.875rem",
+                        color: "rgba(255,255,255,0.62)",
+                        lineHeight: 1.5,
+                        fontFamily: "var(--font-dm-sans), sans-serif",
+                      }}
+                    >
+                      {f}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              {tier.ctaStyle === "gold" && (
+                <button
+                  onClick={scrollToContact}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    padding: "14px 24px",
+                    borderRadius: "10px",
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    border: "none",
+                    background: "#F5C518",
+                    color: "#0A1628",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                    transition: "all 0.2s ease",
+                    boxShadow: "0 4px 20px rgba(245,197,24,0.25)",
+                    width: "100%",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#FFD94A";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#F5C518";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  Get Started
+                </button>
+              )}
+              {tier.ctaStyle === "outline" && (
+                <button
+                  onClick={scrollToContact}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    padding: "14px 24px",
+                    borderRadius: "10px",
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                    cursor: "pointer",
+                    background: "transparent",
+                    color: "#FFFFFF",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                    transition: "all 0.2s ease",
+                    width: "100%",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(245,197,24,0.4)";
+                    e.currentTarget.style.color = "#F5C518";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+                    e.currentTarget.style.color = "#FFFFFF";
+                  }}
+                >
+                  Get Started
+                </button>
+              )}
+              {tier.ctaStyle === "waitlist" && (
+                <>
+                  <button
+                    onClick={scrollToContact}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px",
+                      padding: "14px 24px",
+                      borderRadius: "10px",
+                      fontWeight: 700,
+                      fontSize: "0.95rem",
+                      cursor: "pointer",
+                      background: "transparent",
+                      color: "#F5C518",
+                      border: "1px solid rgba(245,197,24,0.4)",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
+                      transition: "all 0.2s ease",
+                      width: "100%",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "rgba(245,197,24,0.08)";
+                      e.currentTarget.style.borderColor = "rgba(245,197,24,0.6)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "transparent";
+                      e.currentTarget.style.borderColor = "rgba(245,197,24,0.4)";
+                    }}
+                  >
+                    Join Waitlist
+                  </button>
+                  <p
+                    style={{
+                      fontSize: "0.72rem",
+                      color: "rgba(255,255,255,0.35)",
+                      textAlign: "center",
+                      marginTop: "8px",
+                      marginBottom: 0,
+                      fontFamily: "var(--font-dm-sans), sans-serif",
+                    }}
+                  >
+                    Lock in the 50% launch price before we go live.
+                  </p>
+                </>
+              )}
+              {tier.ctaStyle !== "waitlist" && (
+                <p
+                  style={{
+                    fontSize: "0.72rem",
+                    color: "rgba(255,255,255,0.35)",
+                    textAlign: "center",
+                    marginTop: "8px",
+                    marginBottom: 0,
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                >
+                  Free 30-min session first. No commitment required.
+                </p>
+              )}
+            </motion.div>
+          ))}
+        </div>
 
         {/* Comparison table */}
         <motion.div
@@ -273,11 +644,11 @@ export default function Pricing() {
           initial="hidden"
           animate={compareInView ? "visible" : "hidden"}
           style={{
-            background: "var(--card)",
-            border: "1px solid var(--border)",
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: "16px",
             padding: "2rem",
-            marginBottom: "3rem",
+            marginBottom: "2rem",
             overflow: "hidden",
           }}
         >
@@ -287,8 +658,9 @@ export default function Pricing() {
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.1em",
-              color: "var(--blue-light)",
+              color: "#F5C518",
               marginBottom: "1.25rem",
+              fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
             BizAI PH vs. Hiring a Full-Time Assistant
@@ -305,11 +677,12 @@ export default function Pricing() {
                       padding: "0.6rem 0",
                       fontSize: "0.78rem",
                       fontWeight: 700,
-                      color: "var(--muted)",
+                      color: "rgba(255,255,255,0.35)",
                       textTransform: "uppercase",
                       letterSpacing: "0.08em",
-                      borderBottom: "1px solid var(--border)",
+                      borderBottom: "1px solid rgba(255,255,255,0.07)",
                       width: "50%",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
                     Feature
@@ -320,13 +693,14 @@ export default function Pricing() {
                       padding: "0.6rem 1rem",
                       fontSize: "0.78rem",
                       fontWeight: 700,
-                      color: "var(--muted)",
+                      color: "rgba(255,255,255,0.35)",
                       textTransform: "uppercase",
                       letterSpacing: "0.08em",
-                      borderBottom: "1px solid var(--border)",
+                      borderBottom: "1px solid rgba(255,255,255,0.07)",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
-                    Human Assistant
+                    Human Staff
                   </th>
                   <th
                     style={{
@@ -334,10 +708,11 @@ export default function Pricing() {
                       padding: "0.6rem 1rem",
                       fontSize: "0.78rem",
                       fontWeight: 700,
-                      color: "var(--blue-light)",
+                      color: "#F5C518",
                       textTransform: "uppercase",
                       letterSpacing: "0.08em",
-                      borderBottom: "1px solid var(--border)",
+                      borderBottom: "1px solid rgba(255,255,255,0.07)",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
                     BizAI PH
@@ -351,11 +726,9 @@ export default function Pricing() {
                       style={{
                         padding: "0.75rem 0",
                         fontSize: "0.88rem",
-                        color: "var(--soft)",
-                        borderBottom:
-                          i < comparisonRows.length - 1
-                            ? "1px solid var(--border)"
-                            : "none",
+                        color: "rgba(255,255,255,0.62)",
+                        borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                        fontFamily: "var(--font-dm-sans), sans-serif",
                       }}
                     >
                       {row.label}
@@ -365,11 +738,9 @@ export default function Pricing() {
                         padding: "0.75rem 1rem",
                         textAlign: "center",
                         fontSize: "0.88rem",
-                        color: "rgba(239,68,68,0.7)",
-                        borderBottom:
-                          i < comparisonRows.length - 1
-                            ? "1px solid var(--border)"
-                            : "none",
+                        color: "rgba(239,68,68,0.65)",
+                        borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                        fontFamily: "var(--font-dm-sans), sans-serif",
                       }}
                     >
                       {row.human}
@@ -380,11 +751,9 @@ export default function Pricing() {
                         textAlign: "center",
                         fontSize: "0.88rem",
                         fontWeight: 600,
-                        color: "var(--green)",
-                        borderBottom:
-                          i < comparisonRows.length - 1
-                            ? "1px solid var(--border)"
-                            : "none",
+                        color: "#22C55E",
+                        borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                        fontFamily: "var(--font-dm-sans), sans-serif",
                       }}
                     >
                       {row.bizai}
@@ -396,336 +765,25 @@ export default function Pricing() {
           </div>
         </motion.div>
 
-        {/* Pricing cards */}
-        <div
-          className="pricing-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1px",
-            background: "var(--card-border)",
-            borderRadius: "16px",
-            overflow: "hidden",
-            marginBottom: "32px",
-          }}
-        >
-          {tiers.map((tier, i) => (
-            <motion.div
-              key={tier.key}
-              variants={fadeUp}
-              initial="hidden"
-              animate={compareInView ? "visible" : "hidden"}
-              custom={0.08 * i}
-              style={{
-                background: tier.highlight ? "#111130" : "var(--card)",
-                border: tier.highlight ? "1px solid rgba(61,111,255,0.3)" : "none",
-                margin: tier.highlight ? "-1px" : "0",
-                zIndex: tier.highlight ? 1 : 0,
-                boxShadow: tier.highlight
-                  ? "0 0 0 1px rgba(61,111,255,0.2), 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(61,111,255,0.15)"
-                  : "none",
-                padding: "36px 28px",
-                position: "relative",
-                display: "flex",
-                flexDirection: "column",
-                borderRadius: tier.highlight ? "14px" : "0",
-              }}
-            >
-              {/* Most Popular badge */}
-              {tier.popularBadge && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-1px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    background: "linear-gradient(135deg, var(--blue), var(--blue-light))",
-                    color: "white",
-                    fontSize: "0.68rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    padding: "5px 18px",
-                    borderRadius: "0 0 8px 8px",
-                    whiteSpace: "nowrap",
-                    boxShadow: "0 4px 12px rgba(61,111,255,0.4)",
-                  }}
-                >
-                  Most Popular
-                </div>
-              )}
-
-              {/* Name + 50% OFF */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  marginBottom: "1.25rem",
-                }}
-              >
-                <h3
-                  style={{
-                    fontSize: "0.88rem",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: tier.highlight ? "var(--blue-light)" : "var(--muted)",
-                  }}
-                >
-                  {tier.name}
-                </h3>
-                <span
-                  style={{
-                    fontSize: "0.68rem",
-                    fontWeight: 800,
-                    color: "var(--black)",
-                    background: "var(--green)",
-                    borderRadius: "100px",
-                    padding: "3px 10px",
-                    letterSpacing: "0.04em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  50% OFF
-                </span>
-              </div>
-
-              {/* Price */}
-              <div style={{ marginBottom: "1.25rem" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "baseline",
-                    gap: "8px",
-                    marginBottom: "0.35rem",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "2.25rem",
-                      fontWeight: 900,
-                      letterSpacing: "-0.04em",
-                      color: "var(--white)",
-                    }}
-                  >
-                    {tier.launchPrice}
-                  </span>
-                  <span style={{ fontSize: "0.85rem", color: "var(--muted)" }}>/month</span>
-                  <span
-                    style={{
-                      fontSize: "0.9rem",
-                      color: "rgba(239,68,68,0.6)",
-                      textDecoration: "line-through",
-                    }}
-                  >
-                    {tier.regularPrice}
-                  </span>
-                </div>
-                <p style={{ fontSize: "0.8rem", color: "var(--muted)", margin: 0 }}>
-                  + {tier.setupFee} one-time setup
-                </p>
-              </div>
-
-              {/* Best for */}
-              <p
-                style={{
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  color: tier.highlight ? "var(--blue-light)" : "var(--muted)",
-                  marginBottom: "1rem",
-                }}
-              >
-                Best for: {tier.bestFor}
-              </p>
-
-              {/* Features */}
-              <div
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.6rem",
-                  marginBottom: "2rem",
-                }}
-              >
-                {tier.features.map((f) => (
-                  <div
-                    key={f}
-                    style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke={tier.highlight ? "var(--cyan)" : "var(--green)"}
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      style={{ flexShrink: 0, marginTop: "3px" }}
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span
-                      style={{
-                        fontSize: "0.875rem",
-                        color: "var(--soft)",
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {f}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA */}
-              <a
-                href="https://calendly.com/devwork2025-proton/free-ai-automation-audit"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  padding: "13px 24px",
-                  borderRadius: "8px",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  background: tier.highlight
-                    ? "linear-gradient(135deg, var(--blue), var(--cyan))"
-                    : "transparent",
-                  color: "var(--white)",
-                  border: tier.highlight ? "none" : "1px solid var(--border-mid)",
-                }}
-                onMouseEnter={(e) => {
-                  if (!tier.highlight) {
-                    e.currentTarget.style.borderColor = "var(--blue-light)";
-                    e.currentTarget.style.color = "var(--blue-light)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!tier.highlight) {
-                    e.currentTarget.style.borderColor = "var(--border-mid)";
-                    e.currentTarget.style.color = "var(--white)";
-                  }
-                }}
-              >
-                Get Started — Book Free Audit
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-              <p style={{ fontSize: "0.72rem", color: "var(--muted)", textAlign: "center", marginTop: "8px", marginBottom: 0 }}>
-                Free 30-min consultation first. No payment required to book.
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Trust badges */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate={compareInView ? "visible" : "hidden"}
-          custom={0.25}
+          custom={0.15}
           className="trust-badges"
           style={{
             display: "flex",
             flexWrap: "wrap",
             gap: "1.5rem",
             justifyContent: "center",
-            marginBottom: "2.5rem",
           }}
         >
           {[
-            {
-              icon: (
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
-              ),
-              label: "SSL Secured",
-            },
-            {
-              icon: (
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              ),
-              label: "PayMongo Verified",
-            },
-            {
-              icon: (
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-                  <line x1="1" y1="10" x2="23" y2="10" />
-                </svg>
-              ),
-              label: "GCash · Maya · Cards · Bank",
-            },
-            {
-              icon: (
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="23 4 23 10 17 10" />
-                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
-                </svg>
-              ),
-              label: "30-Day Money Back",
-            },
+            { icon: <Zap size={14} />, label: "SSL Secured" },
+            { icon: <Check size={14} />, label: "PayMongo Verified" },
+            { icon: <Users size={14} />, label: "GCash · Maya · Cards" },
+            { icon: <Clock size={14} />, label: "30-Day Money Back" },
           ].map(({ icon, label }) => (
             <div
               key={label}
@@ -735,83 +793,14 @@ export default function Pricing() {
                 gap: "7px",
                 fontSize: "0.78rem",
                 fontWeight: 600,
-                color: "var(--muted)",
+                color: "rgba(255,255,255,0.4)",
+                fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
               {icon}
               {label}
             </div>
           ))}
-        </motion.div>
-
-        {/* Guarantee */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={compareInView ? "visible" : "hidden"}
-          custom={0.35}
-          style={{
-            background: "rgba(0,229,160,0.05)",
-            border: "1px solid rgba(0,229,160,0.2)",
-            borderRadius: "14px",
-            padding: "1.75rem 2rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "1.25rem",
-          }}
-          className="guarantee-row"
-        >
-          <div
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "12px",
-              background: "rgba(0,229,160,0.1)",
-              border: "1px solid rgba(0,229,160,0.25)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "var(--green)",
-              flexShrink: 0,
-            }}
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-          </div>
-          <div>
-            <p
-              style={{
-                fontSize: "1rem",
-                fontWeight: 700,
-                color: "var(--white)",
-                marginBottom: "0.2rem",
-              }}
-            >
-              30-Day Performance Guarantee
-            </p>
-            <p
-              style={{
-                fontSize: "0.875rem",
-                color: "var(--soft)",
-                lineHeight: 1.65,
-                margin: 0,
-              }}
-            >
-              If your automation system does not deliver measurable improvement in
-              your first 30 days, we will rebuild it at no additional cost. We stand
-              behind every system we deploy.
-            </p>
-          </div>
         </motion.div>
       </div>
 
@@ -821,11 +810,8 @@ export default function Pricing() {
           .pricing-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 600px) {
-          .guarantee-row { flex-direction: column; text-align: center; }
-          .urgency-row { flex-direction: column; align-items: center; }
           .trust-badges { gap: 1rem; }
         }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
       `}</style>
     </section>
   );
