@@ -74,7 +74,7 @@ export default function Solution() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+            "linear-gradient(rgba(26,58,107,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(26,58,107,0.5) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
@@ -91,7 +91,7 @@ export default function Solution() {
           left: "-200px",
           width: "600px",
           height: "600px",
-          background: "rgba(61,111,255,0.06)",
+          background: "rgba(245,197,24,0.05)",
           filter: "blur(100px)",
           borderRadius: "50%",
           pointerEvents: "none",
@@ -119,19 +119,16 @@ export default function Solution() {
               marginBottom: "20px",
             }}
           >
-            Your Business on{" "}
+            What Happens When{" "}
             <span
               style={{
-                fontFamily: "var(--font-baskerville), serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                background: "linear-gradient(135deg, var(--blue-light), var(--cyan))",
+                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              Autopilot
+              We Take Over
             </span>
           </h2>
           <p
@@ -353,7 +350,7 @@ export default function Solution() {
                     fontSize: "3.5rem",
                     fontWeight: 900,
                     letterSpacing: "-0.06em",
-                    color: "rgba(82,130,255,0.12)",
+                    color: "rgba(245,197,24,0.12)",
                     lineHeight: 1,
                     marginBottom: "20px",
                   }}

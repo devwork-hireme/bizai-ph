@@ -111,7 +111,7 @@ export default function Problem() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Why Most Filipino SMBs Are{" "}
+            Every Day You're Offline,{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #F5C518, #FFD94A)",
@@ -120,7 +120,7 @@ export default function Problem() {
                 backgroundClip: "text",
               }}
             >
-              Losing Customers Every Day
+              Your Competitor Gets Your Customer
             </span>
           </h2>
           <p

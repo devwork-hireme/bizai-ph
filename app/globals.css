@@ -5,13 +5,14 @@
    ============================================================ */
 @theme {
   --color-navy:        #0A1628;
-  --color-navy-mid:    #112240;
+  --color-navy-mid:    #0F1E35;
+  --color-navy-border: #1A3A6B;
   --color-gold:        #F5C518;
   --color-gold-light:  #FFD94A;
   --color-green:       #22C55E;
   --color-red:         #EF4444;
   --color-white:       #FFFFFF;
-  --color-off-white:   #F8F9FC;
+  --color-off-white:   #F8F7F4;
   --color-gray:        #6B7A99;
   --color-gray-light:  #E8ECF4;
 
@@ -20,48 +21,53 @@
 }
 
 /* ============================================================
-   CSS VARIABLES
+   CSS VARIABLES — 3-layer navy system
    ============================================================ */
 :root {
-  /* Navy backgrounds */
-  --black:          #0A1628;
-  --deep:           #112240;
-  --surface:        #162035;
-  --card:           rgba(255, 255, 255, 0.05);
-  --card-hover:     rgba(255, 255, 255, 0.09);
-  --card-light:     #FFFFFF;
+  /* === Navy layers — use ALL THREE on dark sections === */
+  --navy:          #0A1628;   /* Section backgrounds */
+  --navy-mid:      #0F1E35;   /* Card backgrounds on dark */
+  --navy-border:   #1A3A6B;   /* Card borders on dark — creates depth */
 
-  /* Brand colors */
-  --gold:           #F5C518;
-  --gold-light:     #FFD94A;
-  --green:          #22C55E;
-  --red:            #EF4444;
-  --white:          #FFFFFF;
-  --off-white:      #F8F9FC;
-  --gray:           #6B7A99;
-  --gray-light:     #E8ECF4;
+  /* === Legacy aliases (keep for backwards compat) === */
+  --black:         #0A1628;
+  --deep:          #0F1E35;
+  --surface:       #0F1E35;
+  --card:          #0F1E35;
+  --card-hover:    #162848;
+  --card-border:   #1A3A6B;
+  --card-dark:     #0F1E35;
+  --border:        #1A3A6B;
+  --border-mid:    rgba(245, 197, 24, 0.3);
+  --border-light:  rgba(255, 255, 255, 0.08);
 
-  /* Legacy blue aliases (kept for sections not yet updated) */
-  --blue:           #F5C518;
-  --blue-light:     #FFD94A;
-  --cyan:           #22C55E;
+  /* === Brand colors === */
+  --gold:          #F5C518;
+  --gold-light:    #FFD94A;
+  --gold-glow:     rgba(245, 197, 24, 0.35);
+  --gold-subtle:   rgba(245, 197, 24, 0.08);
+  --green:         #22C55E;
+  --red:           #EF4444;
 
-  /* Borders */
-  --border:         rgba(245, 197, 24, 0.15);
-  --border-mid:     rgba(245, 197, 24, 0.3);
-  --border-light:   rgba(255, 255, 255, 0.08);
-  --soft:           rgba(255, 255, 255, 0.55);
-  --muted:          #6B7A99;
+  /* === Text === */
+  --white:         #FFFFFF;
+  --off-white:     #F8F7F4;   /* Warm off-white for light sections */
+  --gray:          #6B7A99;   /* Body text on light sections */
+  --gray-light:    #E8ECF4;   /* Borders on light sections */
+  --soft:          rgba(255, 255, 255, 0.62);
+  --muted:         rgba(255, 255, 255, 0.38);
 
-  /* Utility */
-  --blue-pale:      rgba(245, 197, 24, 0.08);
-  --glow:           rgba(245, 197, 24, 0.2);
-  --glow-strong:    rgba(245, 197, 24, 0.35);
-  --card-border:    rgba(255, 255, 255, 0.07);
-  --card-glow:      rgba(245, 197, 24, 0.06);
-  --text-gradient:  linear-gradient(135deg, #FFFFFF 0%, #6B7A99 100%);
-  --gold-gradient:  linear-gradient(135deg, #F5C518 0%, #FFD94A 100%);
-  --green-glow:     rgba(34, 197, 94, 0.15);
+  /* === Legacy aliases for old components === */
+  --blue:          #F5C518;
+  --blue-light:    #FFD94A;
+  --cyan:          #22C55E;
+  --blue-pale:     rgba(245, 197, 24, 0.08);
+  --glow:          rgba(245, 197, 24, 0.2);
+  --glow-strong:   rgba(245, 197, 24, 0.35);
+
+  /* === Gradients === */
+  --gold-gradient: linear-gradient(135deg, #F5C518 0%, #FFD94A 100%);
+  --card-glow:     rgba(245, 197, 24, 0.05);
 
   --announcement-bar-height: 48px;
 }
@@ -83,17 +89,19 @@ html {
 }
 
 body {
-  background-color: var(--black);
+  background-color: var(--navy);
   color: var(--white);
   font-family: "DM Sans", sans-serif;
-  font-weight: 300;
-  line-height: 1.85;
+  font-weight: 400;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Syne", sans-serif;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 img {
@@ -106,14 +114,14 @@ img {
   color: var(--white);
 }
 
-/* Grain texture — fixed, pointer-events none */
+/* Subtle grain texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.02;
+  opacity: 0.018;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px 200px;
@@ -122,10 +130,10 @@ body::before {
 /* ============================================================
    SCROLLBAR
    ============================================================ */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--black); }
-::-webkit-scrollbar-thumb { background: rgba(245, 197, 24, 0.25); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(245, 197, 24, 0.45); }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(245, 197, 24, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(245, 197, 24, 0.4); }
 
 /* ============================================================
    LAYOUT UTILITIES
@@ -137,25 +145,33 @@ body::before {
   padding-right: 64px;
 }
 .section-pad {
-  padding-top: 130px;
-  padding-bottom: 130px;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 @media (max-width: 768px) {
   .section-inner { padding-left: 24px; padding-right: 24px; }
-  .section-pad { padding-top: 80px; padding-bottom: 80px; }
+  .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
 }
 
 /* ============================================================
-   GRID LINE BACKGROUND UTILITY
+   DOT GRID BACKGROUND (hero)
+   ============================================================ */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, rgba(245, 197, 24, 0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ============================================================
+   GRID LINE BACKGROUND
    ============================================================ */
 .grid-bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(245, 197, 24, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 197, 24, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(26, 58, 107, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 58, 107, 0.5) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
   -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
@@ -168,19 +184,21 @@ body::before {
    ============================================================ */
 .h2 {
   font-family: "Syne", sans-serif;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   color: var(--white);
 }
 
 .section-label {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: "DM Sans", sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 16px;
@@ -196,34 +214,33 @@ body::before {
 /* ============================================================
    BUTTONS
    ============================================================ */
+/* Rule 4: Hero CTA MUST glow */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 15px 32px;
+  padding: 0.9rem 2.5rem;
   background: var(--gold);
   color: #0A1628;
   font-family: "DM Sans", sans-serif;
   font-weight: 700;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   text-decoration: none;
+  transition: all 0.25s ease;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-    0 0 40px rgba(245, 197, 24, 0.25),
-    0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    0 8px 30px rgba(245, 197, 24, 0.4);
 }
 .btn-primary:hover {
   background: var(--gold-light);
   transform: translateY(-2px);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.15) inset,
-    0 0 60px rgba(245, 197, 24, 0.35),
-    0 8px 30px rgba(0, 0, 0, 0.4);
+    0 6px 20px rgba(0, 0, 0, 0.35),
+    0 12px 40px rgba(245, 197, 24, 0.55);
 }
 .btn-primary:active {
   transform: scale(0.98);
@@ -234,54 +251,54 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 15px 32px;
-  background: rgba(255, 255, 255, 0.04);
+  padding: 0.9rem 2.5rem;
+  background: transparent;
   color: var(--white);
   font-family: "DM Sans", sans-serif;
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   cursor: pointer;
   text-decoration: none;
-  backdrop-filter: blur(8px);
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: all 0.25s ease;
 }
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(245, 197, 24, 0.4);
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* ============================================================
-   PREMIUM CARD BASE
+   PREMIUM CARD BASE (3-layer navy system)
    ============================================================ */
+/* Rule 2: Cards on dark sections — solid navy layers */
 .card-premium {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--card-border);
+  background: var(--navy-mid);         /* #0F1E35 */
+  border: 1px solid var(--navy-border); /* #1A3A6B */
   border-radius: 14px;
   position: relative;
   overflow: hidden;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.card-premium::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 0%, var(--card-glow), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
 .card-premium:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(245, 197, 24, 0.2);
+  border-color: rgba(245, 197, 24, 0.4);
   transform: translateY(-4px);
   box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(245, 197, 24, 0.1);
+    0 0 0 1px rgba(245, 197, 24, 0.15);
 }
-.card-premium:hover::before {
-  opacity: 1;
+
+/* Cards on light sections */
+.card-light {
+  background: #FFFFFF;
+  border: 1px solid var(--gray-light);
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+.card-light:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 /* ============================================================
@@ -289,8 +306,8 @@ body::before {
    ============================================================ */
 .field {
   width: 100%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--navy-border);
   border-radius: 8px;
   padding: 13px 16px;
   color: var(--white);
@@ -302,7 +319,7 @@ body::before {
   appearance: none;
 }
 .field:focus { border-color: var(--gold); }
-.field::placeholder { color: rgba(255,255,255,0.35); }
+.field::placeholder { color: rgba(255,255,255,0.3); }
 .field-error { border-color: rgba(239, 68, 68, 0.5) !important; }
 
 /* ============================================================
@@ -312,11 +329,12 @@ body::before {
   font-size: 0.68rem;
   font-weight: 600;
   color: var(--gold);
-  background: rgba(245, 197, 24, 0.08);
+  background: var(--gold-subtle);
   border: 1px solid rgba(245, 197, 24, 0.2);
   padding: 3px 10px;
   border-radius: 4px;
   letter-spacing: 0.03em;
+  font-family: "DM Sans", sans-serif;
 }
 .result-tag {
   font-size: 0.72rem;
@@ -324,6 +342,7 @@ body::before {
   color: var(--gold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  font-family: "DM Sans", sans-serif;
 }
 
 /* ============================================================
@@ -338,14 +357,14 @@ body::before {
   70% { box-shadow: 0 0 0 10px transparent; }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
-@keyframes gold-pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(245, 197, 24, 0.4); }
+@keyframes gold-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(245, 197, 24, 0.5); }
   70% { box-shadow: 0 0 0 10px transparent; }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
 @keyframes float-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 4px 24px var(--glow); }
-  50% { transform: scale(1.06); box-shadow: 0 4px 40px var(--glow-strong); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 @keyframes chat-blink {
   0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }

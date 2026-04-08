@@ -194,7 +194,7 @@ export default function Pricing() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Simple Packages,{" "}
+            Pick Your{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #F5C518, #FFD94A)",
@@ -203,7 +203,7 @@ export default function Pricing() {
                 backgroundClip: "text",
               }}
             >
-              Real Results
+              Growth Stage
             </span>
           </h2>
           <p
@@ -281,11 +281,11 @@ export default function Pricing() {
               custom={0.15 + 0.08 * i}
               style={{
                 background: tier.isPopular
-                  ? "linear-gradient(180deg, rgba(34,197,94,0.07) 0%, rgba(255,255,255,0.04) 100%)"
-                  : "rgba(255,255,255,0.04)",
+                  ? "linear-gradient(180deg, rgba(34,197,94,0.07) 0%, var(--navy-mid) 40%)"
+                  : "var(--navy-mid)",
                 border: tier.isPopular
-                  ? "1px solid rgba(34,197,94,0.3)"
-                  : "1px solid rgba(255,255,255,0.08)",
+                  ? "1px solid rgba(34,197,94,0.35)"
+                  : "1px solid var(--navy-border)",
                 borderRadius: "16px",
                 padding: "36px 28px",
                 position: "relative",
@@ -644,8 +644,8 @@ export default function Pricing() {
           initial="hidden"
           animate={compareInView ? "visible" : "hidden"}
           style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: "var(--navy-mid)",
+            border: "1px solid var(--navy-border)",
             borderRadius: "16px",
             padding: "2rem",
             marginBottom: "2rem",

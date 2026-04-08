@@ -108,7 +108,7 @@ export default function Footer() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Your business can be live online{" "}
+            Your Competitor Is Already Online.{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #F5C518, #FFD94A)",
@@ -117,7 +117,7 @@ export default function Footer() {
                 backgroundClip: "text",
               }}
             >
-              in 3–5 days.
+              Start Today.
             </span>
           </h2>
           <p
