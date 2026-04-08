@@ -3,29 +3,27 @@
 import { motion } from "framer-motion";
 
 const navLinks = [
-  { label: "Services", href: "#automations" },
+  { label: "Services", href: "#pricing" },
   { label: "How It Works", href: "#process" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Results", href: "#results" },
-  { label: "Contact", href: "#contact" },
+  { label: "Why Us", href: "#why-us" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const serviceLinks = [
-  "Messenger AI Bot",
-  "Appointment Booking System",
-  "Lead Qualification Bot",
-  "Order Processing Automation",
-  "Social Media Auto-Reply",
-  "Business Intelligence Reports",
+  "Basic Package",
+  "Starter Package",
+  "Growth Package",
+  "Free 30-Min Session",
 ];
 
 const industryLinks = [
-  "Restaurant / Food Service",
-  "Salon / Spa / Beauty",
-  "Online Sellers",
-  "Real Estate Agencies",
-  "Clinics / Healthcare",
-  "Coaches & Consultants",
+  "Salons & Barbershops",
+  "Restaurants & Food",
+  "Repair Shops",
+  "Clinics & Medical",
+  "Catering Services",
+  "Retail Stores",
 ];
 
 function scrollTo(id: string) {
@@ -40,7 +38,7 @@ export default function Footer() {
     <footer
       style={{
         background: "var(--deep)",
-        borderTop: "1px solid var(--card-border)",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
         padding: "80px 64px 40px",
         position: "relative",
         overflow: "hidden",
@@ -54,7 +52,7 @@ export default function Footer() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(82,130,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.02) 1px, transparent 1px)",
+            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
@@ -71,8 +69,8 @@ export default function Footer() {
         style={{
           maxWidth: "1200px",
           margin: "0 auto 80px",
-          background: "var(--card)",
-          border: "1px solid var(--card-border)",
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(245,197,24,0.2)",
           borderRadius: "20px",
           padding: "64px 48px",
           textAlign: "center",
@@ -81,59 +79,60 @@ export default function Footer() {
           zIndex: 1,
         }}
       >
-        {/* Glow accent */}
+        {/* Gold glow accent */}
         <div
           aria-hidden="true"
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 60% 60% at 50% 110%, rgba(61,111,255,0.18) 0%, transparent 70%)",
+              "radial-gradient(ellipse 60% 60% at 50% 110%, rgba(245,197,24,0.08) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <p className="section-label" style={{ marginBottom: "1rem" }}>
+          <p
+            className="section-label"
+            style={{ marginBottom: "1rem" }}
+          >
             Ready to Start?
           </p>
           <h2
             style={{
               fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-              fontWeight: 900,
-              letterSpacing: "-0.04em",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
               lineHeight: 1.1,
-              color: "var(--white)",
+              color: "#FFFFFF",
               marginBottom: "1rem",
+              fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Your automation system can be{" "}
+            Your business can be live online{" "}
             <span
               style={{
-                fontFamily: "var(--font-baskerville), serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                background: "linear-gradient(135deg, var(--blue-light), var(--cyan))",
+                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              live in 48 hours.
+              in 3–5 days.
             </span>
           </h2>
           <p
             style={{
               fontSize: "0.95rem",
-              color: "var(--soft)",
+              color: "rgba(255,255,255,0.55)",
               maxWidth: "480px",
               margin: "0 auto 2rem",
               lineHeight: 1.75,
-              fontWeight: 300,
+              fontWeight: 400,
+              fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Stop losing customers to slow responses. Stop wasting hours on tasks
-            that should run on autopilot. The first step is a free 30-minute
-            consultation.
+            Stop losing customers to competitors who are visible online. The first step is
+            a free 30-minute session — no commitment required.
           </p>
           <div
             style={{
@@ -144,22 +143,24 @@ export default function Footer() {
             }}
           >
             <a
-              href="https://calendly.com/devwork2025-proton/free-ai-automation-audit"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="btn-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("contact");
+              }}
             >
-              Book Free Consultation
+              Book Free 30-Min Session
             </a>
             <a
-              href="#automations"
+              href="#pricing"
               className="btn-ghost"
               onClick={(e) => {
                 e.preventDefault();
-                scrollTo("automations");
+                scrollTo("pricing");
               }}
             >
-              See Our Services
+              See Our Packages
             </a>
           </div>
         </div>
@@ -191,32 +192,48 @@ export default function Footer() {
                   width: "32px",
                   height: "32px",
                   borderRadius: "8px",
-                  background: "var(--blue)",
+                  background: "#F5C518",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A1628" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                 </svg>
               </div>
-              <span style={{ fontWeight: 800, fontSize: "1.05rem", color: "var(--white)", letterSpacing: "-0.02em" }}>
+              <span
+                style={{
+                  fontWeight: 800,
+                  fontSize: "1.05rem",
+                  color: "#FFFFFF",
+                  letterSpacing: "-0.02em",
+                  fontFamily: "var(--font-syne), sans-serif",
+                }}
+              >
                 BizAI PH
               </span>
             </div>
             <p
               style={{
                 fontSize: "0.875rem",
-                color: "var(--muted)",
+                color: "rgba(255,255,255,0.4)",
                 lineHeight: 1.75,
                 marginBottom: "1.5rem",
                 maxWidth: "260px",
+                fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              We Automate Your Business. You Grow It. AI automation systems built and managed for Philippine SMBs.
+              Done-for-you digital growth for Filipino SMBs. Website, automation, leads — fully managed for you.
             </p>
-            <p style={{ fontSize: "0.8rem", color: "var(--muted)", margin: 0 }}>
+            <p
+              style={{
+                fontSize: "0.8rem",
+                color: "rgba(255,255,255,0.3)",
+                margin: 0,
+                fontFamily: "var(--font-dm-sans), sans-serif",
+              }}
+            >
               Taguig City, Metro Manila
               <br />
               hello@bizaiph.com
@@ -231,8 +248,9 @@ export default function Footer() {
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
-                color: "var(--blue-light)",
+                color: "#F5C518",
                 marginBottom: "1.25rem",
+                fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
               Navigation
@@ -248,12 +266,13 @@ export default function Footer() {
                   }}
                   style={{
                     fontSize: "0.875rem",
-                    color: "var(--muted)",
+                    color: "rgba(255,255,255,0.4)",
                     textDecoration: "none",
                     transition: "color 0.2s ease",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--white)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
                 >
                   {link.label}
                 </a>
@@ -269,15 +288,23 @@ export default function Footer() {
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
-                color: "var(--blue-light)",
+                color: "#F5C518",
                 marginBottom: "1.25rem",
+                fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
               Services
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
               {serviceLinks.map((s) => (
-                <span key={s} style={{ fontSize: "0.875rem", color: "var(--muted)" }}>
+                <span
+                  key={s}
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "rgba(255,255,255,0.4)",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                >
                   {s}
                 </span>
               ))}
@@ -292,15 +319,23 @@ export default function Footer() {
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
-                color: "var(--blue-light)",
+                color: "#F5C518",
                 marginBottom: "1.25rem",
+                fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Industries
+              We Serve
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
               {industryLinks.map((ind) => (
-                <span key={ind} style={{ fontSize: "0.875rem", color: "var(--muted)" }}>
+                <span
+                  key={ind}
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "rgba(255,255,255,0.4)",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                >
                   {ind}
                 </span>
               ))}
@@ -315,16 +350,30 @@ export default function Footer() {
             justifyContent: "space-between",
             alignItems: "center",
             paddingTop: "2rem",
-            borderTop: "1px solid var(--card-border)",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
             flexWrap: "wrap",
             gap: "1rem",
           }}
         >
-          <p style={{ fontSize: "0.8rem", color: "var(--muted)", margin: 0 }}>
+          <p
+            style={{
+              fontSize: "0.8rem",
+              color: "rgba(255,255,255,0.25)",
+              margin: 0,
+              fontFamily: "var(--font-dm-sans), sans-serif",
+            }}
+          >
             © {year} BizAI PH. All rights reserved.
           </p>
-          <p style={{ fontSize: "0.8rem", color: "var(--muted)", margin: 0 }}>
-            We Automate Your Business. You Grow It.
+          <p
+            style={{
+              fontSize: "0.8rem",
+              color: "rgba(255,255,255,0.25)",
+              margin: 0,
+              fontFamily: "var(--font-dm-sans), sans-serif",
+            }}
+          >
+            Done-for-you digital growth for Filipino SMBs.
           </p>
         </div>
       </div>

@@ -10,6 +10,7 @@ import Pricing from "@/components/sections/Pricing";
 import Process from "@/components/sections/Process";
 import Results from "@/components/sections/Results";
 import Testimonials from "@/components/sections/Testimonials";
+import WhyUs from "@/components/sections/WhyUs";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
@@ -26,8 +27,9 @@ export default function Home() {
         <Solution />
         <Automations />
         <Industries />
-        <Pricing />
         <Process />
+        <Pricing />
+        <WhyUs />
         <Results />
         <Testimonials />
         <FAQ />

@@ -36,7 +36,7 @@ type TestimonialData = {
 
 const testimonials: TestimonialData[] = [
   {
-    gradient: "linear-gradient(135deg, #3D6FFF, #00C8FF)",
+    gradient: "linear-gradient(135deg, #F5C518, #22C55E)",
     initials: "MS",
     name: "Maria Santos",
     business: "Maria's Kitchen Catering",
@@ -45,16 +45,16 @@ const testimonials: TestimonialData[] = [
     platform: "Google Review",
     beforeAmount: "₱12,000",
     beforeDesc: "Part-time staff replying to Messenger messages manually",
-    afterAmount: "₱750",
+    afterAmount: "₱2,999",
     afterDesc: "BizAI PH Starter Plan answering customers 24/7 automatically",
-    savingsPill: "Saving ₱11,250 every month",
+    savingsPill: "Saving ₱9,001 every month",
     timeBefore: { value: "4 hrs/day", sub: "manual replies" },
     timeAfter: { value: "0 hrs/day", sub: "fully automated" },
     quote:
-      "I was paying ₱12,000 a month for someone to answer messages 8 hours a day. BizAI PH does the same 24 hours a day for ₱750. Same result. One-sixteenth the cost. I put the savings back into growing the business.",
+      "I was paying ₱12,000 a month for someone to answer messages 8 hours a day. BizAI PH does the same 24 hours a day for ₱2,999. Same result. For a fraction of the cost. I put the savings back into growing the business.",
   },
   {
-    gradient: "linear-gradient(135deg, #6B93FF, #00E5A0)",
+    gradient: "linear-gradient(135deg, #22C55E, #F5C518)",
     initials: "CR",
     name: "Carlo Reyes",
     business: "Pinnacle Real Estate Group",
@@ -63,16 +63,16 @@ const testimonials: TestimonialData[] = [
     platform: "Facebook Review",
     beforeAmount: "₱25,000",
     beforeDesc: "Full-time coordinator for lead follow-up and client management",
-    afterAmount: "₱1,500",
-    afterDesc: "BizAI PH Growth Plan handling all leads automatically",
-    savingsPill: "Saving ₱23,500 every month",
+    afterAmount: "₱2,999",
+    afterDesc: "BizAI PH Starter Plan handling all leads automatically",
+    savingsPill: "Saving ₱22,001 every month",
     timeBefore: { value: "4–8 hrs/day", sub: "chasing leads" },
     timeAfter: { value: "Instant", sub: "automated 24/7" },
     quote:
-      "A full-time coordinator at ₱25,000 a month just for lead follow-up. The automation does the same job for ₱1,500 and responds instantly instead of hours later. Three additional deals closed in the first 60 days.",
+      "A full-time coordinator at ₱25,000 a month just for lead follow-up. The automation does the same job for ₱2,999 and responds instantly instead of hours later. Three additional deals closed in the first 60 days.",
   },
   {
-    gradient: "linear-gradient(135deg, #00C8FF, #3D6FFF)",
+    gradient: "linear-gradient(135deg, #FFD94A, #22C55E)",
     initials: "AC",
     name: "Angela Cruz",
     business: "Glow Aesthetics Salon",
@@ -81,16 +81,16 @@ const testimonials: TestimonialData[] = [
     platform: "Google Review",
     beforeAmount: "₱18,000",
     beforeDesc: "Receptionist salary plus revenue lost to no-show appointments",
-    afterAmount: "₱750",
+    afterAmount: "₱2,999",
     afterDesc: "BizAI PH Starter Plan managing all bookings and reminders",
-    savingsPill: "Saving ₱17,250 every month",
+    savingsPill: "Saving ₱15,001 every month",
     timeBefore: { value: "2 hrs/day", sub: "manual reminders" },
     timeAfter: { value: "0 hrs/day", sub: "zero manual work" },
     quote:
-      "Between the receptionist and revenue lost to no-shows, we were bleeding ₱18,000 every month on appointment management alone. BizAI PH costs ₱750 and handles everything. That ₱17,250 monthly saving goes directly to our bottom line.",
+      "Between the receptionist and revenue lost to no-shows, we were bleeding ₱18,000 every month on appointment management alone. BizAI PH costs ₱2,999 and handles everything. That ₱15,001 monthly saving goes directly to our bottom line.",
   },
   {
-    gradient: "linear-gradient(135deg, #00E5A0, #6B93FF)",
+    gradient: "linear-gradient(135deg, #22C55E, #FFD94A)",
     initials: "JL",
     name: "Jerome Lim",
     business: "JL Fashion — Shopee and Lazada",
@@ -99,16 +99,16 @@ const testimonials: TestimonialData[] = [
     platform: "Direct Client",
     beforeAmount: "₱18,000",
     beforeDesc: "Full-time order processor handling 200+ daily orders manually",
-    afterAmount: "₱750",
+    afterAmount: "₱2,999",
     afterDesc: "BizAI PH Starter Plan processing all orders automatically",
-    savingsPill: "Saving ₱17,250 every month",
+    savingsPill: "Saving ₱15,001 every month",
     timeBefore: { value: "4 hrs/day", sub: "processing orders" },
     timeAfter: { value: "0 hrs/day", sub: "zero manual work" },
     quote:
-      "One staff member at ₱18,000 a month just to process orders. The automation does it faster, without mistakes, for ₱750. I used the ₱17,250 monthly saving to double my inventory. Revenue grew 60% in three months.",
+      "One staff member at ₱18,000 a month just to process orders. The automation does it faster, without mistakes, for ₱2,999. I used the ₱15,001 monthly saving to double my inventory. Revenue grew 60% in three months.",
   },
   {
-    gradient: "linear-gradient(135deg, #3D6FFF, #00E5A0)",
+    gradient: "linear-gradient(135deg, #F5C518, #22C55E)",
     initials: "PM",
     name: "Patricia Mendoza",
     business: "PM Business Coaching",
@@ -117,13 +117,13 @@ const testimonials: TestimonialData[] = [
     platform: "Google Review",
     beforeAmount: "₱20,000",
     beforeDesc: "Virtual assistant for scheduling, inquiries, and client onboarding",
-    afterAmount: "₱1,500",
-    afterDesc: "BizAI PH Growth Plan running all operations automatically",
-    savingsPill: "Saving ₱18,500 every month",
+    afterAmount: "₱2,999",
+    afterDesc: "BizAI PH Starter Plan running all operations automatically",
+    savingsPill: "Saving ₱17,001 every month",
     timeBefore: { value: "25 hrs/week", sub: "admin work" },
     timeAfter: { value: "2 hrs/week", sub: "strategy only" },
     quote:
-      "My VA cost ₱20,000 a month for scheduling and admin work. BizAI PH does the same for ₱1,500. The ₱18,500 I save every month now funds business growth instead of paying for work a system can do better.",
+      "My VA cost ₱20,000 a month for scheduling and admin work. BizAI PH does the same for ₱2,999. The ₱17,001 I save every month now funds business growth instead of paying for work a system can do better.",
   },
 ];
 
@@ -136,12 +136,12 @@ const platformConfig: Record<Platform, { bg: string; border: string; color: stri
   "Facebook Review": {
     bg: "rgba(24,119,242,0.08)",
     border: "rgba(24,119,242,0.2)",
-    color: "rgba(24,119,242,0.85)",
+    color: "rgba(100,160,255,0.85)",
   },
   "Direct Client": {
-    bg: "rgba(0,229,160,0.07)",
-    border: "rgba(0,229,160,0.18)",
-    color: "var(--green)",
+    bg: "rgba(34,197,94,0.07)",
+    border: "rgba(34,197,94,0.2)",
+    color: "#22C55E",
   },
 };
 
@@ -589,8 +589,8 @@ export default function Testimonials() {
       id="testimonials"
       className="testimonials-section"
       style={{
-        background: "var(--black)",
-        borderTop: "1px solid var(--card-border)",
+        background: "var(--deep)",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
@@ -603,7 +603,7 @@ export default function Testimonials() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(82,130,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(82,130,255,0.03) 1px, transparent 1px)",
+            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
@@ -622,21 +622,19 @@ export default function Testimonials() {
           <p className="section-label">Client Testimonials</p>
           <h2
             style={{
-              fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
-              fontWeight: 900,
-              letterSpacing: "-0.04em",
-              lineHeight: 1.0,
-              color: "var(--white)",
+              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              color: "#FFFFFF",
               marginBottom: "20px",
+              fontFamily: "var(--font-syne), sans-serif",
             }}
           >
             Real Numbers From{" "}
             <span
               style={{
-                fontFamily: "var(--font-baskerville), serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                background: "linear-gradient(135deg, var(--blue-light), var(--cyan))",
+                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -648,11 +646,12 @@ export default function Testimonials() {
           <p
             style={{
               fontSize: "1rem",
-              color: "var(--soft)",
+              color: "rgba(255,255,255,0.55)",
               maxWidth: "520px",
               margin: "0 auto",
               lineHeight: 1.78,
-              fontWeight: 300,
+              fontWeight: 400,
+              fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
             Every figure below is based on actual client results before and
@@ -713,16 +712,16 @@ export default function Testimonials() {
           >
             {[
               {
-                icon: <TrendingDown size={18} color="var(--green)" />,
-                text: "₱15,000+ avg monthly savings",
+                icon: <TrendingDown size={18} color="#22C55E" />,
+                text: "₱9,000+ avg monthly savings",
               },
               {
-                icon: <Clock size={18} color="var(--blue-light)" />,
+                icon: <Clock size={18} color="#F5C518" />,
                 text: "20+ hours recovered weekly",
               },
               {
-                icon: <Users size={18} color="var(--blue-light)" />,
-                text: "500+ businesses automated",
+                icon: <Users size={18} color="#F5C518" />,
+                text: "500+ businesses served",
               },
             ].map(({ icon, text }) => (
               <div
@@ -731,8 +730,8 @@ export default function Testimonials() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "10px",
-                  background: "var(--card)",
-                  border: "1px solid var(--border)",
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(245,197,24,0.2)",
                   borderRadius: "100px",
                   padding: "12px 24px",
                 }}
@@ -742,7 +741,8 @@ export default function Testimonials() {
                   style={{
                     fontSize: "0.88rem",
                     fontWeight: 700,
-                    color: "var(--white)",
+                    color: "#FFFFFF",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
                   {text}
