@@ -132,9 +132,10 @@ export default function Hero() {
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   fontFamily: "var(--font-dm-sans), sans-serif",
+                  whiteSpace: "nowrap",
                 }}
               >
-                Done-For-You Digital Growth — Filipino SMBs
+                Done-For-You Digital Growth
               </span>
             </span>
           </motion.div>
@@ -231,6 +232,7 @@ export default function Hero() {
               href="#pricing"
               className="btn-ghost"
               onClick={(e) => { e.preventDefault(); scrollTo("pricing"); }}
+              style={{ border: "1.5px solid rgba(255,255,255,0.35)", color: "#FFFFFF" }}
             >
               See Our Packages
             </a>

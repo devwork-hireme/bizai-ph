@@ -88,14 +88,7 @@ export default function Problem() {
             }}
           >
             Every Day You&apos;re Offline, Your Competitor{" "}
-            <span
-              style={{
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
-              }}
-            >
+            <span style={{ color: "#C9940A" }}>
               Gets Your Customer
             </span>
           </h2>
