@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -69,7 +69,10 @@ function FAQItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       custom={index * 0.04}
-      style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", overflow: "hidden" }}
+      style={{
+        borderBottom: "1px solid var(--gray-light)",
+        overflow: "hidden",
+      }}
     >
       <button
         onClick={() => setOpen(!open)}
@@ -90,7 +93,7 @@ function FAQItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
           style={{
             fontSize: "1rem",
             fontWeight: 600,
-            color: "#FFFFFF",
+            color: "var(--navy)",
             lineHeight: 1.4,
             fontFamily: "var(--font-dm-sans), sans-serif",
           }}
@@ -102,15 +105,15 @@ function FAQItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
             width: "28px",
             height: "28px",
             borderRadius: "50%",
-            background: open ? "rgba(245,197,24,0.15)" : "rgba(255,255,255,0.06)",
+            background: open ? "var(--navy)" : "var(--gray-light)",
             border: "1px solid",
-            borderColor: open ? "rgba(245,197,24,0.4)" : "rgba(255,255,255,0.1)",
+            borderColor: open ? "var(--navy)" : "var(--gray-light)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             flexShrink: 0,
             transition: "all 0.25s ease",
-            color: open ? "#F5C518" : "rgba(255,255,255,0.4)",
+            color: open ? "#F5C518" : "var(--gray)",
           }}
         >
           <ChevronDown
@@ -135,7 +138,7 @@ function FAQItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
               <p
                 style={{
                   fontSize: "0.9rem",
-                  color: "rgba(255,255,255,0.55)",
+                  color: "var(--gray)",
                   lineHeight: 1.78,
                   margin: 0,
                   fontFamily: "var(--font-dm-sans), sans-serif",
@@ -160,29 +163,20 @@ export default function FAQ() {
       id="faq"
       className="faq-section"
       style={{
-        background: "var(--deep)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        background: "var(--off-white)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Grid background */}
       <div
-        aria-hidden="true"
         style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          pointerEvents: "none",
-          zIndex: 0,
+          maxWidth: "800px",
+          margin: "0 auto",
+          position: "relative",
+          zIndex: 1,
         }}
-      />
-      <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+      >
         <motion.div
           ref={headRef}
           variants={fadeUp}
@@ -190,24 +184,26 @@ export default function FAQ() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "56px" }}
         >
-          <p className="section-label">FAQ</p>
+          <p className="section-label" style={{ color: "var(--navy)" }}>
+            FAQ
+          </p>
           <h2
             style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
               fontWeight: 800,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              color: "#FFFFFF",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.1,
+              color: "var(--navy)",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
             Frequently Asked{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
               }}
             >
               Questions
@@ -230,8 +226,8 @@ export default function FAQ() {
             textAlign: "center",
             marginTop: "3rem",
             padding: "2rem",
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: "#FFFFFF",
+            border: "1px solid var(--gray-light)",
             borderRadius: "14px",
           }}
         >
@@ -239,7 +235,7 @@ export default function FAQ() {
             style={{
               fontSize: "1rem",
               fontWeight: 600,
-              color: "#FFFFFF",
+              color: "var(--navy)",
               marginBottom: "0.5rem",
               fontFamily: "var(--font-syne), sans-serif",
             }}
@@ -249,26 +245,29 @@ export default function FAQ() {
           <p
             style={{
               fontSize: "0.875rem",
-              color: "rgba(255,255,255,0.5)",
+              color: "var(--gray)",
               marginBottom: "1.25rem",
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Book a free 30-minute session and we will answer everything specific to your business.
+            Book a free 30-minute session and we will answer everything
+            specific to your business.
           </p>
           <a
             href="#contact"
             className="btn-primary"
-            style={{ display: "inline-flex" }}
+            style={{ display: "inline-flex", gap: "8px" }}
             onClick={(e) => {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
             Book Free 30-Min Session
+            <ArrowRight size={16} />
           </a>
         </motion.div>
       </div>
+
       <style>{`
         @media (max-width: 768px) {
           .faq-section { padding: 80px 24px !important; }

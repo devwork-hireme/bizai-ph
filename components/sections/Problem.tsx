@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { Search, MessageSquare, Clock } from "lucide-react";
+import { Globe, MessageCircle, Clock } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -14,30 +14,23 @@ const fadeUp: Variants = {
   }),
 };
 
-type ProblemCard = {
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-  stat: string;
-};
-
-const problems: ProblemCard[] = [
+const problems = [
   {
-    icon: <Search size={22} />,
+    Icon: Globe,
     title: "No Online Presence",
-    body: "Customers search Google and Facebook for your service but can't find you. They go to your competitor instead. Every day you're invisible online is a day you're losing business.",
+    body: "Customers search Google and Facebook for your service but can't find you. Every day you're invisible online is a day your competitor wins.",
     stat: "46% of all Google searches are seeking local information",
   },
   {
-    icon: <MessageSquare size={22} />,
+    Icon: MessageCircle,
     title: "Missed Inquiries",
-    body: "Customers message your Facebook page at 10PM. By morning when you reply, they've already booked someone else. Every missed message at night is a lost sale.",
+    body: "Customers message at 10PM. By morning when you reply, they've already booked someone else. Every missed message is a lost sale.",
     stat: "67% of customers expect a reply within 1 hour",
   },
   {
-    icon: <Clock size={22} />,
+    Icon: Clock,
     title: "No Time for Marketing",
-    body: "You're too busy running your business to post on social media, reply to messages, or follow up on leads. Your competitors are showing up online while you're stuck on operations.",
+    body: "You're busy running your business. No time to post on Facebook, reply to messages, or follow up leads. Your competitor does all of this automatically.",
     stat: "SMB owners spend 20+ hours per week on repetitive tasks",
   },
 ];
@@ -49,91 +42,74 @@ export default function Problem() {
   return (
     <section
       id="problem"
+      className="problem-section"
       style={{
-        background: "var(--deep)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        background: "var(--off-white)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
       }}
-      className="problem-section"
     >
-      {/* Grid background */}
       <div
-        aria-hidden="true"
         style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          pointerEvents: "none",
-          zIndex: 0,
+          maxWidth: "1200px",
+          margin: "0 auto",
+          position: "relative",
+          zIndex: 1,
         }}
-      />
-      {/* Red tint glow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "800px",
-          height: "400px",
-          background: "rgba(239,68,68,0.03)",
-          filter: "blur(80px)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-
-      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+      >
         {/* Header */}
         <motion.div
           ref={headRef}
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 64px" }}
+          style={{
+            textAlign: "center",
+            maxWidth: "700px",
+            margin: "0 auto 64px",
+          }}
         >
-          <p className="section-label">The Problem</p>
+          <p
+            className="section-label"
+            style={{ color: "var(--navy)" }}
+          >
+            The Problem
+          </p>
           <h2
             style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
               fontWeight: 800,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              color: "#FFFFFF",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.1,
+              color: "var(--navy)",
               marginBottom: "20px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Every Day You're Offline,{" "}
+            Every Day You&apos;re Offline, Your Competitor{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
               }}
             >
-              Your Competitor Gets Your Customer
+              Gets Your Customer
             </span>
           </h2>
           <p
             style={{
               fontSize: "1rem",
-              color: "rgba(255,255,255,0.55)",
-              lineHeight: 1.85,
+              color: "var(--gray)",
+              lineHeight: 1.78,
               fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            You built a real business. But without a digital presence, automated responses,
-            and consistent marketing — you're invisible to the customers who need you.
+            Filipino consumers search Google and Facebook for your services every
+            day. If they can&apos;t find you — they find someone else.
           </p>
         </motion.div>
 
@@ -154,38 +130,38 @@ export default function Problem() {
               animate={headInView ? "visible" : "hidden"}
               custom={0.1 * i}
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: "16px",
+                background: "#FFFFFF",
+                border: "1px solid var(--gray-light)",
+                borderRadius: "14px",
                 padding: "40px 32px",
                 position: "relative",
-                transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
                 overflow: "hidden",
+                transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = "rgba(255,255,255,0.07)";
-                el.style.borderColor = "rgba(239,68,68,0.2)";
+                el.style.borderColor = "#F5C518";
                 el.style.transform = "translateY(-4px)";
+                el.style.boxShadow = "0 12px 40px rgba(10,22,40,0.08)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = "rgba(255,255,255,0.04)";
-                el.style.borderColor = "rgba(255,255,255,0.07)";
+                el.style.borderColor = "var(--gray-light)";
                 el.style.transform = "translateY(0)";
+                el.style.boxShadow = "none";
               }}
             >
-              {/* Red left accent */}
+              {/* Gold top accent line */}
               <div
                 aria-hidden="true"
                 style={{
                   position: "absolute",
                   top: 0,
                   left: 0,
-                  bottom: 0,
-                  width: "3px",
-                  borderRadius: "16px 0 0 16px",
-                  background: "linear-gradient(to bottom, transparent, rgba(239,68,68,0.5), transparent)",
+                  right: 0,
+                  height: "3px",
+                  background: "linear-gradient(90deg, #F5C518, transparent)",
+                  borderRadius: "14px 14px 0 0",
                 }}
               />
 
@@ -196,7 +172,7 @@ export default function Problem() {
                   height: "52px",
                   borderRadius: "12px",
                   background: "rgba(239,68,68,0.08)",
-                  border: "1px solid rgba(239,68,68,0.2)",
+                  border: "1px solid rgba(239,68,68,0.18)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -205,7 +181,7 @@ export default function Problem() {
                   flexShrink: 0,
                 }}
               >
-                {p.icon}
+                <p.Icon size={22} />
               </div>
 
               <h3
@@ -213,7 +189,7 @@ export default function Problem() {
                   fontSize: "1.1rem",
                   fontWeight: 700,
                   letterSpacing: "-0.01em",
-                  color: "#FFFFFF",
+                  color: "var(--navy)",
                   marginBottom: "12px",
                   lineHeight: 1.3,
                   fontFamily: "var(--font-syne), sans-serif",
@@ -224,11 +200,11 @@ export default function Problem() {
               <p
                 style={{
                   fontSize: "0.9rem",
-                  color: "rgba(255,255,255,0.55)",
-                  lineHeight: 1.8,
+                  color: "var(--gray)",
+                  lineHeight: 1.78,
                   fontWeight: 400,
                   fontFamily: "var(--font-dm-sans), sans-serif",
-                  marginBottom: "0",
+                  marginBottom: 0,
                 }}
               >
                 {p.body}
@@ -239,11 +215,11 @@ export default function Problem() {
                 style={{
                   marginTop: "24px",
                   paddingTop: "20px",
-                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  borderTop: "1px solid var(--gray-light)",
                   fontSize: "0.78rem",
                   fontWeight: 700,
                   color: "#EF4444",
-                  letterSpacing: "0.04em",
+                  letterSpacing: "0.03em",
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >

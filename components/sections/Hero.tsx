@@ -1,15 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import {
-  Globe,
-  Bot,
-  MapPin,
-  Share2,
-  Star,
-  BarChart3,
-  CheckCircle,
-} from "lucide-react";
+import { CheckCircle, ArrowRight, Flame } from "lucide-react";
 
 const container: Variants = {
   hidden: {},
@@ -26,26 +18,19 @@ const item: Variants = {
 };
 
 const whatYouGet = [
-  { icon: Globe, label: "Website Live", detail: "3–5 days" },
-  { icon: Bot, label: "Messenger Bot", detail: "Active 24/7" },
-  { icon: MapPin, label: "Google My Business", detail: "Found on Maps" },
-  { icon: Share2, label: "Facebook Auto-Posts", detail: "3x/week" },
-  { icon: Star, label: "Google Reviews", detail: "Auto-requested" },
-  { icon: BarChart3, label: "Monthly Report", detail: "Via WhatsApp" },
+  "Professional Website — live in 3–5 days",
+  "24/7 Messenger Bot — never miss an inquiry",
+  "Google My Business — found on Maps & Search",
+  "Automated Facebook Posts — 3x per week",
+  "Google Review System — auto-requested after every sale",
+  "Monthly Performance Report — via WhatsApp",
 ];
 
-const heroStats = [
-  { value: "24/7", label: "AI Active" },
-  { value: "₱3,999", label: "Setup Price" },
-  { value: "3–5", label: "Days to Live" },
-  { value: "100%", label: "Done For You" },
-];
-
-const trustBadges = [
-  "No Technical Knowledge Needed",
+const trustItems = [
+  "Live in 3–5 Days",
   "Month-to-Month, No Lock-In",
-  "Free 30-Min Strategy Session",
-  "Filipino-Owned & Operated",
+  "100% Done For You",
+  "30-Day Performance Guarantee",
 ];
 
 export default function Hero() {
@@ -56,6 +41,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      className="hero-section"
       style={{
         position: "relative",
         minHeight: "100vh",
@@ -68,55 +54,31 @@ export default function Hero() {
         paddingLeft: "64px",
         paddingRight: "64px",
       }}
-      className="hero-section"
     >
-      {/* Grid background */}
+      {/* Dot grid background */}
       <div
         aria-hidden="true"
+        className="dot-grid-bg"
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(26,58,107,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(26,58,107,0.5) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage:
-            "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 40%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 40%, black, transparent)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
 
-      {/* Gold glow top-left */}
+      {/* Gold radial glow behind headline */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          top: "-80px",
-          left: "-100px",
-          width: "700px",
-          height: "500px",
-          borderRadius: "50%",
-          background: "rgba(245,197,24,0.07)",
-          filter: "blur(120px)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-
-      {/* Navy glow bottom-right */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: 0,
-          right: "-100px",
+          top: "20%",
+          left: "30%",
           width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          background: "rgba(15,30,53,0.9)",
-          filter: "blur(100px)",
+          height: "400px",
+          background: "radial-gradient(ellipse, rgba(245,197,24,0.07) 0%, transparent 70%)",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -124,6 +86,7 @@ export default function Hero() {
 
       {/* Two-column layout */}
       <div
+        className="hero-inner"
         style={{
           maxWidth: "1200px",
           width: "100%",
@@ -135,14 +98,9 @@ export default function Hero() {
           gap: "5rem",
           alignItems: "center",
         }}
-        className="hero-inner"
       >
         {/* LEFT — Text content */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="visible"
-        >
+        <motion.div variants={container} initial="hidden" animate="visible">
           {/* Eyebrow badge */}
           <motion.div variants={item} style={{ marginBottom: "28px" }}>
             <span
@@ -162,7 +120,6 @@ export default function Hero() {
                   height: "8px",
                   borderRadius: "50%",
                   background: "#22C55E",
-                  boxShadow: "0 0 0 0 rgba(34,197,94,0.4)",
                   animation: "pulse-ring 2s infinite",
                   flexShrink: 0,
                 }}
@@ -182,20 +139,22 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* H1 — two lines */}
+          {/* H1 — three lines */}
           <motion.h1
             variants={item}
             style={{
-              fontSize: "clamp(2.4rem, 5vw, 4rem)",
+              fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)",
               fontWeight: 800,
               letterSpacing: "-0.03em",
-              lineHeight: 1.06,
+              lineHeight: 1.05,
               color: "#FFFFFF",
               marginBottom: "24px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Your Competitor Is Online.
+            Your Competitor
+            <br />
+            Is Online.
             <br />
             <span
               style={{
@@ -209,31 +168,32 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Body */}
           <motion.p
             variants={item}
             style={{
               fontSize: "1rem",
               color: "rgba(255,255,255,0.62)",
               maxWidth: "480px",
-              marginBottom: "12px",
-              lineHeight: 1.8,
+              marginBottom: "20px",
+              lineHeight: 1.78,
               fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            We build your website, set up your AI bots, and manage your digital
-            presence — all done for you, live in 3–5 days.
+            We build your website, automate your leads, and manage your social
+            media — fully done for you. No technical knowledge needed. Your
+            business goes live in 3–5 days.
           </motion.p>
 
-          {/* Promo pill */}
+          {/* Promo badge */}
           <motion.div variants={item} style={{ marginBottom: "32px" }}>
             <span
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
-                padding: "6px 18px",
+                padding: "7px 18px",
                 background: "rgba(245,197,24,0.1)",
                 border: "1px solid rgba(245,197,24,0.3)",
                 borderRadius: "100px",
@@ -243,16 +203,8 @@ export default function Hero() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "#F5C518",
-                  flexShrink: 0,
-                }}
-              />
-              50% Off — April to May 2026 Only
+              <Flame size={14} style={{ flexShrink: 0 }} />
+              50% Off Launch Promo — April to May 2026 Only
             </span>
           </motion.div>
 
@@ -263,107 +215,50 @@ export default function Hero() {
               display: "flex",
               gap: "12px",
               flexWrap: "wrap",
-              marginBottom: "52px",
+              marginBottom: "48px",
             }}
           >
             <a
               href="#contact"
               className="btn-primary"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo("contact");
-              }}
+              onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
+              style={{ gap: "8px" }}
             >
               Book Free 30-Min Session
+              <ArrowRight size={16} />
             </a>
             <a
               href="#pricing"
               className="btn-ghost"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo("pricing");
-              }}
+              onClick={(e) => { e.preventDefault(); scrollTo("pricing"); }}
             >
               See Our Packages
             </a>
           </motion.div>
 
-          {/* Stats row */}
-          <motion.div
-            variants={item}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "1px",
-              background: "var(--navy-border)",
-              borderRadius: "12px",
-              overflow: "hidden",
-              border: "1px solid var(--navy-border)",
-              marginBottom: "28px",
-            }}
-            className="hero-stats-grid"
-          >
-            {heroStats.map((stat) => (
-              <div
-                key={stat.label}
-                style={{
-                  background: "var(--navy-mid)",
-                  padding: "18px 8px",
-                  textAlign: "center",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "1.4rem",
-                    fontWeight: 900,
-                    letterSpacing: "-0.03em",
-                    color: "#F5C518",
-                    lineHeight: 1,
-                    marginBottom: "4px",
-                    fontFamily: "var(--font-syne), sans-serif",
-                  }}
-                >
-                  {stat.value}
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.68rem",
-                    fontWeight: 600,
-                    color: "rgba(255,255,255,0.4)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.08em",
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                  }}
-                >
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Trust badges */}
+          {/* Trust row */}
           <motion.div
             variants={item}
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "8px",
+              gap: "10px",
             }}
           >
-            {trustBadges.map((badge) => (
+            {trustItems.map((badge) => (
               <div
                 key={badge}
-                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
                 <CheckCircle
-                  size={14}
+                  size={15}
                   style={{ color: "#22C55E", flexShrink: 0 }}
                 />
                 <span
                   style={{
-                    fontSize: "0.8rem",
+                    fontSize: "0.85rem",
                     fontWeight: 500,
-                    color: "rgba(255,255,255,0.5)",
+                    color: "rgba(255,255,255,0.55)",
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
@@ -383,7 +278,7 @@ export default function Hero() {
           <div
             style={{
               background: "var(--navy-mid)",
-              border: "1px solid var(--navy-border)",
+              border: "2px solid rgba(245,197,24,0.35)",
               borderRadius: "20px",
               padding: "36px 32px",
               position: "relative",
@@ -403,7 +298,7 @@ export default function Hero() {
                 borderRadius: "20px 20px 0 0",
               }}
             />
-            {/* Inner glow */}
+            {/* Glow */}
             <div
               aria-hidden="true"
               style={{
@@ -411,7 +306,7 @@ export default function Hero() {
                 top: 0,
                 left: 0,
                 right: 0,
-                height: "200px",
+                height: "180px",
                 background:
                   "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(245,197,24,0.07) 0%, transparent 100%)",
                 pointerEvents: "none",
@@ -425,7 +320,7 @@ export default function Hero() {
                   style={{
                     fontSize: "0.68rem",
                     fontWeight: 700,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "0.15em",
                     textTransform: "uppercase",
                     color: "#F5C518",
                     marginBottom: "8px",
@@ -436,7 +331,7 @@ export default function Hero() {
                 </p>
                 <h2
                   style={{
-                    fontSize: "1.4rem",
+                    fontSize: "1.45rem",
                     fontWeight: 800,
                     letterSpacing: "-0.02em",
                     color: "#FFFFFF",
@@ -450,101 +345,48 @@ export default function Hero() {
 
               {/* Feature list */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-                {whatYouGet.map((feature, i) => {
-                  const Icon = feature.icon;
-                  return (
-                    <div
-                      key={feature.label}
+                {whatYouGet.map((feature, i) => (
+                  <div
+                    key={feature}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "12px",
+                      padding: "13px 0",
+                      borderBottom:
+                        i < whatYouGet.length - 1
+                          ? "1px solid var(--navy-border)"
+                          : "none",
+                    }}
+                  >
+                    <CheckCircle
+                      size={16}
+                      style={{ color: "#22C55E", flexShrink: 0, marginTop: "2px" }}
+                    />
+                    <span
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "14px",
-                        padding: "14px 0",
-                        borderBottom:
-                          i < whatYouGet.length - 1
-                            ? "1px solid var(--navy-border)"
-                            : "none",
+                        fontSize: "0.875rem",
+                        fontWeight: 500,
+                        color: "rgba(255,255,255,0.8)",
+                        lineHeight: 1.45,
+                        fontFamily: "var(--font-dm-sans), sans-serif",
                       }}
                     >
-                      <div
-                        style={{
-                          width: "38px",
-                          height: "38px",
-                          borderRadius: "10px",
-                          background: "rgba(245,197,24,0.08)",
-                          border: "1px solid rgba(245,197,24,0.15)",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0,
-                          color: "#F5C518",
-                        }}
-                      >
-                        <Icon size={16} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <span
-                          style={{
-                            fontSize: "0.9rem",
-                            fontWeight: 600,
-                            color: "#FFFFFF",
-                            display: "block",
-                            lineHeight: 1.2,
-                            fontFamily: "var(--font-dm-sans), sans-serif",
-                          }}
-                        >
-                          {feature.label}
-                        </span>
-                      </div>
-                      <span
-                        style={{
-                          fontSize: "0.75rem",
-                          fontWeight: 600,
-                          color: "#22C55E",
-                          whiteSpace: "nowrap",
-                          fontFamily: "var(--font-dm-sans), sans-serif",
-                        }}
-                      >
-                        {feature.detail}
-                      </span>
-                    </div>
-                  );
-                })}
+                      {feature}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               {/* Card CTA */}
               <div style={{ marginTop: "28px" }}>
                 <button
                   onClick={() => scrollTo("contact")}
-                  style={{
-                    width: "100%",
-                    padding: "14px 24px",
-                    background: "#F5C518",
-                    color: "#0A1628",
-                    border: "none",
-                    borderRadius: "10px",
-                    fontWeight: 700,
-                    fontSize: "0.95rem",
-                    cursor: "pointer",
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                    transition: "all 0.25s ease",
-                    boxShadow:
-                      "0 4px 16px rgba(0,0,0,0.25), 0 8px 30px rgba(245,197,24,0.4)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#FFD94A";
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.boxShadow =
-                      "0 6px 20px rgba(0,0,0,0.35), 0 12px 40px rgba(245,197,24,0.55)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#F5C518";
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow =
-                      "0 4px 16px rgba(0,0,0,0.25), 0 8px 30px rgba(245,197,24,0.4)";
-                  }}
+                  className="btn-primary"
+                  style={{ width: "100%", justifyContent: "center" }}
                 >
                   Get All of This — Start Free
+                  <ArrowRight size={16} />
                 </button>
                 <p
                   style={{
@@ -566,23 +408,14 @@ export default function Hero() {
 
       <style>{`
         @media (max-width: 960px) {
-          .hero-section {
-            padding-left: 32px !important;
-            padding-right: 32px !important;
-          }
-          .hero-inner {
-            grid-template-columns: 1fr !important;
-            gap: 3rem !important;
-          }
+          .hero-section { padding-left: 32px !important; padding-right: 32px !important; }
+          .hero-inner { grid-template-columns: 1fr !important; gap: 3rem !important; }
         }
         @media (max-width: 600px) {
           .hero-section {
             padding-left: 20px !important;
             padding-right: 20px !important;
             padding-top: calc(var(--announcement-bar-height) + 100px) !important;
-          }
-          .hero-stats-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
       `}</style>

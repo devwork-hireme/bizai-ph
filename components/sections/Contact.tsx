@@ -163,19 +163,19 @@ export default function Contact() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "56px" }}
         >
-          <p className="section-label">Get Started</p>
+          <p className="section-label">Book Your Free Session</p>
           <h2
             style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
               fontWeight: 800,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
+              letterSpacing: "-0.02em",
+              lineHeight: 1.1,
               color: "#FFFFFF",
               marginBottom: "20px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Book Your Free{" "}
+            Start Growing{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #F5C518, #FFD94A)",
@@ -184,7 +184,7 @@ export default function Contact() {
                 backgroundClip: "text",
               }}
             >
-              30-Min Growth Session
+              in 3–5 Days
             </span>
           </h2>
           <p
@@ -198,8 +198,9 @@ export default function Contact() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            In 30 minutes, we will identify exactly what your business needs and which package fits
-            you best. No commitment. No technical knowledge needed.
+            Book a free 30-minute session. We&apos;ll understand your business,
+            recommend the right package, and show you exactly what results to
+            expect. No commitment. No technical knowledge needed.
           </p>
         </motion.div>
 

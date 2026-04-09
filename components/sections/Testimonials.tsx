@@ -631,7 +631,7 @@ export default function Testimonials() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Real Numbers From{" "}
+            Real Results From{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #F5C518, #FFD94A)",
@@ -640,7 +640,7 @@ export default function Testimonials() {
                 backgroundClip: "text",
               }}
             >
-              Real Businesses
+              Real Philippine Businesses
             </span>
           </h2>
           <p
@@ -654,51 +654,9 @@ export default function Testimonials() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Every figure below is based on actual client results before and
-            after implementing BizAI PH automation.
+            Real results from real Philippine businesses — before and after
+            working with BizAI PH.
           </p>
-
-          {/* Overall rating */}
-          <div style={{ marginTop: "2.5rem", marginBottom: "2rem" }}>
-            <p
-              style={{
-                fontSize: "4.5rem",
-                fontWeight: 900,
-                color: "var(--white)",
-                letterSpacing: "-0.04em",
-                lineHeight: 1,
-                marginBottom: "0.5rem",
-              }}
-            >
-              4.9
-            </p>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "3px",
-                marginBottom: "0.5rem",
-              }}
-            >
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span key={i} style={{ color: "#FFB800", fontSize: "1.3rem" }}>
-                  ★
-                </span>
-              ))}
-            </div>
-            <p
-              style={{
-                fontSize: "0.85rem",
-                color: "var(--soft)",
-                marginBottom: "0.25rem",
-              }}
-            >
-              Average client satisfaction
-            </p>
-            <p style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
-              Based on 500+ verified client reviews
-            </p>
-          </div>
 
           {/* Stat pills */}
           <div
@@ -707,7 +665,7 @@ export default function Testimonials() {
               justifyContent: "center",
               gap: "16px",
               flexWrap: "wrap",
-              marginBottom: "0",
+              marginTop: "2rem",
             }}
           >
             {[
@@ -721,7 +679,7 @@ export default function Testimonials() {
               },
               {
                 icon: <Users size={18} color="#F5C518" />,
-                text: "500+ businesses served",
+                text: "New clients accepted monthly",
               },
             ].map(({ icon, text }) => (
               <div

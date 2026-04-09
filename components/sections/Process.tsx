@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { CalendarCheck, Wrench, Rocket, BarChart3 } from "lucide-react";
+import { Calendar, Zap, Globe, TrendingUp, ArrowRight } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -14,42 +14,34 @@ const fadeUp: Variants = {
   }),
 };
 
-type Step = {
-  number: string;
-  title: string;
-  duration: string;
-  body: string;
-  icon: React.ReactNode;
-};
-
-const steps: Step[] = [
+const steps = [
   {
     number: "01",
+    Icon: Calendar,
     title: "Book Free 30-Min Session",
     duration: "30 minutes",
-    body: "We understand your business, your goals, and your biggest challenges. We then recommend the right package for you. No obligation. No technical knowledge needed.",
-    icon: <CalendarCheck size={20} />,
+    body: "Tell us about your business. We identify what you need and recommend the right package. No obligation. No technical knowledge needed.",
   },
   {
     number: "02",
+    Icon: Zap,
     title: "We Build Everything",
     duration: "Days 1–3",
-    body: "Website, automations, bots — we build it all. You just provide basic business info (name, services, photos). We handle every technical detail from setup to launch.",
-    icon: <Wrench size={20} />,
+    body: "Website, automations, bots — fully configured. You provide your business info. We handle every technical detail from setup to launch.",
   },
   {
     number: "03",
+    Icon: Globe,
     title: "Go Live in 3–5 Days",
     duration: "Day 3–5",
-    body: "Your business goes live online. Customers can find you on Google, message your bot, and book automatically — all while you focus on running your business.",
-    icon: <Rocket size={20} />,
+    body: "Your business goes live. Customers find you on Google, message your bot, and book — automatically.",
   },
   {
     number: "04",
+    Icon: TrendingUp,
     title: "We Manage and Grow",
     duration: "Ongoing",
-    body: "Monthly reports, maintenance, content posting, lead tracking — all handled for you. We stay with you and make sure your digital presence keeps growing.",
-    icon: <BarChart3 size={20} />,
+    body: "Monthly reports, content posting, maintenance — all handled. We stay with you long-term.",
   },
 ];
 
@@ -64,29 +56,20 @@ export default function Process() {
       id="process"
       className="process-section"
       style={{
-        background: "var(--black)",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
+        background: "var(--off-white)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Grid background */}
       <div
-        aria-hidden="true"
         style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          pointerEvents: "none",
-          zIndex: 0,
+          maxWidth: "1200px",
+          margin: "0 auto",
+          position: "relative",
+          zIndex: 1,
         }}
-      />
-      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+      >
         {/* Header */}
         <motion.div
           ref={headRef}
@@ -95,173 +78,168 @@ export default function Process() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "64px" }}
         >
-          <p className="section-label">How It Works</p>
+          <p className="section-label" style={{ color: "var(--navy)" }}>
+            How It Works
+          </p>
           <h2
             style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
+              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
               fontWeight: 800,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              color: "#FFFFFF",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.1,
+              color: "var(--navy)",
               marginBottom: "20px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Live in 3–5 Days.{" "}
+            From Zero to Fully Automated{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
               }}
             >
-              Not 3–5 Months.
+              in 3–5 Days
             </span>
           </h2>
           <p
             style={{
               fontSize: "1rem",
-              color: "rgba(255,255,255,0.55)",
-              maxWidth: "520px",
+              color: "var(--gray)",
+              maxWidth: "480px",
               margin: "0 auto",
               lineHeight: 1.78,
-              fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            A simple, four-step process from first call to fully operational digital presence —
-            with zero technical work required on your end.
+            A simple process. Zero technical work from you.
           </p>
         </motion.div>
 
         {/* Steps */}
-        <div ref={stepsRef}>
+        <div ref={stepsRef} style={{ position: "relative" }}>
+          {/* Connector line */}
           <div
-            style={{ position: "relative" }}
-            className="process-track"
+            aria-hidden="true"
+            className="process-connector"
+            style={{
+              position: "absolute",
+              top: "28px",
+              left: "12%",
+              right: "12%",
+              height: "1px",
+              background:
+                "linear-gradient(90deg, transparent, rgba(201,148,10,0.3), rgba(201,148,10,0.3), transparent)",
+              pointerEvents: "none",
+            }}
+          />
+
+          <div
+            className="process-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "1.5rem",
+              position: "relative",
+            }}
           >
-            {/* Connector line */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                top: "28px",
-                left: "10%",
-                right: "10%",
-                height: "1px",
-                background:
-                  "linear-gradient(90deg, transparent, rgba(245,197,24,0.25), rgba(245,197,24,0.25), transparent)",
-                pointerEvents: "none",
-              }}
-              className="process-connector"
-            />
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
-                gap: "1.5rem",
-                position: "relative",
-              }}
-              className="process-grid"
-            >
-              {steps.map((step, i) => (
-                <motion.div
-                  key={step.number}
-                  variants={fadeUp}
-                  initial="hidden"
-                  animate={stepsInView ? "visible" : "hidden"}
-                  custom={0.1 * i}
-                  style={{ textAlign: "center" }}
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                variants={fadeUp}
+                initial="hidden"
+                animate={stepsInView ? "visible" : "hidden"}
+                custom={0.1 * i}
+                style={{ textAlign: "center" }}
+              >
+                {/* Icon circle */}
+                <div
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    borderRadius: "50%",
+                    background: "var(--navy)",
+                    border: "1px solid rgba(201,148,10,0.35)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: "0 auto 1.5rem",
+                    color: "#F5C518",
+                    position: "relative",
+                    zIndex: 1,
+                  }}
                 >
-                  {/* Icon circle */}
-                  <div
-                    style={{
-                      width: "56px",
-                      height: "56px",
-                      borderRadius: "50%",
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(245,197,24,0.3)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: "0 auto 1.5rem",
-                      color: "#F5C518",
-                      position: "relative",
-                      zIndex: 1,
-                    }}
-                  >
-                    {step.icon}
-                  </div>
+                  <step.Icon size={20} />
+                </div>
 
-                  {/* Step number */}
-                  <p
+                {/* Step label */}
+                <p
+                  style={{
+                    fontSize: "0.7rem",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: "#C9940A",
+                    marginBottom: "0.4rem",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                >
+                  Step {step.number}
+                </p>
+
+                {/* Title */}
+                <h3
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: 700,
+                    color: "var(--navy)",
+                    lineHeight: 1.3,
+                    marginBottom: "0.4rem",
+                    fontFamily: "var(--font-syne), sans-serif",
+                  }}
+                >
+                  {step.title}
+                </h3>
+
+                {/* Duration badge */}
+                <div style={{ marginBottom: "0.75rem" }}>
+                  <span
                     style={{
-                      fontSize: "0.7rem",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.12em",
-                      color: "#F5C518",
-                      marginBottom: "0.5rem",
+                      display: "inline-block",
+                      fontSize: "0.72rem",
+                      fontWeight: 600,
+                      color: "#22C55E",
+                      background: "rgba(34,197,94,0.08)",
+                      border: "1px solid rgba(34,197,94,0.2)",
+                      padding: "2px 10px",
+                      borderRadius: "100px",
                       fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
-                    Step {step.number}
-                  </p>
+                    {step.duration}
+                  </span>
+                </div>
 
-                  {/* Title */}
-                  <h3
-                    style={{
-                      fontSize: "1rem",
-                      fontWeight: 700,
-                      color: "#FFFFFF",
-                      lineHeight: 1.3,
-                      marginBottom: "0.4rem",
-                      fontFamily: "var(--font-syne), sans-serif",
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-
-                  {/* Duration badge */}
-                  <div style={{ marginBottom: "0.75rem" }}>
-                    <span
-                      style={{
-                        display: "inline-block",
-                        fontSize: "0.72rem",
-                        fontWeight: 600,
-                        color: "#22C55E",
-                        background: "rgba(34,197,94,0.08)",
-                        border: "1px solid rgba(34,197,94,0.2)",
-                        padding: "2px 10px",
-                        borderRadius: "100px",
-                        fontFamily: "var(--font-dm-sans), sans-serif",
-                      }}
-                    >
-                      {step.duration}
-                    </span>
-                  </div>
-
-                  {/* Body */}
-                  <p
-                    style={{
-                      fontSize: "0.85rem",
-                      color: "rgba(255,255,255,0.5)",
-                      lineHeight: 1.7,
-                      margin: 0,
-                      fontFamily: "var(--font-dm-sans), sans-serif",
-                    }}
-                  >
-                    {step.body}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+                {/* Body */}
+                <p
+                  style={{
+                    fontSize: "0.85rem",
+                    color: "var(--gray)",
+                    lineHeight: 1.7,
+                    margin: 0,
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                >
+                  {step.body}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
 
-        {/* CTA below process */}
+        {/* CTA */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -272,12 +250,12 @@ export default function Process() {
           <p
             style={{
               fontSize: "0.9rem",
-              color: "rgba(255,255,255,0.5)",
+              color: "var(--gray)",
               marginBottom: "1.5rem",
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Ready to start? The first step is a free 30-minute session.
+            Ready to start? The first step is free.
           </p>
           <a
             href="#contact"
@@ -286,8 +264,10 @@ export default function Process() {
               e.preventDefault();
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
+            style={{ gap: "8px" }}
           >
             Book Free 30-Min Session
+            <ArrowRight size={16} />
           </a>
         </motion.div>
       </div>

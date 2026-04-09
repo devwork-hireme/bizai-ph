@@ -1,13 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const navLinks = [
-  { label: "Services", href: "#pricing" },
   { label: "How It Works", href: "#process" },
   { label: "Pricing", href: "#pricing" },
   { label: "Why Us", href: "#why-us" },
   { label: "FAQ", href: "#faq" },
+  { label: "Book a Session", href: "#contact" },
 ];
 
 const serviceLinks = [
@@ -17,7 +15,7 @@ const serviceLinks = [
   "Free 30-Min Session",
 ];
 
-const industryLinks = [
+const weServeLinks = [
   "Salons & Barbershops",
   "Restaurants & Food",
   "Repair Shops",
@@ -36,23 +34,23 @@ export default function Footer() {
 
   return (
     <footer
+      className="footer-outer"
       style={{
-        background: "var(--deep)",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        background: "#060E1C",
+        borderTop: "1px solid rgba(26,58,107,0.6)",
         padding: "80px 64px 40px",
         position: "relative",
         overflow: "hidden",
       }}
-      className="footer-outer"
     >
-      {/* Grid background */}
+      {/* Subtle grid */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(245,197,24,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(245,197,24,0.02) 1px, transparent 1px)",
+            "linear-gradient(rgba(26,58,107,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(26,58,107,0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
           maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
@@ -60,122 +58,24 @@ export default function Footer() {
           zIndex: 0,
         }}
       />
-      {/* Floating CTA card */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+
+      <div
         style={{
           maxWidth: "1200px",
-          margin: "0 auto 80px",
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(245,197,24,0.2)",
-          borderRadius: "20px",
-          padding: "64px 48px",
-          textAlign: "center",
+          margin: "0 auto",
           position: "relative",
-          overflow: "hidden",
           zIndex: 1,
         }}
       >
-        {/* Gold glow accent */}
+        {/* Columns */}
         <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(ellipse 60% 60% at 50% 110%, rgba(245,197,24,0.08) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <p
-            className="section-label"
-            style={{ marginBottom: "1rem" }}
-          >
-            Ready to Start?
-          </p>
-          <h2
-            style={{
-              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-              color: "#FFFFFF",
-              marginBottom: "1rem",
-              fontFamily: "var(--font-syne), sans-serif",
-            }}
-          >
-            Your Competitor Is Already Online.{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Start Today.
-            </span>
-          </h2>
-          <p
-            style={{
-              fontSize: "0.95rem",
-              color: "rgba(255,255,255,0.55)",
-              maxWidth: "480px",
-              margin: "0 auto 2rem",
-              lineHeight: 1.75,
-              fontWeight: 400,
-              fontFamily: "var(--font-dm-sans), sans-serif",
-            }}
-          >
-            Stop losing customers to competitors who are visible online. The first step is
-            a free 30-minute session — no commitment required.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <a
-              href="#contact"
-              className="btn-primary"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo("contact");
-              }}
-            >
-              Book Free 30-Min Session
-            </a>
-            <a
-              href="#pricing"
-              className="btn-ghost"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo("pricing");
-              }}
-            >
-              See Our Packages
-            </a>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Footer columns */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-        <div
+          className="footer-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1.5fr 1fr 1fr 1fr",
             gap: "3rem",
             marginBottom: "4rem",
           }}
-          className="footer-grid"
         >
           {/* Brand column */}
           <div>
@@ -199,7 +99,7 @@ export default function Footer() {
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A1628" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                 </svg>
               </div>
               <span
@@ -217,21 +117,22 @@ export default function Footer() {
             <p
               style={{
                 fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.35)",
                 lineHeight: 1.75,
                 marginBottom: "1.5rem",
                 maxWidth: "260px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Done-for-you digital growth for Filipino SMBs. Website, automation, leads — fully managed for you.
+              Done-for-you digital growth for Filipino SMBs. Website,
+              automation, leads — fully managed for you.
             </p>
             <p
               style={{
                 fontSize: "0.8rem",
-                color: "rgba(255,255,255,0.3)",
-                margin: 0,
+                color: "rgba(255,255,255,0.25)",
                 fontFamily: "var(--font-dm-sans), sans-serif",
+                lineHeight: 1.75,
               }}
             >
               Taguig City, Metro Manila
@@ -244,10 +145,10 @@ export default function Footer() {
           <div>
             <p
               style={{
-                fontSize: "0.75rem",
+                fontSize: "0.7rem",
                 fontWeight: 700,
                 textTransform: "uppercase",
-                letterSpacing: "0.1em",
+                letterSpacing: "0.12em",
                 color: "#F5C518",
                 marginBottom: "1.25rem",
                 fontFamily: "var(--font-dm-sans), sans-serif",
@@ -260,19 +161,16 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(link.href);
-                  }}
+                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                   style={{
                     fontSize: "0.875rem",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "rgba(255,255,255,0.35)",
                     textDecoration: "none",
                     transition: "color 0.2s ease",
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
                 >
                   {link.label}
                 </a>
@@ -284,10 +182,10 @@ export default function Footer() {
           <div>
             <p
               style={{
-                fontSize: "0.75rem",
+                fontSize: "0.7rem",
                 fontWeight: 700,
                 textTransform: "uppercase",
-                letterSpacing: "0.1em",
+                letterSpacing: "0.12em",
                 color: "#F5C518",
                 marginBottom: "1.25rem",
                 fontFamily: "var(--font-dm-sans), sans-serif",
@@ -301,7 +199,7 @@ export default function Footer() {
                   key={s}
                   style={{
                     fontSize: "0.875rem",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "rgba(255,255,255,0.35)",
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
@@ -311,14 +209,14 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Industries */}
+          {/* We Serve */}
           <div>
             <p
               style={{
-                fontSize: "0.75rem",
+                fontSize: "0.7rem",
                 fontWeight: 700,
                 textTransform: "uppercase",
-                letterSpacing: "0.1em",
+                letterSpacing: "0.12em",
                 color: "#F5C518",
                 marginBottom: "1.25rem",
                 fontFamily: "var(--font-dm-sans), sans-serif",
@@ -327,12 +225,12 @@ export default function Footer() {
               We Serve
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-              {industryLinks.map((ind) => (
+              {weServeLinks.map((ind) => (
                 <span
                   key={ind}
                   style={{
                     fontSize: "0.875rem",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "rgba(255,255,255,0.35)",
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
@@ -350,7 +248,7 @@ export default function Footer() {
             justifyContent: "space-between",
             alignItems: "center",
             paddingTop: "2rem",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid rgba(26,58,107,0.4)",
             flexWrap: "wrap",
             gap: "1rem",
           }}
@@ -358,7 +256,7 @@ export default function Footer() {
           <p
             style={{
               fontSize: "0.8rem",
-              color: "rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,0.2)",
               margin: 0,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
@@ -368,12 +266,12 @@ export default function Footer() {
           <p
             style={{
               fontSize: "0.8rem",
-              color: "rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,0.2)",
               margin: 0,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Done-for-you digital growth for Filipino SMBs.
+            Made for Filipino negosyantes.
           </p>
         </div>
       </div>
