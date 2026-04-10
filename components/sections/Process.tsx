@@ -93,14 +93,7 @@ export default function Process() {
             }}
           >
             From Zero to Fully Automated{" "}
-            <span
-              style={{
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
-              }}
-            >
+            <span style={{ color: "#C9940A" }}>
               in 3–5 Days
             </span>
           </h2>

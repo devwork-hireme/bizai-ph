@@ -106,14 +106,7 @@ export default function Solution() {
             }}
           >
             What Happens When{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span style={{ color: "#F5C518" }}>
               We Take Over
             </span>
           </h2>

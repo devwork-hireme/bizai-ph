@@ -176,14 +176,7 @@ export default function Contact() {
             }}
           >
             Start Growing{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span style={{ color: "#F5C518" }}>
               in 3–5 Days
             </span>
           </h2>

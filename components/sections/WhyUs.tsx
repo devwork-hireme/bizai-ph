@@ -95,14 +95,7 @@ export default function WhyUs() {
             }}
           >
             Not Just Another Agency —{" "}
-            <span
-              style={{
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
-              }}
-            >
+            <span style={{ color: "#C9940A" }}>
               Your Growth Partner
             </span>
           </h2>

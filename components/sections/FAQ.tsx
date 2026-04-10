@@ -198,14 +198,7 @@ export default function FAQ() {
             }}
           >
             Frequently Asked{" "}
-            <span
-              style={{
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
-              }}
-            >
+            <span style={{ color: "#C9940A" }}>
               Questions
             </span>
           </h2>

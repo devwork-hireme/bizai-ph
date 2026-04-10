@@ -632,14 +632,7 @@ export default function Testimonials() {
             }}
           >
             Real Results From{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span style={{ color: "#F5C518" }}>
               Real Philippine Businesses
             </span>
           </h2>

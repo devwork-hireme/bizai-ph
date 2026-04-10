@@ -157,14 +157,7 @@ export default function Hero() {
             <br />
             Is Online.
             <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518 0%, #FFD94A 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span style={{ color: "#F5C518" }}>
               Are You?
             </span>
           </motion.h1>

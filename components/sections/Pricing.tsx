@@ -106,14 +106,7 @@ export default function Pricing() {
             }}
           >
             Choose Where You Are.{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span style={{ color: "#F5C518" }}>
               We Handle the Rest.
             </span>
           </h2>
