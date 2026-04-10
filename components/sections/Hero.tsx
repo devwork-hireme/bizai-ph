@@ -135,7 +135,7 @@ export default function Hero() {
                   whiteSpace: "nowrap",
                 }}
               >
-                Done-For-You Digital Growth
+                Built on AI. Run by Experts.
               </span>
             </span>
           </motion.div>
@@ -176,8 +176,8 @@ export default function Hero() {
             }}
           >
             We build your website, automate your leads, and manage your social
-            media — fully done for you. No technical knowledge needed. Your
-            business goes live in 3–5 days.
+            media — fully done for you, powered by AI. No technical knowledge
+            needed. Your business goes live in 3–5 days.
           </motion.p>
 
           {/* Promo badge */}
