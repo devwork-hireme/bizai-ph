@@ -31,46 +31,25 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bizaiph.com"),
-  title: "BizAI PH — Done-For-You Digital Growth for Filipino SMBs",
-  description:
-    "BizAI PH builds your website, automates your leads, and manages your social media — 100% done for you. Serving Philippine SMBs. Launch promo: 50% off April to May 2026.",
-  keywords: [
-    "digital growth philippines",
-    "website design philippines",
-    "AI automation philippines",
-    "Filipino SMB digital marketing",
-    "done for you marketing philippines",
-    "BizAI PH",
-    "business website Philippines",
-    "lead automation Philippines",
-  ],
-  authors: [{ name: "BizAI PH" }],
-  creator: "BizAI PH",
-  publisher: "BizAI PH",
+  metadataBase: new URL("https://www.bizaiph.com"),
+  title: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
+  description: "BizAI PH builds your website, automates your leads, and manages your social media — powered by AI, fully done for you. Filipino SMBs go live in 3–5 days. Starting at ₱3,999.",
+  keywords: "website design philippines, AI automation philippines, digital marketing filipino business, messenger bot philippines, google my business setup philippines, done for you marketing philippines",
   openGraph: {
-    type: "website",
-    locale: "en_PH",
-    url: "https://bizaiph.com",
+    title: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
+    description: "Website, AI automation, and social media — fully managed for you. Starting at ₱3,999.",
+    url: "https://www.bizaiph.com",
     siteName: "BizAI PH",
-    title: "BizAI PH — Done-For-You Digital Growth for Filipino SMBs",
-    description:
-      "BizAI PH builds your website, automates your leads, and manages your social media — 100% done for you. Serving Philippine SMBs. Launch promo: 50% off April to May 2026.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BizAI PH — Done-For-You Digital Growth" }],
+    locale: "en_PH",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BizAI PH — Done-For-You Digital Growth for Filipino SMBs",
-    description:
-      "Website, AI automation, leads, and social media — fully set up and managed for you. Launch promo: 50% off April to May 2026.",
-    images: ["/og-image.png"],
+    title: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
+    description: "Website, AI automation, and social media — fully managed for you.",
   },
-  alternates: { canonical: "https://bizaiph.com" },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
-  },
+  alternates: { canonical: "https://www.bizaiph.com" },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
