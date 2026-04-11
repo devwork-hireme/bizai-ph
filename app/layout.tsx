@@ -106,6 +106,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.bizaiph.com"),
   title: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
+  },
   description: "BizAI PH builds your website, automates your leads, and manages your social media — powered by AI, fully done for you. Filipino SMBs go live in 3–5 days. Starting at ₱3,999.",
   keywords: "website design philippines, AI automation philippines, digital marketing filipino business, messenger bot philippines, google my business setup philippines, done for you marketing philippines",
   openGraph: {
