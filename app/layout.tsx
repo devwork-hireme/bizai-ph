@@ -115,11 +115,20 @@ export const metadata: Metadata = {
     siteName: "BizAI PH",
     locale: "en_PH",
     type: "website",
+    images: [
+      {
+        url: "https://www.bizaiph.com/og-image.png",
+        width: 1200,
+        height: 628,
+        alt: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
     description: "Website, AI automation, and social media — fully managed for you.",
+    images: ["https://www.bizaiph.com/og-image.png"],
   },
   alternates: { canonical: "https://www.bizaiph.com" },
   robots: { index: true, follow: true },
