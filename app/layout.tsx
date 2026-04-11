@@ -117,7 +117,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.bizaiph.com/og-image.png",
+        url: "https://www.bizaiph.com/og",
         width: 1200,
         height: 628,
         alt: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
@@ -128,7 +128,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BizAI PH — AI-Powered Digital Growth for Filipino SMBs",
     description: "Website, AI automation, and social media — fully managed for you.",
-    images: ["https://www.bizaiph.com/og-image.png"],
+    images: ["https://www.bizaiph.com/og"],
   },
   alternates: { canonical: "https://www.bizaiph.com" },
   robots: { index: true, follow: true },
