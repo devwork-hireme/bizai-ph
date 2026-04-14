@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { Globe, MessageCircle, Clock } from "lucide-react";
+import { Search, MessageCircle, TrendingUp } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -16,22 +16,22 @@ const fadeUp: Variants = {
 
 const problems = [
   {
-    Icon: Globe,
-    title: "No Online Presence",
-    body: "Customers search Google and Facebook for your service but can't find you. Every day you're invisible online is a day your competitor wins.",
-    stat: "46% of all Google searches are seeking local information",
+    Icon: Search,
+    title: "Customers Choose Your Competitor",
+    body: "Right now someone is on Google searching for your service. Your competitor shows up. You don't. They get the customer. You get nothing. This happens every single day.",
+    stat: "46% of searches are for local businesses",
   },
   {
     Icon: MessageCircle,
-    title: "Missed Inquiries",
-    body: "Customers message at 10PM. By morning when you reply, they've already booked someone else. Every missed message is a lost sale.",
-    stat: "67% of customers expect a reply within 1 hour",
+    title: "Leads Disappear Before You Reply",
+    body: "A customer messages you at 10PM excited about your service. You see it at 9AM. They booked someone else at 10:15PM. That sale is gone forever.",
+    stat: "67% of customers buy from whoever replies first",
   },
   {
-    Icon: Clock,
-    title: "No Time for Marketing",
-    body: "You're busy running your business. No time to post on Facebook, reply to messages, or follow up leads. Your competitor does all of this automatically.",
-    stat: "SMB owners spend 20+ hours per week on repetitive tasks",
+    Icon: TrendingUp,
+    title: "Interested People Never Become Customers",
+    body: "Someone asks about your price Monday. You mean to follow up. Life gets busy. By Friday they've paid your competitor. Lost revenue you'll never recover.",
+    stat: "80% of sales need 5 follow-ups to close",
   },
 ];
 
@@ -87,17 +87,8 @@ export default function Problem() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Every Day You&apos;re Offline, Your Competitor{" "}
-            <span
-              style={{
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
-              }}
-            >
-              Gets Your Customer
-            </span>
+            Your Business Is Losing Customers{" "}
+            <span style={{ color: "#C9940A" }}>Every Single Day.</span>
           </h2>
           <p
             style={{
@@ -108,8 +99,8 @@ export default function Problem() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Filipino consumers search Google and Facebook for your services every
-            day. If they can&apos;t find you — they find someone else.
+            Not because your business isn&apos;t good enough. Because these three
+            things are happening — and nobody is fixing them.
           </p>
         </motion.div>
 
@@ -140,7 +131,7 @@ export default function Problem() {
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "#F5C518";
+                el.style.borderColor = "#EF4444";
                 el.style.transform = "translateY(-4px)";
                 el.style.boxShadow = "0 12px 40px rgba(10,22,40,0.08)";
               }}
@@ -151,7 +142,7 @@ export default function Problem() {
                 el.style.boxShadow = "none";
               }}
             >
-              {/* Gold top accent line */}
+              {/* Red top accent line */}
               <div
                 aria-hidden="true"
                 style={{
@@ -160,7 +151,7 @@ export default function Problem() {
                   left: 0,
                   right: 0,
                   height: "3px",
-                  background: "linear-gradient(90deg, #F5C518, transparent)",
+                  background: "linear-gradient(90deg, #EF4444, transparent)",
                   borderRadius: "14px 14px 0 0",
                 }}
               />
@@ -172,7 +163,7 @@ export default function Problem() {
                   height: "52px",
                   borderRadius: "12px",
                   background: "rgba(239,68,68,0.08)",
-                  border: "1px solid rgba(239,68,68,0.18)",
+                  border: "1px solid rgba(239,68,68,0.2)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",

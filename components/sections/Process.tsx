@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { Calendar, Zap, Globe, TrendingUp, ArrowRight } from "lucide-react";
+import { Calendar, Zap, CheckCircle, TrendingUp, ArrowRight } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -18,30 +18,30 @@ const steps = [
   {
     number: "01",
     Icon: Calendar,
-    title: "Book Free 30-Min Session",
+    title: "Tell Us Your Goal",
     duration: "30 minutes",
-    body: "Tell us about your business. We identify what you need and recommend the right package. No obligation. No technical knowledge needed.",
+    body: "30 minutes. Free. Tell us which result matters most to your business right now. We show you exactly how we'll deliver it.",
   },
   {
     number: "02",
     Icon: Zap,
     title: "We Build Everything",
     duration: "Days 1–3",
-    body: "Website, automations, bots — fully configured. You provide your business info. We handle every technical detail from setup to launch.",
+    body: "You provide your business information. We handle every single technical detail. You don't touch anything.",
   },
   {
     number: "03",
-    Icon: Globe,
-    title: "Go Live in 3–5 Days",
+    Icon: CheckCircle,
+    title: "Results Go Live",
     duration: "Day 3–5",
-    body: "Your business goes live. Customers find you on Google, message your bot, and book — automatically.",
+    body: "In 3–5 days your results are live. Customers finding you. Leads coming in. Sales closing.",
   },
   {
     number: "04",
     Icon: TrendingUp,
-    title: "We Manage and Grow",
+    title: "Results Keep Growing",
     duration: "Ongoing",
-    body: "Monthly reports, content posting, maintenance — all handled. We stay with you long-term.",
+    body: "Every month your results get better. More customers. More leads. More sales. We manage everything.",
   },
 ];
 
@@ -79,7 +79,7 @@ export default function Process() {
           style={{ textAlign: "center", marginBottom: "64px" }}
         >
           <p className="section-label" style={{ color: "var(--navy)" }}>
-            How It Works
+            The Process
           </p>
           <h2
             style={{
@@ -92,17 +92,8 @@ export default function Process() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            From Zero to Fully Automated{" "}
-            <span
-              style={{
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                background: "linear-gradient(135deg, #C9940A, #E8A80C)",
-              }}
-            >
-              in 3–5 Days
-            </span>
+            Your Results in{" "}
+            <span style={{ color: "#C9940A" }}>3–5 Days.</span>
           </h2>
           <p
             style={{
@@ -114,7 +105,8 @@ export default function Process() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            A simple process. Zero technical work from you.
+            Four steps. Zero technical work from you. Complete results at the
+            end.
           </p>
         </motion.div>
 
@@ -255,7 +247,7 @@ export default function Process() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Ready to start? The first step is free.
+            The first step is free and takes 30 minutes.
           </p>
           <a
             href="#contact"
@@ -266,7 +258,7 @@ export default function Process() {
             }}
             style={{ gap: "8px" }}
           >
-            Book Free 30-Min Session
+            Book My Free Session
             <ArrowRight size={16} />
           </a>
         </motion.div>

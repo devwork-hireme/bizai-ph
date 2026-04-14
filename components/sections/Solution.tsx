@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
+import { X, CheckCircle } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -14,19 +15,21 @@ const fadeUp: Variants = {
 };
 
 const beforeItems = [
-  "4–8 hour average response time",
-  "Leads lost to slow follow-up",
-  "Manual social media posting",
-  "No reporting or visibility",
-  "20+ hours/week on admin tasks",
+  "Customers can't find you online",
+  "Inquiries go unanswered at night",
+  "Leads go cold before you follow up",
+  "Your Facebook page looks abandoned",
+  "No Google reviews to build trust",
+  "No idea what's working in your business",
 ];
 
 const afterItems = [
-  "Instant automated response, 24/7",
-  "Every lead followed up within minutes",
-  "Facebook posts scheduled automatically",
-  "Live reports delivered to your phone",
-  "Your time spent on growth, not admin",
+  "Customers find you every time they search",
+  "Every inquiry answered before you wake up",
+  "Every lead followed up automatically",
+  "Your Facebook active and professional daily",
+  "Google reviews building your reputation",
+  "Monthly results report delivered to your phone",
 ];
 
 export default function Solution() {
@@ -35,7 +38,7 @@ export default function Solution() {
 
   return (
     <section
-      id="solution"
+      id="transformation"
       className="solution-section"
       style={{
         background: "var(--navy)",
@@ -60,22 +63,6 @@ export default function Solution() {
           zIndex: 0,
         }}
       />
-      {/* Gold glow left */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "30%",
-          left: "-200px",
-          width: "600px",
-          height: "600px",
-          background: "rgba(245,197,24,0.05)",
-          filter: "blur(100px)",
-          borderRadius: "50%",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
 
       <div
         style={{
@@ -93,7 +80,7 @@ export default function Solution() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "64px" }}
         >
-          <p className="section-label">The Solution</p>
+          <p className="section-label">The Transformation</p>
           <h2
             style={{
               fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
@@ -105,31 +92,21 @@ export default function Solution() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            What Happens When{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518, #FFD94A)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              We Take Over
-            </span>
+            What Changes When{" "}
+            <span style={{ color: "#F5C518" }}>You Work With BizAI PH</span>
           </h2>
           <p
             style={{
               fontSize: "1rem",
               color: "rgba(255,255,255,0.55)",
-              maxWidth: "560px",
+              maxWidth: "480px",
               margin: "0 auto",
               lineHeight: 1.78,
               fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            We replace manual, time-consuming tasks with systems that run
-            automatically — 24 hours a day, 7 days a week.
+            One decision. Four results. Complete transformation.
           </p>
         </motion.div>
 
@@ -183,7 +160,7 @@ export default function Solution() {
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                Before BizAI PH
+                Without BizAI PH
               </span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -192,20 +169,10 @@ export default function Solution() {
                   key={item}
                   style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="rgba(239,68,68,0.5)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ flexShrink: 0, marginTop: "3px" }}
-                  >
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
+                  <X
+                    size={16}
+                    style={{ color: "rgba(239,68,68,0.5)", flexShrink: 0, marginTop: "3px" }}
+                  />
                   <span
                     style={{
                       fontSize: "0.9rem",
@@ -256,7 +223,7 @@ export default function Solution() {
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                After BizAI PH
+                With BizAI PH
               </span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -265,19 +232,10 @@ export default function Solution() {
                   key={item}
                   style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#22C55E"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ flexShrink: 0, marginTop: "3px" }}
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <CheckCircle
+                    size={16}
+                    style={{ color: "#22C55E", flexShrink: 0, marginTop: "3px" }}
+                  />
                   <span
                     style={{
                       fontSize: "0.9rem",

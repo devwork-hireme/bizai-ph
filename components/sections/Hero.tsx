@@ -18,19 +18,19 @@ const item: Variants = {
 };
 
 const whatYouGet = [
-  "Professional Website — live in 3–5 days",
-  "24/7 Messenger Bot — never miss an inquiry",
-  "Google My Business — found on Maps & Search",
-  "Automated Facebook Posts — 3x per week",
-  "Google Review System — auto-requested after every sale",
-  "Monthly Performance Report — via WhatsApp",
+  "Customers finding your business daily",
+  "Inquiries answered before you wake up",
+  "Your business on Google Maps",
+  "Your Facebook active every week",
+  "Google reviews building automatically",
+  "Monthly results report on your phone",
 ];
 
 const trustItems = [
-  "Live in 3–5 Days",
-  "Month-to-Month, No Lock-In",
-  "100% Done For You",
-  "30-Day Performance Guarantee",
+  "Results in 3–5 Days",
+  "30-Day Results Guarantee",
+  "No Technical Knowledge Needed",
+  "Cancel Anytime",
 ];
 
 export default function Hero() {
@@ -69,7 +69,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Gold radial glow behind headline */}
+      {/* Gold radial glow */}
       <div
         aria-hidden="true"
         style={{
@@ -134,12 +134,12 @@ export default function Hero() {
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                Done-For-You Digital Growth — Filipino SMBs
+                We Don&apos;t Sell Services. We Deliver Results.
               </span>
             </span>
           </motion.div>
 
-          {/* H1 — three lines */}
+          {/* H1 */}
           <motion.h1
             variants={item}
             style={{
@@ -152,20 +152,11 @@ export default function Hero() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Your Competitor
+            More Customers.
             <br />
-            Is Online.
+            More Sales.
             <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg, #F5C518 0%, #FFD94A 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Are You?
-            </span>
+            <span style={{ color: "#F5C518" }}>Guaranteed.</span>
           </motion.h1>
 
           {/* Body */}
@@ -181,9 +172,10 @@ export default function Hero() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            We build your website, automate your leads, and manage your social
-            media — fully done for you. No technical knowledge needed. Your
-            business goes live in 3–5 days.
+            We help Filipino businesses build their online presence, get
+            customers, convert them into sales, and automate everything — so
+            they grow faster with less effort. Powered by AI. 100% done for
+            you. Starting ₱3,999.
           </motion.p>
 
           {/* Promo badge */}
@@ -204,7 +196,7 @@ export default function Hero() {
               }}
             >
               <Flame size={14} style={{ flexShrink: 0 }} />
-              50% Off Launch Promo — April to May 2026 Only
+              50% Off — April to May 2026 Only
             </span>
           </motion.div>
 
@@ -224,7 +216,7 @@ export default function Hero() {
               onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
               style={{ gap: "8px" }}
             >
-              Book Free 30-Min Session
+              Get My Results
               <ArrowRight size={16} />
             </a>
             <a
@@ -269,7 +261,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT — What You Get card */}
+        {/* RIGHT — What You Will Get card */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -327,7 +319,7 @@ export default function Hero() {
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
-                  What You Get
+                  What You Will Get
                 </p>
                 <h2
                   style={{
@@ -339,7 +331,7 @@ export default function Hero() {
                     fontFamily: "var(--font-syne), sans-serif",
                   }}
                 >
-                  Everything. Done for you.
+                  Results. Delivered for you.
                 </h2>
               </div>
 
@@ -385,7 +377,7 @@ export default function Hero() {
                   className="btn-primary"
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  Get All of This — Start Free
+                  Start for ₱3,999
                   <ArrowRight size={16} />
                 </button>
                 <p
@@ -398,7 +390,7 @@ export default function Hero() {
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
-                  Free 30-min session first. No commitment required.
+                  Free session first. No commitment.
                 </p>
               </div>
             </div>
