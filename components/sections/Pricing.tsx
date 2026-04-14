@@ -93,7 +93,7 @@ export default function Pricing() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "40px" }}
         >
-          <p className="section-label">Packages &amp; Pricing</p>
+          <p className="section-label">Your Growth Journey</p>
           <h2
             style={{
               fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
@@ -105,9 +105,9 @@ export default function Pricing() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Choose Where You Are.{" "}
+            Build.{" "}
             <span style={{ color: "#F5C518" }}>
-              We Handle the Rest.
+              Get Leads. Convert.
             </span>
           </h2>
           <p
@@ -120,8 +120,9 @@ export default function Pricing() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Three clear stages. One goal — a business that finds customers,
-            captures them, and converts them automatically.
+            Three steps. One journey. We build your online presence, get you
+            leads, and convert them into customers. Pick the step you need
+            right now.
           </p>
         </motion.div>
 
@@ -205,7 +206,7 @@ export default function Pricing() {
 
             {/* Tagline */}
             <p style={{ fontSize: "1.2rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.25rem", fontFamily: "var(--font-syne), sans-serif" }}>
-              Get Online in 3–5 Days
+              Step 1 — Build Your Online Presence
             </p>
 
             {/* For */}
@@ -238,9 +239,12 @@ export default function Pricing() {
             </div>
 
             {/* Promise */}
-            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: "1.5rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
               In 3–5 days, you&apos;ll have a professional website that impresses
               every customer who looks you up.
+            </p>
+            <p style={{ fontSize: "0.82rem", color: "#22C55E", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600 }}>
+              The result: Customers can find you and reach you professionally.
             </p>
 
             {/* Features */}
@@ -282,6 +286,9 @@ export default function Pricing() {
             </button>
             <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.3)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
               Free 30-min session first. No commitment required.
+            </p>
+            <p style={{ fontSize: "0.8rem", color: "rgba(245,197,24,0.65)", textAlign: "center", marginTop: "12px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              Want leads coming in automatically? → That&apos;s Starter.
             </p>
           </motion.div>
 
@@ -334,7 +341,7 @@ export default function Pricing() {
 
             {/* Tagline */}
             <p style={{ fontSize: "1.2rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.25rem", fontFamily: "var(--font-syne), sans-serif" }}>
-              Get Found. Never Miss an Inquiry.
+              Step 2 — Get Leads Automatically
             </p>
 
             {/* For */}
@@ -370,10 +377,13 @@ export default function Pricing() {
             </div>
 
             {/* Promise */}
-            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, marginBottom: "1.5rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
               We make you show up on Google, set up a bot that answers every
               inquiry 24/7, and post on Facebook automatically — all managed for
               you every month.
+            </p>
+            <p style={{ fontSize: "0.82rem", color: "#22C55E", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600 }}>
+              The result: Inquiries come to you 24/7 — even while you sleep.
             </p>
 
             {/* Features */}
@@ -420,6 +430,9 @@ export default function Pricing() {
             </button>
             <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.3)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
               Free 30-min session first. No commitment required.
+            </p>
+            <p style={{ fontSize: "0.8rem", color: "rgba(245,197,24,0.65)", textAlign: "center", marginTop: "12px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              Getting leads but not converting enough? → That&apos;s Growth.
             </p>
           </motion.div>
 

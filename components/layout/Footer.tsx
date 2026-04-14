@@ -124,8 +124,9 @@ export default function Footer() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Done-for-you digital growth for Filipino SMBs. Website,
-              automation, leads — fully managed for you.
+              We help Filipino businesses build their online presence,
+              get customers, convert them into sales, and automate
+              everything — so they grow faster with less effort.
             </p>
             <p
               style={{
@@ -271,7 +272,7 @@ export default function Footer() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Made for Filipino negosyantes.
+            Made for Filipino businesses.
           </p>
         </div>
       </div>
