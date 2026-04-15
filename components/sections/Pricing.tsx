@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { CheckCircle, Shield, Star, Clock, Zap, ArrowRight, Lock, Flame } from "lucide-react";
+import { CheckCircle, Shield, Star, Clock, ArrowRight, Lock, Flame } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -93,7 +93,7 @@ export default function Pricing() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "40px" }}
         >
-          <p className="section-label">Your Growth Journey</p>
+          <p className="section-label">Our Offers</p>
           <h2
             style={{
               fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
@@ -105,10 +105,8 @@ export default function Pricing() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Build.{" "}
-            <span style={{ color: "#F5C518" }}>
-              Get Leads. Convert.
-            </span>
+            Choose Your{" "}
+            <span style={{ color: "#F5C518" }}>Growth System</span>
           </h2>
           <p
             style={{
@@ -120,9 +118,8 @@ export default function Pricing() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Three steps. One journey. We build your online presence, get you
-            leads, and convert them into customers. Pick the step you need
-            right now.
+            Start where you are. Every offer is 100% done for you. Upgrade
+            anytime as your business grows.
           </p>
         </motion.div>
 
@@ -155,7 +152,7 @@ export default function Pricing() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Launch Promo — 50% Off All Packages
+            Launch Promo — 50% Off All Offers
           </span>
           <span
             style={{
@@ -164,8 +161,7 @@ export default function Pricing() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Limited slots available. April to May 2026 only. Original prices
-            shown — launch price applied at checkout.
+            Limited slots available. April to May 2026 only.
           </span>
         </motion.div>
 
@@ -174,13 +170,13 @@ export default function Pricing() {
           className="pricing-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.5rem",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "1.25rem",
             marginBottom: "3rem",
             alignItems: "start",
           }}
         >
-          {/* ========== BASIC ========== */}
+          {/* ========== GET FOUND ========== */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -190,105 +186,66 @@ export default function Pricing() {
               background: "var(--navy-mid)",
               border: "1px solid var(--navy-border)",
               borderRadius: "16px",
-              padding: "36px 28px",
+              padding: "28px 22px",
               position: "relative",
               display: "flex",
               flexDirection: "column",
             }}
           >
-            {/* Dot + name */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.4rem" }}>
-              <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#94A3B8", flexShrink: 0 }} />
-              <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                Basic
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "0.4rem" }}>
+              <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#94A3B8", flexShrink: 0 }} />
+              <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                Get Found
               </span>
             </div>
 
-            {/* Tagline */}
-            <p style={{ fontSize: "1.2rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.25rem", fontFamily: "var(--font-syne), sans-serif" }}>
-              Step 1 — Build Your Online Presence
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.2rem", fontFamily: "var(--font-syne), sans-serif" }}>
+              Exist Online. Professionally.
+            </p>
+            <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.35)", marginBottom: "1.25rem", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              For businesses with no website yet
             </p>
 
-            {/* For */}
-            <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              For businesses running on word-of-mouth with no website
-            </p>
-
-            {/* Pain statement */}
-            <p style={{ fontSize: "0.82rem", fontStyle: "italic", color: "rgba(245,197,24,0.6)", marginBottom: "1.5rem", lineHeight: 1.6, fontFamily: "var(--font-dm-sans), sans-serif", borderLeft: "2px solid rgba(245,197,24,0.25)", paddingLeft: "12px" }}>
-              &ldquo;Customers ask for your website. You send them your Facebook
-              page. They don&apos;t call back.&rdquo;
-            </p>
-
-            {/* Price */}
-            <div style={{ marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid var(--navy-border)" }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "6px" }}>
-                <span style={{ fontSize: "2.4rem", fontWeight: 900, letterSpacing: "-0.04em", color: "#FFFFFF", fontFamily: "var(--font-syne), sans-serif" }}>
+            <div style={{ marginBottom: "1.25rem", paddingBottom: "1.25rem", borderBottom: "1px solid var(--navy-border)" }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "4px" }}>
+                <span style={{ fontSize: "2rem", fontWeight: 900, letterSpacing: "-0.04em", color: "#FFFFFF", fontFamily: "var(--font-syne), sans-serif" }}>
                   ₱3,999
                 </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  one-time
-                </span>
-                <span style={{ fontSize: "0.9rem", color: "rgba(239,68,68,0.55)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                  ₱7,999
-                </span>
+                <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans), sans-serif" }}>one-time</span>
+                <span style={{ fontSize: "0.85rem", color: "rgba(239,68,68,0.5)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱7,999</span>
               </div>
-              <span style={{ display: "inline-block", fontSize: "0.68rem", fontWeight: 700, color: "#0A1628", background: "#F5C518", borderRadius: "100px", padding: "3px 12px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 700, color: "#0A1628", background: "#F5C518", borderRadius: "100px", padding: "2px 10px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--font-dm-sans), sans-serif" }}>
                 Launch Price
               </span>
             </div>
 
-            {/* Promise */}
-            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              In 3–5 days, you&apos;ll have a professional website that impresses
-              every customer who looks you up.
-            </p>
-            <p style={{ fontSize: "0.82rem", color: "#22C55E", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600 }}>
-              The result: Customers can find you and reach you professionally.
-            </p>
-
-            {/* Features */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.6rem", marginBottom: "1.75rem" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
               {[
-                "5-Page Professional Website (Home, About, Services, Contact, Gallery)",
-                "Mobile-Friendly Design — perfect on any phone",
-                "Contact Form — customers reach you directly",
-                "Free 1 Year Domain — your own .com address",
-                "Free 1 Year Hosting — no extra cost first year",
-                "Professional Email — hello@yourbusiness.com",
+                "5-Page Professional Website",
+                "Mobile-Friendly Design",
+                "Contact Form",
+                "Free 1 Year Domain",
+                "Free 1 Year Hosting",
+                "Professional Email",
               ].map((f) => (
-                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem" }}>
-                  <CheckCircle size={14} style={{ flexShrink: 0, marginTop: "3px", color: "#94A3B8" }} />
-                  <span style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>{f}</span>
+                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
+                  <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "#94A3B8" }} />
+                  <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>{f}</span>
                 </div>
               ))}
             </div>
 
-            {/* Transformation line */}
-            <div style={{ marginBottom: "1.5rem", padding: "14px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid var(--navy-border)", borderRadius: "10px" }}>
-              <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "rgba(239,68,68,0.7)", marginBottom: "6px", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                Before: &ldquo;We don&apos;t have a website yet.&rdquo;
-              </div>
-              <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "#22C55E", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                After: &ldquo;Check us out at juansbarbershop.com&rdquo;
-              </div>
-            </div>
-
-            {/* CTA */}
             <button
               onClick={scrollToContact}
-              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 24px", borderRadius: "10px", fontWeight: 700, fontSize: "0.95rem", cursor: "pointer", background: "transparent", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.2)", fontFamily: "var(--font-dm-sans), sans-serif", transition: "all 0.2s ease", width: "100%" }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "12px 20px", borderRadius: "10px", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", background: "transparent", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.2)", fontFamily: "var(--font-dm-sans), sans-serif", transition: "all 0.2s ease", width: "100%" }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(245,197,24,0.4)"; e.currentTarget.style.color = "#F5C518"; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; e.currentTarget.style.color = "#FFFFFF"; }}
             >
-              Get My Website
-              <ArrowRight size={15} />
+              Get Started Free
+              <ArrowRight size={14} />
             </button>
-            <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.3)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              Free 30-min session first. No commitment required.
-            </p>
-            <p style={{ fontSize: "0.8rem", color: "rgba(245,197,24,0.65)", textAlign: "center", marginTop: "12px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              Want leads coming in automatically? → That&apos;s Starter.
+            <p style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.25)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              Free session first. No commitment.
             </p>
           </motion.div>
 
@@ -302,14 +259,13 @@ export default function Pricing() {
               background: "rgba(245,197,24,0.04)",
               border: "2px solid #F5C518",
               borderRadius: "16px",
-              padding: "36px 28px",
+              padding: "28px 22px",
               position: "relative",
               display: "flex",
               flexDirection: "column",
               boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(245,197,24,0.12)",
             }}
           >
-            {/* Most popular badge */}
             <div
               style={{
                 position: "absolute",
@@ -318,11 +274,11 @@ export default function Pricing() {
                 transform: "translateX(-50%)",
                 background: "#F5C518",
                 color: "#0A1628",
-                fontSize: "0.65rem",
+                fontSize: "0.62rem",
                 fontWeight: 800,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                padding: "4px 18px",
+                padding: "4px 16px",
                 borderRadius: "100px",
                 whiteSpace: "nowrap",
                 fontFamily: "var(--font-dm-sans), sans-serif",
@@ -331,108 +287,66 @@ export default function Pricing() {
               Most Popular
             </div>
 
-            {/* Dot + name */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.4rem", marginTop: "8px" }}>
-              <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 8px rgba(34,197,94,0.6)", flexShrink: 0 }} />
-              <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#22C55E", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "0.4rem", marginTop: "8px" }}>
+              <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 8px rgba(34,197,94,0.6)", flexShrink: 0 }} />
+              <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#22C55E", fontFamily: "var(--font-dm-sans), sans-serif" }}>
                 Starter
               </span>
             </div>
 
-            {/* Tagline */}
-            <p style={{ fontSize: "1.2rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.25rem", fontFamily: "var(--font-syne), sans-serif" }}>
-              Step 2 — Get Leads Automatically
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.2rem", fontFamily: "var(--font-syne), sans-serif" }}>
+              Get Found. Get Customers.
+            </p>
+            <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              For businesses ready to get customers automatically
             </p>
 
-            {/* For */}
-            <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              For businesses with a Facebook page — but invisible on Google and
-              losing leads every night
-            </p>
-
-            {/* Pain statement */}
-            <p style={{ fontSize: "0.82rem", fontStyle: "italic", color: "rgba(245,197,24,0.65)", marginBottom: "1.5rem", lineHeight: 1.6, fontFamily: "var(--font-dm-sans), sans-serif", borderLeft: "2px solid rgba(245,197,24,0.4)", paddingLeft: "12px" }}>
-              &ldquo;You have a Facebook page. But customers searching Google
-              can&apos;t find you. And half your Messenger inquiries come in while
-              you&apos;re asleep — unanswered.&rdquo;
-            </p>
-
-            {/* Price */}
-            <div style={{ marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(245,197,24,0.2)" }}>
+            <div style={{ marginBottom: "1.25rem", paddingBottom: "1.25rem", borderBottom: "1px solid rgba(245,197,24,0.2)" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "4px" }}>
-                <span style={{ fontSize: "2.4rem", fontWeight: 900, letterSpacing: "-0.04em", color: "#FFFFFF", fontFamily: "var(--font-syne), sans-serif" }}>
-                  ₱7,999
-                </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-dm-sans), sans-serif" }}>setup</span>
-                <span style={{ fontSize: "0.9rem", color: "rgba(239,68,68,0.55)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱15,999</span>
+                <span style={{ fontSize: "2rem", fontWeight: 900, letterSpacing: "-0.04em", color: "#FFFFFF", fontFamily: "var(--font-syne), sans-serif" }}>₱7,999</span>
+                <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans), sans-serif" }}>setup</span>
+                <span style={{ fontSize: "0.85rem", color: "rgba(239,68,68,0.5)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱15,999</span>
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: "6px", marginBottom: "8px" }}>
-                <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "#22C55E", fontFamily: "var(--font-syne), sans-serif" }}>₱2,999</span>
-                <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-dm-sans), sans-serif" }}>/month</span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(239,68,68,0.5)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱5,999</span>
+                <span style={{ fontSize: "1.35rem", fontWeight: 800, color: "#22C55E", fontFamily: "var(--font-syne), sans-serif" }}>₱2,999</span>
+                <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-dm-sans), sans-serif" }}>/month</span>
+                <span style={{ fontSize: "0.82rem", color: "rgba(239,68,68,0.45)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱5,999</span>
               </div>
-              <span style={{ display: "inline-block", fontSize: "0.68rem", fontWeight: 700, color: "#0A1628", background: "#F5C518", borderRadius: "100px", padding: "3px 12px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 700, color: "#0A1628", background: "#F5C518", borderRadius: "100px", padding: "2px 10px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--font-dm-sans), sans-serif" }}>
                 Launch Price
               </span>
             </div>
 
-            {/* Promise */}
-            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              We make you show up on Google, set up a bot that answers every
-              inquiry 24/7, and post on Facebook automatically — all managed for
-              you every month.
-            </p>
-            <p style={{ fontSize: "0.82rem", color: "#22C55E", lineHeight: 1.6, marginBottom: "1.5rem", fontFamily: "var(--font-dm-sans), sans-serif", fontWeight: 600 }}>
-              The result: Inquiries come to you 24/7 — even while you sleep.
-            </p>
-
-            {/* Features */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.6rem", marginBottom: "1.75rem" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
               {[
-                "Everything in Basic",
-                "Custom Website — built around your brand",
-                "SEO Foundation Setup — show up on Google Search",
-                "24/7 Messenger Bot — answers while you sleep",
-                "Lead Capture System — every inquiry saved automatically",
-                "Google My Business Setup — found on Maps & Search",
-                "Google Review Automation — auto-requested after every sale",
-                "Automated Facebook Posts — 3x per week, done for you",
-                "Monthly Performance Report — delivered via WhatsApp",
-                "Bug Fixes & Maintenance — we keep everything running",
-                "WhatsApp Support — reach us anytime",
+                "Everything in Get Found",
+                "Custom Website — built for your brand",
+                "Google My Business Setup",
+                "24/7 Messenger Bot",
+                "Lead Capture System",
+                "Google Review Automation",
+                "3x Facebook Posts per Week",
+                "Monthly WhatsApp Report",
+                "WhatsApp Support",
               ].map((f) => (
-                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem" }}>
-                  <CheckCircle size={14} style={{ flexShrink: 0, marginTop: "3px", color: "#22C55E" }} />
-                  <span style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>{f}</span>
+                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
+                  <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "#22C55E" }} />
+                  <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>{f}</span>
                 </div>
               ))}
             </div>
 
-            {/* Transformation line */}
-            <div style={{ marginBottom: "1.5rem", padding: "14px 16px", background: "rgba(245,197,24,0.04)", border: "1px solid rgba(245,197,24,0.2)", borderRadius: "10px" }}>
-              <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "rgba(239,68,68,0.7)", marginBottom: "6px", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                Before: &ldquo;Sorry, I only saw your message this morning.&rdquo;
-              </div>
-              <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "#22C55E", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                After: &ldquo;Our bot replied instantly at 2AM — they&apos;re already booked.&rdquo;
-              </div>
-            </div>
-
-            {/* CTA */}
             <button
               onClick={scrollToContact}
-              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 24px", borderRadius: "10px", fontWeight: 700, fontSize: "0.95rem", cursor: "pointer", border: "none", background: "#F5C518", color: "#0A1628", fontFamily: "var(--font-dm-sans), sans-serif", transition: "all 0.2s ease", boxShadow: "0 4px 16px rgba(0,0,0,0.25), 0 8px 30px rgba(245,197,24,0.4)", width: "100%" }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "#FFD94A"; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.35), 0 12px 40px rgba(245,197,24,0.55)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "#F5C518"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.25), 0 8px 30px rgba(245,197,24,0.4)"; }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "13px 20px", borderRadius: "10px", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", border: "none", background: "#F5C518", color: "#0A1628", fontFamily: "var(--font-dm-sans), sans-serif", transition: "all 0.2s ease", boxShadow: "0 4px 16px rgba(0,0,0,0.25), 0 8px 30px rgba(245,197,24,0.35)", width: "100%" }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "#FFD94A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "#F5C518"; e.currentTarget.style.transform = "translateY(0)"; }}
             >
-              Start Getting Found
-              <ArrowRight size={15} />
+              Get More Customers
+              <ArrowRight size={14} />
             </button>
-            <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.3)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              Free 30-min session first. No commitment required.
-            </p>
-            <p style={{ fontSize: "0.8rem", color: "rgba(245,197,24,0.65)", textAlign: "center", marginTop: "12px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              Getting leads but not converting enough? → That&apos;s Growth.
+            <p style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              Free session first. No commitment.
             </p>
           </motion.div>
 
@@ -446,28 +360,106 @@ export default function Pricing() {
               background: "var(--navy-mid)",
               border: "1px solid var(--navy-border)",
               borderRadius: "16px",
-              padding: "36px 28px",
+              padding: "28px 22px",
               position: "relative",
               display: "flex",
               flexDirection: "column",
-              opacity: 0.9,
             }}
           >
-            {/* Coming soon badge */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "0.4rem" }}>
+              <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#F5C518", boxShadow: "0 0 8px rgba(245,197,24,0.5)", flexShrink: 0 }} />
+              <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                Growth
+              </span>
+            </div>
+
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.2rem", fontFamily: "var(--font-syne), sans-serif" }}>
+              Turn Every Lead Into a Sale.
+            </p>
+            <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.35)", marginBottom: "1.25rem", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              For businesses getting leads but losing too many
+            </p>
+
+            <div style={{ marginBottom: "1.25rem", paddingBottom: "1.25rem", borderBottom: "1px solid var(--navy-border)" }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "4px" }}>
+                <span style={{ fontSize: "2rem", fontWeight: 900, letterSpacing: "-0.04em", color: "#FFFFFF", fontFamily: "var(--font-syne), sans-serif" }}>₱14,999</span>
+                <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans), sans-serif" }}>setup</span>
+                <span style={{ fontSize: "0.85rem", color: "rgba(239,68,68,0.45)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱29,999</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "6px", marginBottom: "8px" }}>
+                <span style={{ fontSize: "1.35rem", fontWeight: 800, color: "rgba(255,255,255,0.75)", fontFamily: "var(--font-syne), sans-serif" }}>₱7,999</span>
+                <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans), sans-serif" }}>/month</span>
+                <span style={{ fontSize: "0.82rem", color: "rgba(239,68,68,0.4)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱15,999</span>
+              </div>
+              <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 700, color: "#F5C518", background: "rgba(245,197,24,0.1)", border: "1px solid rgba(245,197,24,0.3)", borderRadius: "100px", padding: "2px 10px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                Launch Price
+              </span>
+            </div>
+
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
+              {[
+                "Everything in Starter",
+                "Advanced AI Bot — FB + Instagram",
+                "3-Day Lead Follow-Up Sequence",
+                "Appointment Booking System",
+                "5x Facebook Posts per Week",
+                "Live Business Dashboard",
+                "WhatsApp Lead Alerts",
+                "Local SEO Growth",
+                "Priority Support (4-hr response)",
+              ].map((f) => (
+                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
+                  <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "#F5C518" }} />
+                  <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>{f}</span>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={scrollToContact}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "12px 20px", borderRadius: "10px", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", background: "transparent", color: "#F5C518", border: "1px solid rgba(245,197,24,0.4)", fontFamily: "var(--font-dm-sans), sans-serif", transition: "all 0.2s ease", width: "100%" }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(245,197,24,0.08)"; e.currentTarget.style.borderColor = "rgba(245,197,24,0.7)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(245,197,24,0.4)"; }}
+            >
+              Get Started Free
+              <ArrowRight size={14} />
+            </button>
+            <p style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.25)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              Free session first. No commitment.
+            </p>
+          </motion.div>
+
+          {/* ========== SCALE ========== */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate={headInView ? "visible" : "hidden"}
+            custom={0.39}
+            style={{
+              background: "var(--navy-mid)",
+              border: "1px solid var(--navy-border)",
+              borderRadius: "16px",
+              padding: "28px 22px",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              opacity: 0.75,
+            }}
+          >
             <div
               style={{
                 position: "absolute",
                 top: "-14px",
                 left: "50%",
                 transform: "translateX(-50%)",
-                background: "rgba(245,197,24,0.12)",
-                border: "1px solid rgba(245,197,24,0.35)",
+                background: "rgba(245,197,24,0.1)",
+                border: "1px solid rgba(245,197,24,0.3)",
                 color: "#F5C518",
-                fontSize: "0.65rem",
+                fontSize: "0.62rem",
                 fontWeight: 800,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                padding: "4px 16px",
+                padding: "4px 14px",
                 borderRadius: "100px",
                 whiteSpace: "nowrap",
                 fontFamily: "var(--font-dm-sans), sans-serif",
@@ -476,102 +468,61 @@ export default function Pricing() {
                 gap: "5px",
               }}
             >
-              <Lock size={10} />
+              <Lock size={9} />
               Coming Soon
             </div>
 
-            {/* Dot + name */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "0.4rem", marginTop: "8px" }}>
-              <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#F5C518", boxShadow: "0 0 8px rgba(245,197,24,0.5)", flexShrink: 0 }} />
-              <span style={{ fontSize: "0.8rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                Growth
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "0.4rem", marginTop: "8px" }}>
+              <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "rgba(245,197,24,0.4)", flexShrink: 0 }} />
+              <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.3)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                Scale
               </span>
             </div>
 
-            {/* Tagline */}
-            <p style={{ fontSize: "1.2rem", fontWeight: 700, color: "#F5C518", fontStyle: "italic", marginBottom: "0.25rem", fontFamily: "var(--font-syne), sans-serif" }}>
-              Turn Every Lead Into a Paying Customer
+            <p style={{ fontSize: "1rem", fontWeight: 700, color: "rgba(245,197,24,0.6)", fontStyle: "italic", marginBottom: "0.2rem", fontFamily: "var(--font-syne), sans-serif" }}>
+              Full Business Growth Engine.
+            </p>
+            <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.25)", marginBottom: "1.25rem", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              For businesses ready to dominate their market
             </p>
 
-            {/* For */}
-            <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              For businesses getting inquiries but losing too many before they convert
-            </p>
-
-            {/* Pain statement */}
-            <p style={{ fontSize: "0.82rem", fontStyle: "italic", color: "rgba(245,197,24,0.5)", marginBottom: "1.5rem", lineHeight: 1.6, fontFamily: "var(--font-dm-sans), sans-serif", borderLeft: "2px solid rgba(245,197,24,0.2)", paddingLeft: "12px" }}>
-              &ldquo;Leads message you. You reply when you can. Half already went
-              somewhere else. The ones you do reach — half don&apos;t show up.&rdquo;
-            </p>
-
-            {/* Price */}
-            <div style={{ marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid var(--navy-border)" }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "4px" }}>
-                <span style={{ fontSize: "2.4rem", fontWeight: 900, letterSpacing: "-0.04em", color: "#FFFFFF", fontFamily: "var(--font-syne), sans-serif" }}>
-                  ₱14,999
-                </span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-dm-sans), sans-serif" }}>setup</span>
-                <span style={{ fontSize: "0.9rem", color: "rgba(239,68,68,0.45)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱29,999</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: "6px", marginBottom: "8px" }}>
-                <span style={{ fontSize: "1.5rem", fontWeight: 800, color: "rgba(255,255,255,0.7)", fontFamily: "var(--font-syne), sans-serif" }}>₱7,999</span>
-                <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans), sans-serif" }}>/month</span>
-                <span style={{ fontSize: "0.85rem", color: "rgba(239,68,68,0.4)", textDecoration: "line-through", fontFamily: "var(--font-dm-sans), sans-serif" }}>₱15,999</span>
-              </div>
-              <span style={{ display: "inline-block", fontSize: "0.68rem", fontWeight: 700, color: "#F5C518", background: "rgba(245,197,24,0.12)", border: "1px solid rgba(245,197,24,0.3)", borderRadius: "100px", padding: "3px 12px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                Waitlist Only
-              </span>
+            <div style={{ marginBottom: "1.25rem", paddingBottom: "1.25rem", borderBottom: "1px solid var(--navy-border)" }}>
+              <p style={{ fontSize: "1.2rem", fontWeight: 800, color: "rgba(255,255,255,0.4)", fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.02em" }}>
+                Custom Pricing
+              </p>
+              <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.25)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                Tailored to your growth goals
+              </p>
             </div>
 
-            {/* Promise */}
-            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.5rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              Our AI qualifies every lead instantly, follows up automatically for
-              3 days, books their appointment, sends reminders — you only hear from
-              us when they&apos;re ready to pay.
-            </p>
-
-            {/* Features */}
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.6rem", marginBottom: "1.75rem", opacity: 0.75 }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
               {[
-                "Everything in Starter",
-                "Advanced AI Messenger Bot — Facebook + Instagram",
-                "3-Day Lead Follow-Up Sequence — recovers 40% of lost leads",
-                "Appointment Booking System — no-shows reduced by 60%",
-                "Local SEO Growth — monthly content and keyword tracking",
-                "Automated Facebook Posts — 5x per week",
-                "Live Business Dashboard — real-time leads and performance",
-                "WhatsApp Lead Alerts — instant notification for every hot lead",
-                "Priority Support — we respond within 4 hours",
+                "Everything in Growth",
+                "Multi-platform AI automation",
+                "Dedicated account manager",
+                "Custom integrations",
+                "Advanced analytics dashboard",
+                "Weekly strategy calls",
+                "Priority onboarding",
               ].map((f) => (
-                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem" }}>
-                  <CheckCircle size={14} style={{ flexShrink: 0, marginTop: "3px", color: "#F5C518" }} />
-                  <span style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>{f}</span>
+                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
+                  <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "rgba(245,197,24,0.4)" }} />
+                  <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.5, fontFamily: "var(--font-dm-sans), sans-serif" }}>{f}</span>
                 </div>
               ))}
             </div>
 
-            {/* Transformation line */}
-            <div style={{ marginBottom: "1.5rem", padding: "14px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid var(--navy-border)", borderRadius: "10px" }}>
-              <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "rgba(239,68,68,0.6)", marginBottom: "6px", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                Before: &ldquo;I lost track of that lead — I think they went somewhere else.&rdquo;
-              </div>
-              <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "#22C55E", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                After: &ldquo;The bot followed up 3 times. They booked yesterday. They showed up today.&rdquo;
-              </div>
-            </div>
-
-            {/* CTA */}
             <button
               onClick={scrollToContact}
-              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "14px 24px", borderRadius: "10px", fontWeight: 700, fontSize: "0.95rem", cursor: "pointer", background: "transparent", color: "#F5C518", border: "1px solid rgba(245,197,24,0.4)", fontFamily: "var(--font-dm-sans), sans-serif", transition: "all 0.2s ease", width: "100%" }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(245,197,24,0.08)"; e.currentTarget.style.borderColor = "rgba(245,197,24,0.6)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(245,197,24,0.4)"; }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "12px 20px", borderRadius: "10px", fontWeight: 700, fontSize: "0.88rem", cursor: "pointer", background: "transparent", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.12)", fontFamily: "var(--font-dm-sans), sans-serif", transition: "all 0.2s ease", width: "100%" }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(245,197,24,0.3)"; e.currentTarget.style.color = "#F5C518"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.3)"; }}
             >
-              Join the Waitlist
-              <ArrowRight size={15} />
+              Join Waitlist
+              <ArrowRight size={14} />
             </button>
-            <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.3)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
-              Lock in the 50% launch price before we go live.
+            <p style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.2)", textAlign: "center", marginTop: "8px", marginBottom: 0, fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              Lock in the early access price.
             </p>
           </motion.div>
         </div>
@@ -627,8 +578,8 @@ export default function Pricing() {
         >
           {[
             { Icon: Shield, label: "SSL Secured" },
-            { Icon: CheckCircle, label: "PayMongo Verified" },
-            { Icon: Star, label: "30-Day Performance Guarantee" },
+            { Icon: CheckCircle, label: "Results Guaranteed" },
+            { Icon: Star, label: "30-Day Guarantee" },
             { Icon: Clock, label: "Month-to-Month, No Lock-In" },
           ].map(({ Icon, label }) => (
             <div key={label} style={{ display: "flex", alignItems: "center", gap: "7px", fontSize: "0.78rem", fontWeight: 600, color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans), sans-serif" }}>
@@ -640,13 +591,13 @@ export default function Pricing() {
       </div>
 
       <style>{`
-        @media (max-width: 1000px) {
+        @media (max-width: 1100px) {
           .pricing-section { padding: 80px 24px !important; }
-          .pricing-grid { grid-template-columns: 1fr !important; max-width: 480px; margin-left: auto; margin-right: auto; }
+          .pricing-grid { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 600px) {
           .trust-badges { gap: 1rem; }
-          .pricing-grid { max-width: 100%; }
+          .pricing-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

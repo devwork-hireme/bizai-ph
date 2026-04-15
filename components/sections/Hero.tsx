@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { CheckCircle, ArrowRight, Flame } from "lucide-react";
+import { CheckCircle, ArrowRight, Flame, Users, Search, MessageCircle } from "lucide-react";
 
 const container: Variants = {
   hidden: {},
@@ -17,20 +17,29 @@ const item: Variants = {
   },
 };
 
-const whatYouGet = [
-  "Customers finding your business daily",
-  "Inquiries answered before you wake up",
-  "Your business on Google Maps",
-  "Your Facebook active every week",
-  "Google reviews building automatically",
-  "Monthly results report on your phone",
-];
-
 const trustItems = [
   "Results in 3–5 Days",
   "30-Day Results Guarantee",
-  "No Technical Knowledge Needed",
+  "100% Done For You",
   "Cancel Anytime",
+];
+
+const systemPillars = [
+  {
+    Icon: Search,
+    label: "Get Found",
+    desc: "Website + Google + Maps — customers find you first",
+  },
+  {
+    Icon: MessageCircle,
+    label: "Close Sales",
+    desc: "Bot + follow-up — every inquiry becomes a customer",
+  },
+  {
+    Icon: Users,
+    label: "Grow Automatically",
+    desc: "Reviews + reporting — your reputation builds itself",
+  },
 ];
 
 export default function Hero() {
@@ -134,7 +143,7 @@ export default function Hero() {
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                We Don&apos;t Sell Services. We Deliver Results.
+                The Growth System for Filipino Businesses
               </span>
             </span>
           </motion.div>
@@ -152,11 +161,11 @@ export default function Hero() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            More Customers.
+            Stop Losing Customers
             <br />
-            More Sales.
+            To Competitors
             <br />
-            <span style={{ color: "#F5C518" }}>Guaranteed.</span>
+            <span style={{ color: "#F5C518" }}>Who Are Online.</span>
           </motion.h1>
 
           {/* Body */}
@@ -172,10 +181,9 @@ export default function Hero() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            We help Filipino businesses build their online presence, get
-            customers, convert them into sales, and automate everything — so
-            they grow faster with less effort. Powered by AI. 100% done for
-            you. Starting ₱3,999.
+            We build the complete system that gets your business found on Google,
+            turns every inquiry into a customer, and grows your revenue
+            automatically — 100% done for you. Starting ₱3,999.
           </motion.p>
 
           {/* Promo badge */}
@@ -216,7 +224,7 @@ export default function Hero() {
               onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
               style={{ gap: "8px" }}
             >
-              Get My Results
+              Get More Customers
               <ArrowRight size={16} />
             </a>
             <a
@@ -224,7 +232,7 @@ export default function Hero() {
               className="btn-ghost"
               onClick={(e) => { e.preventDefault(); scrollTo("pricing"); }}
             >
-              See Our Packages
+              See Our Offers
             </a>
           </motion.div>
 
@@ -261,7 +269,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT — What You Will Get card */}
+        {/* RIGHT — The System card */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -319,7 +327,7 @@ export default function Hero() {
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
-                  What You Will Get
+                  How It Works
                 </p>
                 <h2
                   style={{
@@ -331,41 +339,66 @@ export default function Hero() {
                     fontFamily: "var(--font-syne), sans-serif",
                   }}
                 >
-                  Results. Delivered for you.
+                  3 Systems. Complete Growth.
                 </h2>
               </div>
 
-              {/* Feature list */}
+              {/* System pillars */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-                {whatYouGet.map((feature, i) => (
+                {systemPillars.map((pillar, i) => (
                   <div
-                    key={feature}
+                    key={pillar.label}
                     style={{
                       display: "flex",
                       alignItems: "flex-start",
-                      gap: "12px",
-                      padding: "13px 0",
+                      gap: "14px",
+                      padding: "16px 0",
                       borderBottom:
-                        i < whatYouGet.length - 1
+                        i < systemPillars.length - 1
                           ? "1px solid var(--navy-border)"
                           : "none",
                     }}
                   >
-                    <CheckCircle
-                      size={16}
-                      style={{ color: "#22C55E", flexShrink: 0, marginTop: "2px" }}
-                    />
-                    <span
+                    <div
                       style={{
-                        fontSize: "0.875rem",
-                        fontWeight: 500,
-                        color: "rgba(255,255,255,0.8)",
-                        lineHeight: 1.45,
-                        fontFamily: "var(--font-dm-sans), sans-serif",
+                        width: "38px",
+                        height: "38px",
+                        borderRadius: "10px",
+                        background: "rgba(245,197,24,0.08)",
+                        border: "1px solid rgba(245,197,24,0.2)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#F5C518",
+                        flexShrink: 0,
                       }}
                     >
-                      {feature}
-                    </span>
+                      <pillar.Icon size={17} />
+                    </div>
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "0.9rem",
+                          fontWeight: 700,
+                          color: "#FFFFFF",
+                          marginBottom: "3px",
+                          fontFamily: "var(--font-syne), sans-serif",
+                        }}
+                      >
+                        {pillar.label}
+                      </p>
+                      <p
+                        style={{
+                          fontSize: "0.8rem",
+                          color: "rgba(255,255,255,0.5)",
+                          margin: 0,
+                          lineHeight: 1.5,
+                          fontFamily: "var(--font-dm-sans), sans-serif",
+                        }}
+                      >
+                        {pillar.desc}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -377,7 +410,7 @@ export default function Hero() {
                   className="btn-primary"
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  Start for ₱3,999
+                  Get More Customers
                   <ArrowRight size={16} />
                 </button>
                 <p

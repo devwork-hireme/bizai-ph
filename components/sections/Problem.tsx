@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { Search, MessageCircle, TrendingUp } from "lucide-react";
+import { Search, MessageCircle, TrendingDown } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -17,20 +17,20 @@ const fadeUp: Variants = {
 const problems = [
   {
     Icon: Search,
-    title: "Customers Choose Your Competitor",
-    body: "Right now someone is on Google searching for your service. Your competitor shows up. You don't. They get the customer. You get nothing. This happens every single day.",
-    stat: "46% of searches are for local businesses",
+    title: "They Search. Your Competitor Shows Up. You Don't.",
+    body: "Right now someone in your city is searching for exactly what you sell. Your competitor has a website and a Google listing. You don't. They get the customer. You get nothing. This happens every single day you stay invisible.",
+    stat: "97% of customers search online before buying",
   },
   {
     Icon: MessageCircle,
-    title: "Leads Disappear Before You Reply",
-    body: "A customer messages you at 10PM excited about your service. You see it at 9AM. They booked someone else at 10:15PM. That sale is gone forever.",
+    title: "They Message at 10PM. You Reply at 9AM. They Already Bought.",
+    body: "A customer messages you excited about your service. You see it the next morning. By then, the competitor who replied at 10:05PM already has their payment. That sale is gone forever — and you never even knew it existed.",
     stat: "67% of customers buy from whoever replies first",
   },
   {
-    Icon: TrendingUp,
-    title: "Interested People Never Become Customers",
-    body: "Someone asks about your price Monday. You mean to follow up. Life gets busy. By Friday they've paid your competitor. Lost revenue you'll never recover.",
+    Icon: TrendingDown,
+    title: "Interested People Disappear. You Never Follow Up. Revenue Lost.",
+    body: "Someone asks about your price on Monday. You're busy. You mean to follow up. Life happens. By Friday they've paid someone else. This isn't laziness — you're running a business. But every missed follow-up is money you'll never recover.",
     stat: "80% of sales need 5 follow-ups to close",
   },
 ];
@@ -74,7 +74,7 @@ export default function Problem() {
             className="section-label"
             style={{ color: "var(--navy)" }}
           >
-            The Problem
+            Why This Is Happening
           </p>
           <h2
             style={{
@@ -87,8 +87,8 @@ export default function Problem() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Your Business Is Losing Customers{" "}
-            <span style={{ color: "#C9940A" }}>Every Single Day.</span>
+            You&apos;re Losing Customers{" "}
+            <span style={{ color: "#C9940A" }}>Every Day You&apos;re Offline.</span>
           </h2>
           <p
             style={{
@@ -100,7 +100,7 @@ export default function Problem() {
             }}
           >
             Not because your business isn&apos;t good enough. Because these three
-            things are happening — and nobody is fixing them.
+            problems are happening right now — and nobody is fixing them.
           </p>
         </motion.div>
 
@@ -177,7 +177,7 @@ export default function Problem() {
 
               <h3
                 style={{
-                  fontSize: "1.1rem",
+                  fontSize: "1.05rem",
                   fontWeight: 700,
                   letterSpacing: "-0.01em",
                   color: "var(--navy)",

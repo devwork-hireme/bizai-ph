@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { CheckCircle, Bot, BarChart3, MapPin, Phone, TrendingUp } from "lucide-react";
+import { CheckCircle, Bot, BarChart3, Globe, Phone, TrendingUp } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -18,32 +18,32 @@ const reasons = [
   {
     Icon: CheckCircle,
     title: "100% Done For You",
-    body: "We don't teach you what to do. We do it for you. Focus on your business, we handle the digital side — website, automation, content, and reporting.",
+    body: "We don't teach you what to do. We do it. You focus on running your business — we handle the website, automation, content, and reporting. You never touch the technical side.",
   },
   {
     Icon: Bot,
-    title: "Powered by AI",
-    body: "Our systems use AI to automate repetitive tasks — faster results, lower cost, no manual work. Your business works even when you're sleeping.",
+    title: "Systems, Not Campaigns",
+    body: "Most agencies run campaigns that stop when you stop paying. We build systems — automated processes that keep working 24/7 whether you're in the business or not.",
   },
   {
     Icon: BarChart3,
-    title: "Results You Can See",
-    body: "Monthly reports showing exact numbers — leads captured, messages handled, reviews earned. No guessing if it's working. You see the data.",
+    title: "Results You Can Measure",
+    body: "Monthly reports showing exact numbers — leads captured, messages handled, reviews earned, website visitors. You always know exactly what your investment is delivering.",
   },
   {
-    Icon: MapPin,
-    title: "Filipino at Heart",
-    body: "We understand Filipino consumer behavior and what actually works in the Philippine market. Our strategies are built for local SMBs — not copied from abroad.",
+    Icon: Globe,
+    title: "Built for the Philippines",
+    body: "We understand Filipino consumer behavior, how Filipinos search, how they message, and what makes them buy. Our systems are built for the Philippine market — not copied from abroad.",
   },
   {
     Icon: Phone,
-    title: "Always Here",
-    body: "WhatsApp support for all concerns. We don't disappear after delivery — we stay with you, fix issues fast, and keep your systems running smoothly.",
+    title: "We Stay With You",
+    body: "We don't disappear after setup. WhatsApp support for all concerns. If your system breaks, we fix it before it impacts your business — usually before you even notice it broke.",
   },
   {
     Icon: TrendingUp,
-    title: "Grows With You",
-    body: "Start with Basic, upgrade to Starter, then Growth. Your digital presence grows as your business grows. No need to switch providers or start over.",
+    title: "Grows As You Grow",
+    body: "Start with Get Found. Upgrade to Starter, then Growth. Your systems scale with your business. No need to switch providers, start over, or lose everything you've built.",
   },
 ];
 
@@ -94,9 +94,9 @@ export default function WhyUs() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Not Just Another Agency —{" "}
+            We Build Systems.{" "}
             <span style={{ color: "#C9940A" }}>
-              Your Growth Partner
+              We Don&apos;t Just Do Marketing.
             </span>
           </h2>
           <p
@@ -109,8 +109,8 @@ export default function WhyUs() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Six reasons why Filipino SMB owners choose BizAI PH and stay with
-            us long-term.
+            Six reasons why Filipino business owners choose BizAI PH — and
+            stay with us long-term.
           </p>
         </motion.div>
 

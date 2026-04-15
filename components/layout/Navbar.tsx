@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Results", href: "#results" },
   { label: "How It Works", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Offers", href: "#pricing" },
+  { label: "Why Us", href: "#why-us" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -164,7 +164,7 @@ export default function Navbar() {
               e.currentTarget.style.boxShadow = "0 0 0 1px rgba(255,255,255,0.1) inset";
             }}
           >
-            Get My Results →
+            Get More Customers →
           </a>
 
           {/* Hamburger */}
@@ -269,7 +269,7 @@ export default function Navbar() {
               className="btn-primary"
               style={{ marginTop: "2rem", width: "100%", fontSize: "1rem" }}
             >
-              Get My Results →
+              Get More Customers →
             </motion.a>
           </motion.div>
         )}

@@ -16,6 +16,22 @@ const fadeUp: Variants = {
 
 const faqs = [
   {
+    q: "What is the difference between Get Found and Starter?",
+    a: "Get Found is a one-time ₱3,999 setup that gives you a professional website so customers can find and verify your business. There is no monthly fee. Starter includes everything in Get Found plus the full growth system — 24/7 Messenger bot, Google My Business setup, Google review automation, Facebook posting, and a monthly report. Starter is for businesses that want customers finding them and inquiring automatically, not just existing online.",
+  },
+  {
+    q: "How fast will I see results?",
+    a: "Most clients are live within 3–5 business days. You will typically see your first organic inquiries within the first week of going live. Google ranking improves progressively over 30–60 days. The Messenger bot delivers results from day one — every inquiry gets answered the moment it arrives.",
+  },
+  {
+    q: "What if it doesn't work for my business?",
+    a: "We offer a 30-day results guarantee. If you don't get measurable results within 30 days — more customers finding you, more inquiries coming in, or more leads converting depending on your package — we rebuild your entire system at no extra cost. No questions asked. No conditions.",
+  },
+  {
+    q: "Do I have to sign a long-term contract?",
+    a: "No. All monthly plans are month-to-month. You can cancel anytime with no penalties. We keep clients by delivering results, not by locking them into contracts.",
+  },
+  {
     q: "Do I need any technical knowledge to get started?",
     a: "None whatsoever. We handle every technical aspect of setup and deployment. Your only requirement is 30 minutes for an initial consultation. You do not write code, configure anything, or manage servers.",
   },
@@ -243,8 +259,7 @@ export default function FAQ() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Book a free 30-minute session and we will answer everything
-            specific to your business.
+            Start free and we will answer every question specific to your business.
           </p>
           <a
             href="#contact"
@@ -255,7 +270,7 @@ export default function FAQ() {
               document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Book Free 30-Min Session
+            Get More Customers — Start Free
             <ArrowRight size={16} />
           </a>
         </motion.div>

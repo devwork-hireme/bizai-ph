@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { TrendingDown, TrendingUp, Clock, Users, CheckCircle2 } from "lucide-react";
+import { TrendingDown, CheckCircle2 } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -619,7 +619,7 @@ export default function Testimonials() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "64px" }}
         >
-          <p className="section-label">Client Testimonials</p>
+          <p className="section-label">What Clients Say</p>
           <h2
             style={{
               fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
@@ -631,9 +631,9 @@ export default function Testimonials() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Real Results From{" "}
+            Filipino Businesses.{" "}
             <span style={{ color: "#F5C518" }}>
-              Real Philippine Businesses
+              Real Transformations.
             </span>
           </h2>
           <p
@@ -641,66 +641,27 @@ export default function Testimonials() {
               fontSize: "1rem",
               color: "rgba(255,255,255,0.55)",
               maxWidth: "520px",
-              margin: "0 auto",
+              margin: "0 auto 1rem",
               lineHeight: 1.78,
               fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Real results from real Philippine businesses — before and after
-            working with BizAI PH.
+            These are real clients sharing their experience working with BizAI PH.
           </p>
-
-          {/* Stat pills */}
-          <div
+          <p
             style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "16px",
-              flexWrap: "wrap",
-              marginTop: "2rem",
+              fontSize: "0.75rem",
+              color: "rgba(255,255,255,0.25)",
+              maxWidth: "480px",
+              margin: "0 auto",
+              lineHeight: 1.6,
+              fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            {[
-              {
-                icon: <TrendingDown size={18} color="#22C55E" />,
-                text: "₱9,000+ avg monthly savings",
-              },
-              {
-                icon: <Clock size={18} color="#F5C518" />,
-                text: "20+ hours recovered weekly",
-              },
-              {
-                icon: <Users size={18} color="#F5C518" />,
-                text: "New clients accepted monthly",
-              },
-            ].map(({ icon, text }) => (
-              <div
-                key={text}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(245,197,24,0.2)",
-                  borderRadius: "100px",
-                  padding: "12px 24px",
-                }}
-              >
-                {icon}
-                <span
-                  style={{
-                    fontSize: "0.88rem",
-                    fontWeight: 700,
-                    color: "#FFFFFF",
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                  }}
-                >
-                  {text}
-                </span>
-              </div>
-            ))}
-          </div>
+            Note: Testimonials reflect individual client experiences. Results may vary
+            based on business type, market, and engagement level.
+          </p>
         </motion.div>
 
         {/* Top row — 3 cards */}

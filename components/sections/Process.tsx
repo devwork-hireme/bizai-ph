@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { Calendar, Zap, CheckCircle, TrendingUp, ArrowRight } from "lucide-react";
+import { MessageSquare, Zap, CheckCircle, TrendingUp, ArrowRight } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -17,31 +17,31 @@ const fadeUp: Variants = {
 const steps = [
   {
     number: "01",
-    Icon: Calendar,
-    title: "Tell Us Your Goal",
+    Icon: MessageSquare,
+    title: "Getting Started",
     duration: "30 minutes",
-    body: "30 minutes. Free. Tell us which result matters most to your business right now. We show you exactly how we'll deliver it.",
+    body: "One free 30-minute call. You tell us your biggest challenge. We show you exactly what results you'll get. No commitment. No technical knowledge needed.",
   },
   {
     number: "02",
     Icon: Zap,
     title: "We Build Everything",
     duration: "Days 1–3",
-    body: "You provide your business information. We handle every single technical detail. You don't touch anything.",
+    body: "You give us your business details. We handle every technical step — website, bot, Google setup, integrations. You do almost nothing.",
   },
   {
     number: "03",
     Icon: CheckCircle,
-    title: "Results Go Live",
+    title: "Live in 3–5 Days",
     duration: "Day 3–5",
-    body: "In 3–5 days your results are live. Customers finding you. Leads coming in. Sales closing.",
+    body: "Your systems go live. Customers start finding you on Google. Every inquiry gets answered automatically. Leads are captured and followed up.",
   },
   {
     number: "04",
     Icon: TrendingUp,
     title: "Results Keep Growing",
     duration: "Ongoing",
-    body: "Every month your results get better. More customers. More leads. More sales. We manage everything.",
+    body: "Every month your results compound. More customers found you. More leads converted. More reviews built your reputation. We report everything to you.",
   },
 ];
 
@@ -56,12 +56,29 @@ export default function Process() {
       id="process"
       className="process-section"
       style={{
-        background: "var(--off-white)",
+        background: "var(--navy)",
+        borderTop: "1px solid var(--navy-border)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
       }}
     >
+      {/* Grid background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(26,58,107,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(26,58,107,0.4) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
       <div
         style={{
           maxWidth: "1200px",
@@ -78,8 +95,8 @@ export default function Process() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "64px" }}
         >
-          <p className="section-label" style={{ color: "var(--navy)" }}>
-            The Process
+          <p className="section-label">
+            How It Works
           </p>
           <h2
             style={{
@@ -87,26 +104,26 @@ export default function Process() {
               fontWeight: 800,
               letterSpacing: "-0.02em",
               lineHeight: 1.1,
-              color: "var(--navy)",
+              color: "#FFFFFF",
               marginBottom: "20px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Your Results in{" "}
-            <span style={{ color: "#C9940A" }}>3–5 Days.</span>
+            Live in 3–5 Days.{" "}
+            <span style={{ color: "#F5C518" }}>You Do Almost Nothing.</span>
           </h2>
           <p
             style={{
               fontSize: "1rem",
-              color: "var(--gray)",
+              color: "rgba(255,255,255,0.55)",
               maxWidth: "480px",
               margin: "0 auto",
               lineHeight: 1.78,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Four steps. Zero technical work from you. Complete results at the
-            end.
+            Four steps. We handle everything technical. You focus on running
+            your business.
           </p>
         </motion.div>
 
@@ -123,7 +140,7 @@ export default function Process() {
               right: "12%",
               height: "1px",
               background:
-                "linear-gradient(90deg, transparent, rgba(201,148,10,0.3), rgba(201,148,10,0.3), transparent)",
+                "linear-gradient(90deg, transparent, rgba(245,197,24,0.25), rgba(245,197,24,0.25), transparent)",
               pointerEvents: "none",
             }}
           />
@@ -152,8 +169,8 @@ export default function Process() {
                     width: "56px",
                     height: "56px",
                     borderRadius: "50%",
-                    background: "var(--navy)",
-                    border: "1px solid rgba(201,148,10,0.35)",
+                    background: "var(--navy-mid)",
+                    border: "1px solid rgba(245,197,24,0.3)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -173,7 +190,7 @@ export default function Process() {
                     fontWeight: 700,
                     textTransform: "uppercase",
                     letterSpacing: "0.12em",
-                    color: "#C9940A",
+                    color: "#F5C518",
                     marginBottom: "0.4rem",
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
@@ -186,7 +203,7 @@ export default function Process() {
                   style={{
                     fontSize: "1rem",
                     fontWeight: 700,
-                    color: "var(--navy)",
+                    color: "#FFFFFF",
                     lineHeight: 1.3,
                     marginBottom: "0.4rem",
                     fontFamily: "var(--font-syne), sans-serif",
@@ -218,7 +235,7 @@ export default function Process() {
                 <p
                   style={{
                     fontSize: "0.85rem",
-                    color: "var(--gray)",
+                    color: "rgba(255,255,255,0.5)",
                     lineHeight: 1.7,
                     margin: 0,
                     fontFamily: "var(--font-dm-sans), sans-serif",
@@ -242,12 +259,12 @@ export default function Process() {
           <p
             style={{
               fontSize: "0.9rem",
-              color: "var(--gray)",
+              color: "rgba(255,255,255,0.4)",
               marginBottom: "1.5rem",
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            The first step is free and takes 30 minutes.
+            The first step is free. Results in 3–5 days.
           </p>
           <a
             href="#contact"
@@ -258,7 +275,7 @@ export default function Process() {
             }}
             style={{ gap: "8px" }}
           >
-            Book My Free Session
+            Get More Customers
             <ArrowRight size={16} />
           </a>
         </motion.div>

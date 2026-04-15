@@ -1,21 +1,21 @@
 "use client";
 
-const navLinks = [
+const companyLinks = [
   { label: "How It Works", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Our Offers", href: "#pricing" },
   { label: "Why Us", href: "#why-us" },
+  { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
-  { label: "Book a Session", href: "#contact" },
 ];
 
-const serviceLinks = [
-  "Basic Package",
-  "Starter Package",
-  "Growth Package",
-  "Free 30-Min Session",
+const offerLinks = [
+  "Get Found — ₱3,999",
+  "Starter — ₱7,999 + ₱2,999/mo",
+  "Growth — ₱14,999 + ₱7,999/mo",
+  "Scale — Coming Soon",
 ];
 
-const weServeLinks = [
+const weHelpLinks = [
   "Salons & Barbershops",
   "Restaurants & Food",
   "Repair Shops",
@@ -24,9 +24,9 @@ const weServeLinks = [
   "Retail Stores",
 ];
 
-function scrollTo(id: string) {
-  const el = document.getElementById(id.replace("#", ""));
-  el?.scrollIntoView({ behavior: "smooth" });
+function scrollTo(href: string) {
+  const el = document.querySelector(href);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 
 export default function Footer() {
@@ -84,7 +84,7 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
                 gap: "0.6rem",
-                marginBottom: "1.25rem",
+                marginBottom: "1rem",
               }}
             >
               <div
@@ -114,6 +114,21 @@ export default function Footer() {
                 BizAI PH
               </span>
             </div>
+
+            <p
+              style={{
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "#F5C518",
+                marginBottom: "0.75rem",
+                fontFamily: "var(--font-dm-sans), sans-serif",
+              }}
+            >
+              More Customers. Less Work. Guaranteed.
+            </p>
+
             <p
               style={{
                 fontSize: "0.875rem",
@@ -124,9 +139,9 @@ export default function Footer() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              We help Filipino businesses build their online presence,
-              get customers, convert them into sales, and automate
-              everything — so they grow faster with less effort.
+              We build the complete system that gets your business found,
+              turns inquiries into customers, and grows your revenue
+              automatically.
             </p>
             <p
               style={{
@@ -142,7 +157,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Company */}
           <div>
             <p
               style={{
@@ -155,10 +170,10 @@ export default function Footer() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Navigation
+              Company
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-              {navLinks.map((link) => (
+              {companyLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
@@ -179,7 +194,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services */}
+          {/* Our Offers */}
           <div>
             <p
               style={{
@@ -192,10 +207,10 @@ export default function Footer() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Services
+              Our Offers
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-              {serviceLinks.map((s) => (
+              {offerLinks.map((s) => (
                 <span
                   key={s}
                   style={{
@@ -210,7 +225,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* We Serve */}
+          {/* We Help */}
           <div>
             <p
               style={{
@@ -223,10 +238,10 @@ export default function Footer() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              We Serve
+              We Help
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-              {weServeLinks.map((ind) => (
+              {weHelpLinks.map((ind) => (
                 <span
                   key={ind}
                   style={{
@@ -272,7 +287,7 @@ export default function Footer() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Made for Filipino businesses.
+            We build systems. You grow.
           </p>
         </div>
       </div>

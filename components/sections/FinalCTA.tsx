@@ -54,7 +54,7 @@ export default function FinalCTA() {
         style={{ position: "relative", zIndex: 1, maxWidth: "680px", margin: "0 auto" }}
       >
         <p className="section-label" style={{ marginBottom: "1.5rem", justifyContent: "center" }}>
-          Start Today
+          Don&apos;t Wait
         </p>
         <h2
           style={{
@@ -67,10 +67,9 @@ export default function FinalCTA() {
             fontFamily: "var(--font-syne), sans-serif",
           }}
         >
-          Your Competitor{" "}
-          <span style={{ color: "#F5C518" }}>
-            Started Yesterday.
-          </span>
+          Every Day You Wait
+          <br />
+          <span style={{ color: "#F5C518" }}>Is a Customer They Get.</span>
         </h2>
         <p
           style={{
@@ -82,9 +81,9 @@ export default function FinalCTA() {
             fontFamily: "var(--font-dm-sans), sans-serif",
           }}
         >
-          Every day without a website, a bot, and automated follow-up — is a
-          day they get your customer. The first step is free and takes 30
-          minutes.
+          Your competitor is getting found on Google right now. They&apos;re
+          answering inquiries while you sleep. Every day without a system is
+          another day they get your customers. The first step is free.
         </p>
         <a
           href="#contact"
@@ -95,9 +94,19 @@ export default function FinalCTA() {
             document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
           }}
         >
-          Book Free 30-Min Session
+          Get More Customers
           <ArrowRight size={18} />
         </a>
+        <p
+          style={{
+            fontSize: "0.8rem",
+            color: "rgba(255,255,255,0.25)",
+            marginTop: "1rem",
+            fontFamily: "var(--font-dm-sans), sans-serif",
+          }}
+        >
+          Free session. No commitment. Results in 3–5 days.
+        </p>
       </motion.div>
 
       <style>{`

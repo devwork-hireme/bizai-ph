@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "framer-motion";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -19,8 +19,8 @@ type FormData = {
   whatsapp: string;
   businessName: string;
   businessType: string;
+  biggestChallenge: string;
   packageInterest: string;
-  preferredSchedule: string;
   message: string;
 };
 
@@ -38,12 +38,24 @@ const businessTypes = [
   { value: "other", label: "Other" },
 ];
 
+const challengeOptions = [
+  { value: "", label: "What's your biggest challenge?" },
+  { value: "not-found", label: "Customers can't find me online" },
+  { value: "after-hours", label: "Losing leads after business hours" },
+  { value: "no-followup", label: "No time to follow up on inquiries" },
+  { value: "no-reviews", label: "No Google reviews to build trust" },
+  { value: "no-website", label: "I don't have a professional website" },
+  { value: "need-customers", label: "I just need more customers" },
+  { value: "other", label: "Something else" },
+];
+
 const packageOptions = [
-  { value: "", label: "Select a package" },
-  { value: "basic", label: "Basic — ₱3,999 launch (was ₱7,999)" },
-  { value: "starter", label: "Starter — ₱7,999 launch (was ₱15,999)" },
-  { value: "growth", label: "Growth — Coming Soon Waitlist" },
-  { value: "unsure", label: "Not sure yet" },
+  { value: "", label: "Which offer interests you?" },
+  { value: "get-found", label: "Get Found — ₱3,999 one-time" },
+  { value: "starter", label: "Starter — ₱7,999 setup + ₱2,999/mo" },
+  { value: "growth", label: "Growth — ₱14,999 setup + ₱7,999/mo" },
+  { value: "scale", label: "Scale — Coming Soon (Waitlist)" },
+  { value: "unsure", label: "Not sure yet — help me decide" },
 ];
 
 function validate(data: FormData): FormErrors {
@@ -52,7 +64,8 @@ function validate(data: FormData): FormErrors {
   if (!data.whatsapp.trim()) errors.whatsapp = "WhatsApp number is required";
   if (!data.businessName.trim()) errors.businessName = "Business name is required";
   if (!data.businessType) errors.businessType = "Please select your business type";
-  if (!data.packageInterest) errors.packageInterest = "Please select a package";
+  if (!data.biggestChallenge) errors.biggestChallenge = "Please select your biggest challenge";
+  if (!data.packageInterest) errors.packageInterest = "Please select an offer";
   return errors;
 }
 
@@ -65,8 +78,8 @@ export default function Contact() {
     whatsapp: "",
     businessName: "",
     businessType: "",
+    biggestChallenge: "",
     packageInterest: "",
-    preferredSchedule: "",
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -126,6 +139,22 @@ export default function Contact() {
     },
   });
 
+  const selectWrapper = (name: keyof FormData) => (
+    <span
+      style={{
+        position: "absolute",
+        right: "12px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        color: "rgba(255,255,255,0.4)",
+        pointerEvents: "none",
+        fontSize: "0.75rem",
+      }}
+    >
+      ▼
+    </span>
+  );
+
   return (
     <section
       id="contact"
@@ -163,7 +192,7 @@ export default function Contact() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "56px" }}
         >
-          <p className="section-label">Book Your Free Session</p>
+          <p className="section-label">Get Started Free</p>
           <h2
             style={{
               fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
@@ -175,9 +204,9 @@ export default function Contact() {
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Start Growing{" "}
+            Ready to Stop Losing{" "}
             <span style={{ color: "#F5C518" }}>
-              in 3–5 Days
+              Customers?
             </span>
           </h2>
           <p
@@ -191,9 +220,9 @@ export default function Contact() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            Book a free 30-minute session. We&apos;ll understand your business,
-            recommend the right package, and show you exactly what results to
-            expect. No commitment. No technical knowledge needed.
+            Tell us about your business. We&apos;ll confirm via WhatsApp within 24 hours,
+            recommend the right offer, and show you exactly what results to expect.
+            Free. No commitment. No technical knowledge needed.
           </p>
         </motion.div>
 
@@ -214,7 +243,6 @@ export default function Contact() {
           className="contact-card"
         >
           {submitted ? (
-            /* Thank you state */
             <div style={{ textAlign: "center", padding: "32px 0" }}>
               <div
                 style={{
@@ -241,7 +269,7 @@ export default function Contact() {
                   fontFamily: "var(--font-syne), sans-serif",
                 }}
               >
-                You're all set!
+                You&apos;re all set!
               </h3>
               <p
                 style={{
@@ -253,8 +281,9 @@ export default function Contact() {
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                We will confirm your session via WhatsApp within 24 hours. No spam, no sales
-                pressure — just a helpful conversation about your business.
+                We&apos;ll confirm your session via WhatsApp within 24 hours. No spam,
+                no sales pressure — just a helpful conversation about getting you
+                more customers.
               </p>
             </div>
           ) : (
@@ -383,6 +412,51 @@ export default function Contact() {
                 )}
               </div>
 
+              {/* Business Type */}
+              <div style={{ marginBottom: "1rem" }}>
+                <label
+                  htmlFor="businessType"
+                  style={{
+                    display: "block",
+                    fontSize: "0.82rem",
+                    fontWeight: 600,
+                    color: "rgba(255,255,255,0.7)",
+                    marginBottom: "6px",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                >
+                  Business Type <span style={{ color: "#F5C518" }}>*</span>
+                </label>
+                <div style={{ position: "relative" }}>
+                  <select
+                    id="businessType"
+                    name="businessType"
+                    value={form.businessType}
+                    onChange={handleChange}
+                    required
+                    style={{ ...fieldStyle("businessType"), paddingRight: "36px", cursor: "pointer" }}
+                    onFocus={(e) => (e.target.style.borderColor = "#F5C518")}
+                    onBlur={(e) =>
+                      (e.target.style.borderColor = errors.businessType
+                        ? "rgba(239,68,68,0.5)"
+                        : "rgba(255,255,255,0.12)")
+                    }
+                  >
+                    {businessTypes.map((opt) => (
+                      <option key={opt.value} value={opt.value} style={{ background: "#0A1628", color: "#FFFFFF" }}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                  {selectWrapper("businessType")}
+                </div>
+                {errors.businessType && (
+                  <p style={{ fontSize: "0.78rem", color: "#EF4444", marginTop: "4px", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+                    {errors.businessType}
+                  </p>
+                )}
+              </div>
+
               <div
                 style={{
                   display: "grid",
@@ -392,10 +466,10 @@ export default function Contact() {
                 }}
                 className="form-grid-2"
               >
-                {/* Business Type */}
+                {/* Biggest Challenge */}
                 <div>
                   <label
-                    htmlFor="businessType"
+                    htmlFor="biggestChallenge"
                     style={{
                       display: "block",
                       fontSize: "0.82rem",
@@ -405,54 +479,34 @@ export default function Contact() {
                       fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
-                    Business Type <span style={{ color: "#F5C518" }}>*</span>
+                    Biggest Challenge <span style={{ color: "#F5C518" }}>*</span>
                   </label>
                   <div style={{ position: "relative" }}>
                     <select
-                      id="businessType"
-                      name="businessType"
-                      value={form.businessType}
+                      id="biggestChallenge"
+                      name="biggestChallenge"
+                      value={form.biggestChallenge}
                       onChange={handleChange}
                       required
-                      style={{
-                        ...fieldStyle("businessType"),
-                        paddingRight: "36px",
-                        cursor: "pointer",
-                      }}
+                      style={{ ...fieldStyle("biggestChallenge"), paddingRight: "36px", cursor: "pointer" }}
                       onFocus={(e) => (e.target.style.borderColor = "#F5C518")}
                       onBlur={(e) =>
-                        (e.target.style.borderColor = errors.businessType
+                        (e.target.style.borderColor = errors.biggestChallenge
                           ? "rgba(239,68,68,0.5)"
                           : "rgba(255,255,255,0.12)")
                       }
                     >
-                      {businessTypes.map((opt) => (
-                        <option
-                          key={opt.value}
-                          value={opt.value}
-                          style={{ background: "#0A1628", color: "#FFFFFF" }}
-                        >
+                      {challengeOptions.map((opt) => (
+                        <option key={opt.value} value={opt.value} style={{ background: "#0A1628", color: "#FFFFFF" }}>
                           {opt.label}
                         </option>
                       ))}
                     </select>
-                    <span
-                      style={{
-                        position: "absolute",
-                        right: "12px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        color: "rgba(255,255,255,0.4)",
-                        pointerEvents: "none",
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      ▼
-                    </span>
+                    {selectWrapper("biggestChallenge")}
                   </div>
-                  {errors.businessType && (
+                  {errors.biggestChallenge && (
                     <p style={{ fontSize: "0.78rem", color: "#EF4444", marginTop: "4px", fontFamily: "var(--font-dm-sans), sans-serif" }}>
-                      {errors.businessType}
+                      {errors.biggestChallenge}
                     </p>
                   )}
                 </div>
@@ -470,7 +524,7 @@ export default function Contact() {
                       fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
                   >
-                    Package Interest <span style={{ color: "#F5C518" }}>*</span>
+                    Offer Interest <span style={{ color: "#F5C518" }}>*</span>
                   </label>
                   <div style={{ position: "relative" }}>
                     <select
@@ -479,11 +533,7 @@ export default function Contact() {
                       value={form.packageInterest}
                       onChange={handleChange}
                       required
-                      style={{
-                        ...fieldStyle("packageInterest"),
-                        paddingRight: "36px",
-                        cursor: "pointer",
-                      }}
+                      style={{ ...fieldStyle("packageInterest"), paddingRight: "36px", cursor: "pointer" }}
                       onFocus={(e) => (e.target.style.borderColor = "#F5C518")}
                       onBlur={(e) =>
                         (e.target.style.borderColor = errors.packageInterest
@@ -492,28 +542,12 @@ export default function Contact() {
                       }
                     >
                       {packageOptions.map((opt) => (
-                        <option
-                          key={opt.value}
-                          value={opt.value}
-                          style={{ background: "#0A1628", color: "#FFFFFF" }}
-                        >
+                        <option key={opt.value} value={opt.value} style={{ background: "#0A1628", color: "#FFFFFF" }}>
                           {opt.label}
                         </option>
                       ))}
                     </select>
-                    <span
-                      style={{
-                        position: "absolute",
-                        right: "12px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        color: "rgba(255,255,255,0.4)",
-                        pointerEvents: "none",
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      ▼
-                    </span>
+                    {selectWrapper("packageInterest")}
                   </div>
                   {errors.packageInterest && (
                     <p style={{ fontSize: "0.78rem", color: "#EF4444", marginTop: "4px", fontFamily: "var(--font-dm-sans), sans-serif" }}>
@@ -521,34 +555,6 @@ export default function Contact() {
                     </p>
                   )}
                 </div>
-              </div>
-
-              {/* Preferred Schedule */}
-              <div style={{ marginBottom: "1rem" }}>
-                <label
-                  htmlFor="preferredSchedule"
-                  style={{
-                    display: "block",
-                    fontSize: "0.82rem",
-                    fontWeight: 600,
-                    color: "rgba(255,255,255,0.7)",
-                    marginBottom: "6px",
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                  }}
-                >
-                  Preferred Schedule
-                </label>
-                <input
-                  id="preferredSchedule"
-                  name="preferredSchedule"
-                  type="text"
-                  placeholder="e.g. Weekdays 2–5PM, Weekends mornings"
-                  value={form.preferredSchedule}
-                  onChange={handleChange}
-                  style={fieldStyle("preferredSchedule")}
-                  onFocus={(e) => (e.target.style.borderColor = "#F5C518")}
-                  onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.12)")}
-                />
               </div>
 
               {/* Message */}
@@ -564,20 +570,20 @@ export default function Contact() {
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
                 >
-                  Tell us about your business{" "}
+                  Anything else?{" "}
                   <span style={{ color: "rgba(255,255,255,0.35)", fontWeight: 400 }}>(optional)</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  rows={4}
-                  placeholder="What's your biggest challenge right now? What would you like to automate or improve?"
+                  rows={3}
+                  placeholder="Tell us more about your business or what you want to achieve."
                   value={form.message}
                   onChange={handleChange}
                   style={{
                     ...fieldStyle("message"),
                     resize: "vertical",
-                    minHeight: "100px",
+                    minHeight: "90px",
                   }}
                   onFocus={(e) => (e.target.style.borderColor = "#F5C518")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.12)")}
@@ -629,13 +635,20 @@ export default function Contact() {
                   gap: "8px",
                 }}
                 onMouseEnter={(e) => {
-                  if (!submitting) e.currentTarget.style.background = "#FFD94A";
+                  if (!submitting) {
+                    e.currentTarget.style.background = "#FFD94A";
+                    e.currentTarget.style.transform = "translateY(-1px)";
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  if (!submitting) e.currentTarget.style.background = "#F5C518";
+                  if (!submitting) {
+                    e.currentTarget.style.background = "#F5C518";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }
                 }}
               >
-                {submitting ? "Submitting..." : "Book My Free 30-Min Session"}
+                {submitting ? "Submitting..." : "Get More Customers — Start Free"}
+                {!submitting && <ArrowRight size={16} />}
               </button>
 
               <p
@@ -648,47 +661,11 @@ export default function Contact() {
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                We will confirm your session via WhatsApp within 24 hours. No spam, no sales pressure.
+                We confirm via WhatsApp within 24 hours. No spam. No sales pressure.
               </p>
             </form>
           )}
         </motion.div>
-
-        {/* Calendly fallback note */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate={headInView ? "visible" : "hidden"}
-          custom={0.3}
-          style={{
-            textAlign: "center",
-            fontSize: "0.82rem",
-            color: "rgba(255,255,255,0.3)",
-            marginTop: "1.5rem",
-            fontFamily: "var(--font-dm-sans), sans-serif",
-          }}
-        >
-          Prefer to book directly?{" "}
-          <a
-            href="https://calendly.com/devwork2025-proton/free-ai-automation-audit"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "rgba(245,197,24,0.7)", textDecoration: "none" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#F5C518")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,197,24,0.7)")}
-          >
-            Use our Calendly link
-          </a>{" "}
-          or email{" "}
-          <a
-            href="mailto:hello@bizaiph.com"
-            style={{ color: "rgba(245,197,24,0.7)", textDecoration: "none" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#F5C518")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,197,24,0.7)")}
-          >
-            hello@bizaiph.com
-          </a>
-        </motion.p>
       </div>
 
       <style>{`

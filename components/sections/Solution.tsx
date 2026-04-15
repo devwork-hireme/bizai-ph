@@ -15,21 +15,21 @@ const fadeUp: Variants = {
 };
 
 const beforeItems = [
-  "Customers can't find you online",
-  "Inquiries go unanswered at night",
-  "Leads go cold before you follow up",
-  "Your Facebook page looks abandoned",
-  "No Google reviews to build trust",
-  "No idea what's working in your business",
+  "No website — customers can't verify your business",
+  "Invisible on Google — competitors get all the traffic",
+  "Inquiries unanswered after 8PM every night",
+  "Leads go cold because there's no follow-up",
+  "Facebook page abandoned — last post was months ago",
+  "Zero Google reviews — no trust, no credibility",
 ];
 
 const afterItems = [
-  "Customers find you every time they search",
-  "Every inquiry answered before you wake up",
-  "Every lead followed up automatically",
-  "Your Facebook active and professional daily",
-  "Google reviews building your reputation",
-  "Monthly results report delivered to your phone",
+  "Professional website — customers find and trust you",
+  "Page 1 on Google — you show up before competitors",
+  "Every inquiry answered in seconds, 24/7",
+  "Every lead followed up automatically — no one slips away",
+  "Facebook posting 3x per week, done for you",
+  "Google reviews building your reputation every month",
 ];
 
 export default function Solution() {
@@ -41,29 +41,13 @@ export default function Solution() {
       id="transformation"
       className="solution-section"
       style={{
-        background: "var(--navy)",
-        borderTop: "1px solid var(--navy-border)",
+        background: "var(--off-white)",
+        borderTop: "1px solid var(--gray-light)",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Grid background */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(26,58,107,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(26,58,107,0.5) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-
       <div
         style={{
           maxWidth: "1200px",
@@ -80,25 +64,25 @@ export default function Solution() {
           animate={headInView ? "visible" : "hidden"}
           style={{ textAlign: "center", marginBottom: "64px" }}
         >
-          <p className="section-label">The Transformation</p>
+          <p className="section-label" style={{ color: "var(--navy)" }}>Before vs After</p>
           <h2
             style={{
               fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
               fontWeight: 800,
               letterSpacing: "-0.02em",
               lineHeight: 1.1,
-              color: "#FFFFFF",
+              color: "var(--navy)",
               marginBottom: "20px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            What Changes When{" "}
-            <span style={{ color: "#F5C518" }}>You Work With BizAI PH</span>
+            What Changes When You{" "}
+            <span style={{ color: "#C9940A" }}>Work With BizAI PH</span>
           </h2>
           <p
             style={{
               fontSize: "1rem",
-              color: "rgba(255,255,255,0.55)",
+              color: "var(--gray)",
               maxWidth: "480px",
               margin: "0 auto",
               lineHeight: 1.78,
@@ -106,7 +90,7 @@ export default function Solution() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            One decision. Four results. Complete transformation.
+            One decision. Six transformations. Your business completely changed.
           </p>
         </motion.div>
 
@@ -121,7 +105,7 @@ export default function Solution() {
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "1px",
-            background: "var(--navy-border)",
+            background: "var(--gray-light)",
             borderRadius: "16px",
             overflow: "hidden",
           }}
@@ -129,7 +113,7 @@ export default function Solution() {
           {/* Before */}
           <div
             style={{
-              background: "var(--navy-mid)",
+              background: "#FFFFFF",
               padding: "40px 36px",
             }}
           >
@@ -176,7 +160,7 @@ export default function Solution() {
                   <span
                     style={{
                       fontSize: "0.9rem",
-                      color: "rgba(255,255,255,0.45)",
+                      color: "var(--gray)",
                       lineHeight: 1.6,
                       fontFamily: "var(--font-dm-sans), sans-serif",
                     }}
@@ -191,7 +175,7 @@ export default function Solution() {
           {/* After */}
           <div
             style={{
-              background: "var(--navy-mid)",
+              background: "#FFFFFF",
               padding: "40px 36px",
             }}
           >
@@ -239,9 +223,10 @@ export default function Solution() {
                   <span
                     style={{
                       fontSize: "0.9rem",
-                      color: "rgba(255,255,255,0.7)",
+                      color: "var(--navy)",
                       lineHeight: 1.6,
                       fontFamily: "var(--font-dm-sans), sans-serif",
+                      fontWeight: 500,
                     }}
                   >
                     {item}
