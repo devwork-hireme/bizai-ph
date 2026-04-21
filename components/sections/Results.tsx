@@ -392,7 +392,7 @@ export default function Results() {
             Ready to see results like these in your business?
           </p>
           <a
-            href="https://calendly.com/devwork2025-proton/free-ai-automation-audit"
+            href="https://wa.me/639602104478"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"
