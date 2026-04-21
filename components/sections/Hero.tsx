@@ -172,18 +172,19 @@ export default function Hero() {
           <motion.p
             variants={item}
             style={{
-              fontSize: "1rem",
-              color: "rgba(255,255,255,0.62)",
-              maxWidth: "480px",
+              fontSize: "clamp(1rem, 2vw, 1.125rem)",
+              color: "rgba(255,255,255,0.75)",
+              maxWidth: "520px",
               marginBottom: "20px",
-              lineHeight: 1.78,
+              lineHeight: 1.75,
               fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            We build the complete system that gets your business found on Google,
-            turns every inquiry into a customer, and grows your revenue
-            automatically — 100% done for you. Starting ₱3,999.
+            We get your business in front of customers who are already looking
+            for you — and make sure they choose you, not your competitor.
+            <br /><br />
+            Starting ₱3,999.
           </motion.p>
 
           {/* Promo badge */}
