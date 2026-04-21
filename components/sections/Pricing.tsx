@@ -219,14 +219,15 @@ export default function Pricing() {
               </span>
             </div>
 
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "0.75rem" }}>
               {[
-                "5-Page Professional Website",
-                "Mobile-Friendly Design",
-                "Contact Form",
-                "Free 1 Year Domain",
-                "Free 1 Year Hosting",
-                "Professional Email",
+                "Professional website that makes customers trust your business instantly",
+                "Your own .com address — no more sending customers to your Facebook page",
+                "Always online, always fast — we handle all the technical details",
+                "Looks perfect on every phone — 97% of Filipinos browse on mobile",
+                "Shows up when customers search for your service on Google",
+                "Every customer inquiry lands directly in your inbox",
+                "Connected to your Facebook so no lead ever gets missed",
               ].map((f) => (
                 <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
                   <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "#94A3B8" }} />
@@ -234,6 +235,9 @@ export default function Pricing() {
                 </div>
               ))}
             </div>
+            <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#F5C518", lineHeight: 1.6, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              In 3–5 days — customers can find your business, trust it, and contact you directly.
+            </p>
 
             <button
               onClick={scrollToContact}
@@ -317,17 +321,16 @@ export default function Pricing() {
               </span>
             </div>
 
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "0.75rem" }}>
               {[
                 "Everything in Get Found",
-                "Custom Website — built for your brand",
-                "Google My Business Setup",
-                "24/7 Messenger Bot",
-                "Lead Capture System",
-                "Google Review Automation",
-                "3x Facebook Posts per Week",
-                "Monthly WhatsApp Report",
-                "WhatsApp Support",
+                "AI that answers every customer instantly — even at 2AM, even on holidays, even when you're busy",
+                "Every inquiry automatically saved — name, number, and what they need — so no lead ever disappears",
+                "Your business shows up when customers search nearby on Google Maps",
+                "Google reviews requested automatically after every sale — your reputation builds itself",
+                "Every month you receive a clear report showing exactly how many customers your system brought you",
+                "We fix every issue immediately — your system never breaks silently",
+                "Message us anytime on WhatsApp — we respond fast",
               ].map((f) => (
                 <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
                   <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "#22C55E" }} />
@@ -335,6 +338,9 @@ export default function Pricing() {
                 </div>
               ))}
             </div>
+            <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#F5C518", lineHeight: 1.6, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              Wake up every morning to new leads already answered — without sending a single message yourself.
+            </p>
 
             <button
               onClick={scrollToContact}
@@ -396,17 +402,17 @@ export default function Pricing() {
               </span>
             </div>
 
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "0.75rem" }}>
               {[
                 "Everything in Starter",
-                "Advanced AI Bot — FB + Instagram",
-                "3-Day Lead Follow-Up Sequence",
-                "Appointment Booking System",
-                "5x Facebook Posts per Week",
-                "Live Business Dashboard",
-                "WhatsApp Lead Alerts",
-                "Local SEO Growth",
-                "Priority Support (4-hr response)",
+                "Leads that don't respond get followed up automatically — Day 1, Day 2, Day 3 — with personalized messages that feel like a real person wrote them",
+                "Customers book their own appointments directly — confirmed, reminded, and protected against no-shows automatically",
+                "Leads that went cold 7 days ago get re-engaged automatically — and come back ready to pay",
+                "You get an instant WhatsApp alert the moment a serious buyer comes in — with a full summary of what they want",
+                "Your system gets smarter every month — analyzing every conversation to improve how it converts your specific customers",
+                "See your leads, bookings, and revenue in real time — updated every single day",
+                "Your business shows up higher on Google every month — new content published automatically",
+                "We respond within 4 hours — dedicated priority support",
               ].map((f) => (
                 <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
                   <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "#F5C518" }} />
@@ -414,6 +420,9 @@ export default function Pricing() {
                 </div>
               ))}
             </div>
+            <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#F5C518", lineHeight: 1.6, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              The leads that used to go cold now show up and pay — automatically, every month.
+            </p>
 
             <button
               onClick={scrollToContact}
@@ -495,15 +504,15 @@ export default function Pricing() {
               </p>
             </div>
 
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "1.5rem" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.55rem", marginBottom: "0.75rem" }}>
               {[
                 "Everything in Growth",
-                "Multi-platform AI automation",
-                "Dedicated account manager",
-                "Custom integrations",
-                "Advanced analytics dashboard",
-                "Weekly strategy calls",
-                "Priority onboarding",
+                "One system answering customers across Facebook, Instagram, WhatsApp, and your website — simultaneously, 24 hours a day",
+                "Customers who haven't visited in 30, 60, or 90 days get brought back automatically with personalized offers",
+                "Your business predicts slow periods and launches promotions automatically before revenue drops",
+                "Every competitor move monitored monthly — price changes, new services, review trends — so you're always one step ahead",
+                "Weekly analysis of your entire business — what's working, what's not, and exactly what to do next",
+                "Your business runs and grows automatically — customers acquired, sales closed, revenue growing — whether you're working or not",
               ].map((f) => (
                 <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem" }}>
                   <CheckCircle size={13} style={{ flexShrink: 0, marginTop: "3px", color: "rgba(245,197,24,0.4)" }} />
@@ -511,6 +520,9 @@ export default function Pricing() {
                 </div>
               ))}
             </div>
+            <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "rgba(245,197,24,0.6)", lineHeight: 1.6, marginBottom: "0.75rem", fontFamily: "var(--font-dm-sans), sans-serif" }}>
+              You built the business. Now it runs without you.
+            </p>
 
             <button
               onClick={scrollToContact}
