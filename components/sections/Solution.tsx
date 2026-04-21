@@ -28,8 +28,8 @@ const afterItems = [
   "Page 1 on Google — you show up before competitors",
   "Every inquiry answered in seconds, 24/7",
   "Every lead followed up automatically — no one slips away",
-  "Facebook posting 3x per week, done for you",
   "Google reviews building your reputation every month",
+  "Monthly report showing exactly how your business is growing",
 ];
 
 export default function Solution() {

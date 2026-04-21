@@ -57,10 +57,9 @@ const systemSteps = [
     colorBorder: "rgba(245,197,24,0.2)",
     title: "Grow Automatically",
     subtitle: "Revenue grows. Work stays the same.",
-    body: "We automate your Google reviews, post on Facebook 3x per week, and send you a monthly report showing exactly how your business is growing. Your reputation builds itself. Your sales grow on autopilot.",
+    body: "We automate your Google reviews and send you a monthly report showing exactly how your business is growing. Your reputation builds itself. Your results compound every month.",
     deliverables: [
       "Automated Google reviews",
-      "3x Facebook posts per week",
       "Monthly performance report",
       "Ongoing optimization",
     ],
