@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { CheckCircle, ArrowRight, Flame, Users, Search, MessageCircle } from "lucide-react";
 
 const container: Variants = {
   hidden: {},
@@ -13,33 +12,15 @@ const item: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] },
+    transition: { duration: 0.7, ease: "easeOut" },
   },
 };
 
-const trustItems = [
-  "Results in 3–5 Days",
-  "30-Day Results Guarantee",
-  "100% Done For You",
+const trustBadges = [
+  "Live in 24 Hours",
+  "AI-Powered 24/7",
+  "30-Day Guarantee",
   "Cancel Anytime",
-];
-
-const systemPillars = [
-  {
-    Icon: Search,
-    label: "Get Found",
-    desc: "Website + Google + Maps — customers find you first",
-  },
-  {
-    Icon: MessageCircle,
-    label: "Close Sales",
-    desc: "Bot + follow-up — every inquiry becomes a customer",
-  },
-  {
-    Icon: Users,
-    label: "Grow Automatically",
-    desc: "Reviews + reporting — your reputation builds itself",
-  },
 ];
 
 export default function Hero() {
@@ -57,60 +38,97 @@ export default function Hero() {
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        background: "var(--navy)",
-        paddingTop: "calc(var(--announcement-bar-height) + 120px)",
+        background: "#0a0a0a",
+        paddingTop: "120px",
         paddingBottom: "80px",
         paddingLeft: "64px",
         paddingRight: "64px",
       }}
     >
-      {/* Dot grid background */}
+      {/* Radial gradient backgrounds */}
       <div
         aria-hidden="true"
-        className="dot-grid-bg"
+        style={{
+          position: "absolute",
+          top: "-20%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "900px",
+          height: "700px",
+          background:
+            "radial-gradient(ellipse, rgba(232,184,75,0.06) 0%, transparent 65%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: "10%",
+          right: "5%",
+          width: "400px",
+          height: "400px",
+          background:
+            "radial-gradient(ellipse, rgba(61,186,110,0.04) 0%, transparent 70%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      {/* SVG grain overlay */}
+      <svg
+        aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 40%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 40%, black, transparent)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-
-      {/* Gold radial glow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "20%",
-          left: "30%",
-          width: "600px",
-          height: "400px",
-          background: "radial-gradient(ellipse, rgba(245,197,24,0.07) 0%, transparent 70%)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-
-      {/* Two-column layout */}
-      <div
-        className="hero-inner"
-        style={{
-          maxWidth: "1200px",
           width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+          zIndex: 0,
+          opacity: 0.03,
+        }}
+      >
+        <filter id="grain">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.8"
+            numOctaves="4"
+            stitchTiles="stitch"
+          />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#grain)" />
+      </svg>
+
+      {/* Content */}
+      <div
+        style={{
+          maxWidth: "800px",
           margin: "0 auto",
           position: "relative",
           zIndex: 1,
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "5rem",
-          alignItems: "center",
+          textAlign: "center",
+          width: "100%",
         }}
       >
-        {/* LEFT — Text content */}
         <motion.div variants={container} initial="hidden" animate="visible">
-          {/* Eyebrow badge */}
+          {/* Eyebrow */}
+          <motion.p
+            variants={item}
+            style={{
+              fontSize: "0.7rem",
+              fontWeight: 700,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#e8b84b",
+              marginBottom: "20px",
+              fontFamily: "var(--font-dm-sans), sans-serif",
+            }}
+          >
+            The Revenue Machine for Philippine Businesses
+          </motion.p>
+
+          {/* Promo badge */}
           <motion.div variants={item} style={{ marginBottom: "28px" }}>
             <span
               style={{
@@ -118,8 +136,8 @@ export default function Hero() {
                 alignItems: "center",
                 gap: "10px",
                 padding: "8px 20px",
-                background: "rgba(245,197,24,0.07)",
-                border: "1px solid rgba(245,197,24,0.22)",
+                background: "rgba(61,186,110,0.08)",
+                border: "1px solid rgba(61,186,110,0.25)",
                 borderRadius: "100px",
               }}
             >
@@ -128,22 +146,20 @@ export default function Hero() {
                   width: "8px",
                   height: "8px",
                   borderRadius: "50%",
-                  background: "#22C55E",
+                  background: "#3dba6e",
                   animation: "pulse-ring 2s infinite",
                   flexShrink: 0,
                 }}
               />
               <span
                 style={{
-                  fontSize: "0.72rem",
-                  fontWeight: 600,
-                  color: "#F5C518",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
+                  fontSize: "0.82rem",
+                  fontWeight: 700,
+                  color: "#3dba6e",
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                The Growth System for Filipino Businesses
+                50% Off — April and May 2026 Only
               </span>
             </span>
           </motion.div>
@@ -152,296 +168,102 @@ export default function Hero() {
           <motion.h1
             variants={item}
             style={{
-              fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)",
+              fontSize: "clamp(36px, 7vw, 80px)",
               fontWeight: 800,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.04em",
               lineHeight: 1.05,
-              color: "#FFFFFF",
+              color: "#ffffff",
               marginBottom: "24px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            Stop Losing Customers
+            We Don&apos;t Do Marketing.
             <br />
-            To Competitors
-            <br />
-            <span style={{ color: "#F5C518" }}>Who Are Online.</span>
+            We Build{" "}
+            <span style={{ color: "#e8b84b" }}>Revenue Machines.</span>
           </motion.h1>
 
-          {/* Body */}
+          {/* Sub */}
           <motion.p
             variants={item}
             style={{
-              fontSize: "clamp(1rem, 2vw, 1.125rem)",
-              color: "rgba(255,255,255,0.75)",
-              maxWidth: "520px",
-              marginBottom: "20px",
+              fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
+              color: "rgba(255,255,255,0.6)",
+              maxWidth: "640px",
+              margin: "0 auto 36px",
               lineHeight: 1.75,
-              fontWeight: 400,
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            We get your business in front of customers who are already looking
-            for you — and make sure they choose you, not your competitor.
-            <br /><br />
-            Starting ₱3,999.
+            AI-powered digital presence, automation, and smart marketing — one
+            system that finds customers, answers every inquiry, and grows your
+            revenue automatically. Starting ₱3,999.
           </motion.p>
 
-          {/* Promo badge */}
-          <motion.div variants={item} style={{ marginBottom: "32px" }}>
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "7px 18px",
-                background: "rgba(245,197,24,0.1)",
-                border: "1px solid rgba(245,197,24,0.3)",
-                borderRadius: "100px",
-                fontSize: "0.8rem",
-                fontWeight: 700,
-                color: "#F5C518",
-                fontFamily: "var(--font-dm-sans), sans-serif",
-              }}
-            >
-              <Flame size={14} style={{ flexShrink: 0 }} />
-              50% Off — April to May 2026 Only
-            </span>
-          </motion.div>
-
-          {/* CTA buttons */}
+          {/* CTAs */}
           <motion.div
             variants={item}
             style={{
               display: "flex",
-              gap: "12px",
+              gap: "14px",
+              justifyContent: "center",
               flexWrap: "wrap",
-              marginBottom: "48px",
+              marginBottom: "52px",
             }}
           >
-            <a
-              href="#contact"
+            <button
+              onClick={() => scrollTo("start")}
               className="btn-primary"
-              onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
-              style={{ gap: "8px" }}
+              style={{ fontSize: "1rem", padding: "14px 32px" }}
             >
-              Get More Customers
-              <ArrowRight size={16} />
-            </a>
-            <a
-              href="#pricing"
+              Start Free Session →
+            </button>
+            <button
+              onClick={() => scrollTo("pricing")}
               className="btn-ghost"
-              onClick={(e) => { e.preventDefault(); scrollTo("pricing"); }}
+              style={{ fontSize: "1rem", padding: "14px 32px" }}
             >
-              See Our Offers
-            </a>
+              See Our Systems
+            </button>
           </motion.div>
 
-          {/* Trust row */}
+          {/* Trust badges */}
           <motion.div
             variants={item}
             style={{
               display: "flex",
-              flexDirection: "column",
-              gap: "10px",
+              gap: "28px",
+              justifyContent: "center",
+              flexWrap: "wrap",
             }}
           >
-            {trustItems.map((badge) => (
+            {trustBadges.map((badge) => (
               <div
                 key={badge}
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "7px",
+                  fontSize: "0.82rem",
+                  fontWeight: 500,
+                  color: "rgba(255,255,255,0.45)",
+                  fontFamily: "var(--font-dm-sans), sans-serif",
+                }}
               >
-                <CheckCircle
-                  size={15}
-                  style={{ color: "#22C55E", flexShrink: 0 }}
-                />
-                <span
-                  style={{
-                    fontSize: "0.85rem",
-                    fontWeight: 500,
-                    color: "rgba(255,255,255,0.55)",
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                  }}
-                >
-                  {badge}
-                </span>
+                <span style={{ color: "#3dba6e", fontSize: "0.9rem" }}>✓</span>
+                {badge}
               </div>
             ))}
           </motion.div>
         </motion.div>
-
-        {/* RIGHT — The System card */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-        >
-          <div
-            style={{
-              background: "var(--navy-mid)",
-              border: "2px solid rgba(245,197,24,0.35)",
-              borderRadius: "20px",
-              padding: "36px 32px",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            {/* Gold top accent */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "3px",
-                background: "linear-gradient(90deg, #F5C518, #FFD94A)",
-                borderRadius: "20px 20px 0 0",
-              }}
-            />
-            {/* Glow */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "180px",
-                background:
-                  "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(245,197,24,0.07) 0%, transparent 100%)",
-                pointerEvents: "none",
-              }}
-            />
-
-            <div style={{ position: "relative" }}>
-              {/* Card header */}
-              <div style={{ marginBottom: "28px" }}>
-                <p
-                  style={{
-                    fontSize: "0.68rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "#F5C518",
-                    marginBottom: "8px",
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                  }}
-                >
-                  How It Works
-                </p>
-                <h2
-                  style={{
-                    fontSize: "1.45rem",
-                    fontWeight: 800,
-                    letterSpacing: "-0.02em",
-                    color: "#FFFFFF",
-                    lineHeight: 1.2,
-                    fontFamily: "var(--font-syne), sans-serif",
-                  }}
-                >
-                  3 Systems. Complete Growth.
-                </h2>
-              </div>
-
-              {/* System pillars */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-                {systemPillars.map((pillar, i) => (
-                  <div
-                    key={pillar.label}
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "14px",
-                      padding: "16px 0",
-                      borderBottom:
-                        i < systemPillars.length - 1
-                          ? "1px solid var(--navy-border)"
-                          : "none",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "38px",
-                        height: "38px",
-                        borderRadius: "10px",
-                        background: "rgba(245,197,24,0.08)",
-                        border: "1px solid rgba(245,197,24,0.2)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#F5C518",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <pillar.Icon size={17} />
-                    </div>
-                    <div>
-                      <p
-                        style={{
-                          fontSize: "0.9rem",
-                          fontWeight: 700,
-                          color: "#FFFFFF",
-                          marginBottom: "3px",
-                          fontFamily: "var(--font-syne), sans-serif",
-                        }}
-                      >
-                        {pillar.label}
-                      </p>
-                      <p
-                        style={{
-                          fontSize: "0.8rem",
-                          color: "rgba(255,255,255,0.5)",
-                          margin: 0,
-                          lineHeight: 1.5,
-                          fontFamily: "var(--font-dm-sans), sans-serif",
-                        }}
-                      >
-                        {pillar.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Card CTA */}
-              <div style={{ marginTop: "28px" }}>
-                <button
-                  onClick={() => scrollTo("contact")}
-                  className="btn-primary"
-                  style={{ width: "100%", justifyContent: "center" }}
-                >
-                  Get More Customers
-                  <ArrowRight size={16} />
-                </button>
-                <p
-                  style={{
-                    fontSize: "0.72rem",
-                    color: "rgba(255,255,255,0.3)",
-                    textAlign: "center",
-                    marginTop: "10px",
-                    marginBottom: 0,
-                    fontFamily: "var(--font-dm-sans), sans-serif",
-                  }}
-                >
-                  Free session first. No commitment.
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       <style>{`
-        @media (max-width: 960px) {
-          .hero-section { padding-left: 32px !important; padding-right: 32px !important; }
-          .hero-inner { grid-template-columns: 1fr !important; gap: 3rem !important; }
-        }
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           .hero-section {
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-            padding-top: calc(var(--announcement-bar-height) + 100px) !important;
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+            padding-top: 100px !important;
           }
         }
       `}</style>

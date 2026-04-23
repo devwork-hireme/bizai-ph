@@ -1,18 +1,18 @@
 "use client";
 
 const companyLinks = [
-  { label: "How It Works", href: "#process" },
-  { label: "Our Offers", href: "#pricing" },
-  { label: "Why Us", href: "#why-us" },
+  { label: "How It Works", href: "#systems" },
+  { label: "Our Systems", href: "#pricing" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
 ];
 
-const offerLinks = [
-  "Get Found — ₱3,999",
-  "Starter — ₱7,999 + ₱2,999/mo",
-  "Growth — ₱14,999 + ₱7,999/mo",
-  "Scale — Coming Soon",
+const systemLinks = [
+  { label: "Get Found — ₱3,999", href: "#pricing" },
+  { label: "Get Customers — ₱7,999 + ₱2,999/mo", href: "#pricing" },
+  { label: "Get Sales — ₱14,999 + ₱7,999/mo", href: "#pricing" },
+  { label: "Get Automated — Coming Soon", href: "#pricing" },
+  { label: "Free Logo — /free-logo", href: "/free-logo", isGold: true, external: false },
 ];
 
 const weHelpLinks = [
@@ -20,13 +20,14 @@ const weHelpLinks = [
   "Restaurants & Food",
   "Repair Shops",
   "Clinics & Medical",
-  "Catering Services",
   "Retail Stores",
+  "Online Sellers",
 ];
 
 function scrollTo(href: string) {
-  const el = document.querySelector(href);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
+  if (href.startsWith("/")) return;
+  const id = href.replace("#", "");
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
 export default function Footer() {
@@ -36,26 +37,25 @@ export default function Footer() {
     <footer
       className="footer-outer"
       style={{
-        background: "#060E1C",
-        borderTop: "1px solid rgba(26,58,107,0.6)",
+        background: "#060606",
+        borderTop: "1px solid rgba(232,184,75,0.1)",
         padding: "80px 64px 40px",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Subtle grid */}
+      {/* Radial glow */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(26,58,107,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(26,58,107,0.2) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+          bottom: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "800px",
+          height: "300px",
+          background: "radial-gradient(ellipse, rgba(232,184,75,0.04) 0%, transparent 70%)",
           pointerEvents: "none",
-          zIndex: 0,
         }}
       />
 
@@ -67,12 +67,12 @@ export default function Footer() {
           zIndex: 1,
         }}
       >
-        {/* Columns */}
+        {/* Grid */}
         <div
           className="footer-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1.5fr 1fr 1fr 1fr",
+            gridTemplateColumns: "1.6fr 1fr 1.4fr 1fr",
             gap: "3rem",
             marginBottom: "4rem",
           }}
@@ -83,32 +83,42 @@ export default function Footer() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "0.6rem",
-                marginBottom: "1rem",
+                gap: "10px",
+                marginBottom: "12px",
               }}
             >
               <div
                 style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "8px",
-                  background: "#F5C518",
+                  width: "30px",
+                  height: "30px",
+                  borderRadius: "7px",
+                  background: "#e8b84b",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  flexShrink: 0,
                 }}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A1628" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#0a0a0a"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                 </svg>
               </div>
               <span
                 style={{
+                  fontFamily: "var(--font-syne), sans-serif",
                   fontWeight: 800,
                   fontSize: "1.05rem",
-                  color: "#FFFFFF",
+                  color: "#ffffff",
                   letterSpacing: "-0.02em",
-                  fontFamily: "var(--font-syne), sans-serif",
                 }}
               >
                 BizAI PH
@@ -117,36 +127,36 @@ export default function Footer() {
 
             <p
               style={{
-                fontSize: "0.72rem",
+                fontSize: "0.7rem",
                 fontWeight: 700,
-                letterSpacing: "0.1em",
+                letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "#F5C518",
-                marginBottom: "0.75rem",
+                color: "#e8b84b",
+                marginBottom: "12px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              More Customers. Less Work. Guaranteed.
+              We Don&apos;t Do Marketing. We Build Revenue Machines.
             </p>
 
             <p
               style={{
-                fontSize: "0.875rem",
+                fontSize: "0.85rem",
                 color: "rgba(255,255,255,0.35)",
                 lineHeight: 1.75,
-                marginBottom: "1.5rem",
-                maxWidth: "260px",
+                marginBottom: "20px",
+                maxWidth: "280px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              We build the complete system that gets your business found,
-              turns inquiries into customers, and grows your revenue
-              automatically.
+              We build AI systems that turn Philippine businesses into automated
+              revenue machines.
             </p>
+
             <p
               style={{
                 fontSize: "0.8rem",
-                color: "rgba(255,255,255,0.25)",
+                color: "rgba(255,255,255,0.22)",
                 fontFamily: "var(--font-dm-sans), sans-serif",
                 lineHeight: 1.75,
               }}
@@ -161,23 +171,26 @@ export default function Footer() {
           <div>
             <p
               style={{
-                fontSize: "0.7rem",
+                fontSize: "0.68rem",
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.12em",
-                color: "#F5C518",
-                marginBottom: "1.25rem",
+                color: "#e8b84b",
+                marginBottom: "20px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
               Company
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-              {companyLinks.map((link) => (
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              {companyLinks.map((l) => (
                 <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                  key={l.label}
+                  href={l.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(l.href);
+                  }}
                   style={{
                     fontSize: "0.875rem",
                     color: "rgba(255,255,255,0.35)",
@@ -185,42 +198,68 @@ export default function Footer() {
                     transition: "color 0.2s ease",
                     fontFamily: "var(--font-dm-sans), sans-serif",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "rgba(255,255,255,0.8)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "rgba(255,255,255,0.35)")
+                  }
                 >
-                  {link.label}
+                  {l.label}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Our Offers */}
+          {/* Our Systems */}
           <div>
             <p
               style={{
-                fontSize: "0.7rem",
+                fontSize: "0.68rem",
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.12em",
-                color: "#F5C518",
-                marginBottom: "1.25rem",
+                color: "#e8b84b",
+                marginBottom: "20px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Our Offers
+              Our Systems
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
-              {offerLinks.map((s) => (
-                <span
-                  key={s}
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              {systemLinks.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={
+                    l.href.startsWith("#")
+                      ? (e) => {
+                          e.preventDefault();
+                          scrollTo(l.href);
+                        }
+                      : undefined
+                  }
                   style={{
                     fontSize: "0.875rem",
-                    color: "rgba(255,255,255,0.35)",
+                    color: l.isGold ? "#e8b84b" : "rgba(255,255,255,0.35)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
                     fontFamily: "var(--font-dm-sans), sans-serif",
+                    fontWeight: l.isGold ? 600 : 400,
                   }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = l.isGold
+                      ? "#ffd970"
+                      : "rgba(255,255,255,0.8)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = l.isGold
+                      ? "#e8b84b"
+                      : "rgba(255,255,255,0.35)")
+                  }
                 >
-                  {s}
-                </span>
+                  {l.label}
+                </a>
               ))}
             </div>
           </div>
@@ -229,18 +268,18 @@ export default function Footer() {
           <div>
             <p
               style={{
-                fontSize: "0.7rem",
+                fontSize: "0.68rem",
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.12em",
-                color: "#F5C518",
-                marginBottom: "1.25rem",
+                color: "#e8b84b",
+                marginBottom: "20px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
               We Help
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {weHelpLinks.map((ind) => (
                 <span
                   key={ind}
@@ -264,7 +303,7 @@ export default function Footer() {
             justifyContent: "space-between",
             alignItems: "center",
             paddingTop: "2rem",
-            borderTop: "1px solid rgba(26,58,107,0.4)",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
             flexWrap: "wrap",
             gap: "1rem",
           }}
@@ -287,7 +326,7 @@ export default function Footer() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            We build systems. You grow.
+            We build revenue machines. You grow.
           </p>
         </div>
       </div>

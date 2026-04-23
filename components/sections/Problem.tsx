@@ -1,36 +1,34 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, Variants } from "framer-motion";
-import { useInView } from "framer-motion";
-import { Search, MessageCircle, TrendingDown } from "lucide-react";
+import { motion, Variants, useInView } from "framer-motion";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28 },
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] },
+    transition: { duration: 0.65, delay, ease: "easeOut" },
   }),
 };
 
 const problems = [
   {
-    Icon: Search,
-    title: "They Search. Your Competitor Shows Up. You Don't.",
-    body: "Right now someone in your city is searching for exactly what you sell. Your competitor has a website and a Google listing. You don't. They get the customer. You get nothing. This happens every single day you stay invisible.",
+    num: "01",
+    h3: "Right now someone searched for your business. They found your competitor.",
+    body: "Your competitor has a website and Google listing. You don't. They get the customer. You get nothing. This happens every single day you're invisible.",
     stat: "97% of customers search online before buying",
   },
   {
-    Icon: MessageCircle,
-    title: "They Message at 10PM. You Reply at 9AM. They Already Bought.",
-    body: "A customer messages you excited about your service. You see it the next morning. By then, the competitor who replied at 10:05PM already has their payment. That sale is gone forever — and you never even knew it existed.",
+    num: "02",
+    h3: "A customer messaged you last night. They bought from your competitor this morning.",
+    body: "You saw it this morning. By then your competitor — who replied at 10:05PM — already has their payment. That revenue is gone forever.",
     stat: "67% of customers buy from whoever replies first",
   },
   {
-    Icon: TrendingDown,
-    title: "Interested People Disappear. You Never Follow Up. Revenue Lost.",
-    body: "Someone asks about your price on Monday. You're busy. You mean to follow up. Life happens. By Friday they've paid someone else. This isn't laziness — you're running a business. But every missed follow-up is money you'll never recover.",
+    num: "03",
+    h3: "You meant to follow up. You forgot. That revenue is gone forever.",
+    body: "Someone asked about your price on Monday. Life happened. By Friday they paid someone else. Every missed follow-up is revenue you will never recover.",
     stat: "80% of sales need 5 follow-ups to close",
   },
 ];
@@ -44,10 +42,11 @@ export default function Problem() {
       id="problem"
       className="problem-section"
       style={{
-        background: "var(--off-white)",
+        background: "#111111",
         padding: "130px 64px",
         position: "relative",
         overflow: "hidden",
+        borderTop: "1px solid rgba(255,255,255,0.04)",
       }}
     >
       <div
@@ -64,152 +63,123 @@ export default function Problem() {
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
-          style={{
-            textAlign: "center",
-            maxWidth: "700px",
-            margin: "0 auto 64px",
-          }}
+          style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 64px" }}
         >
-          <p
-            className="section-label"
-            style={{ color: "var(--navy)" }}
-          >
-            Why This Is Happening
-          </p>
+          <p className="section-label">Why Revenue Is Being Lost</p>
           <h2
             style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
+              fontSize: "clamp(2rem, 5vw, 3rem)",
               fontWeight: 800,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
               lineHeight: 1.1,
-              color: "var(--navy)",
-              marginBottom: "20px",
+              color: "#ffffff",
+              marginBottom: "0",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
-            You&apos;re Losing Customers{" "}
-            <span style={{ color: "#C9940A" }}>Every Day You&apos;re Offline.</span>
+            Every Day Without a Revenue Machine Is a Day Your Competitor Wins.
           </h2>
-          <p
-            style={{
-              fontSize: "1rem",
-              color: "var(--gray)",
-              lineHeight: 1.78,
-              fontWeight: 400,
-              fontFamily: "var(--font-dm-sans), sans-serif",
-            }}
-          >
-            Not because your business isn&apos;t good enough. Because these three
-            problems are happening right now — and nobody is fixing them.
-          </p>
         </motion.div>
 
-        {/* Cards grid */}
+        {/* Cards */}
         <div
           className="problem-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.5rem",
+            gap: "1px",
+            background: "rgba(255,255,255,0.04)",
+            borderRadius: "16px",
+            overflow: "hidden",
           }}
         >
           {problems.map((p, i) => (
             <motion.div
-              key={p.title}
+              key={p.num}
               variants={fadeUp}
               initial="hidden"
               animate={headInView ? "visible" : "hidden"}
               custom={0.1 * i}
+              className={`problem-card problem-card-${i}`}
               style={{
-                background: "#FFFFFF",
-                border: "1px solid var(--gray-light)",
-                borderRadius: "14px",
-                padding: "40px 32px",
+                background: "#111111",
+                padding: "48px 36px",
                 position: "relative",
-                overflow: "hidden",
-                transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+                transition: "background 0.25s ease",
+                cursor: "default",
               }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "#EF4444";
-                el.style.transform = "translateY(-4px)";
-                el.style.boxShadow = "0 12px 40px rgba(10,22,40,0.08)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "var(--gray-light)";
-                el.style.transform = "translateY(0)";
-                el.style.boxShadow = "none";
+              onHoverStart={(e) => {
+                (e.target as HTMLElement).closest(".problem-card" + i)
               }}
             >
-              {/* Red top accent line */}
+              {/* Gold underline on hover */}
+              <div
+                className={`card-underline-${i}`}
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "2px",
+                  background: "linear-gradient(90deg, #e8b84b, transparent)",
+                  transform: "scaleX(0)",
+                  transformOrigin: "left",
+                  transition: "transform 0.35s ease",
+                }}
+              />
+
+              {/* Decorative number */}
               <div
                 aria-hidden="true"
                 style={{
                   position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: "3px",
-                  background: "linear-gradient(90deg, #EF4444, transparent)",
-                  borderRadius: "14px 14px 0 0",
-                }}
-              />
-
-              {/* Icon */}
-              <div
-                style={{
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "12px",
-                  background: "rgba(239,68,68,0.08)",
-                  border: "1px solid rgba(239,68,68,0.2)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#EF4444",
-                  marginBottom: "24px",
-                  flexShrink: 0,
+                  top: "24px",
+                  right: "28px",
+                  fontFamily: "var(--font-syne), sans-serif",
+                  fontSize: "52px",
+                  fontWeight: 800,
+                  color: "rgba(232,184,75,0.06)",
+                  lineHeight: 1,
+                  userSelect: "none",
                 }}
               >
-                <p.Icon size={22} />
+                {p.num}
               </div>
 
               <h3
                 style={{
                   fontSize: "1.05rem",
                   fontWeight: 700,
-                  letterSpacing: "-0.01em",
-                  color: "var(--navy)",
-                  marginBottom: "12px",
-                  lineHeight: 1.3,
+                  color: "#ffffff",
+                  lineHeight: 1.4,
+                  marginBottom: "16px",
                   fontFamily: "var(--font-syne), sans-serif",
+                  paddingRight: "40px",
                 }}
               >
-                {p.title}
+                {p.h3}
               </h3>
+
               <p
                 style={{
                   fontSize: "0.9rem",
-                  color: "var(--gray)",
-                  lineHeight: 1.78,
-                  fontWeight: 400,
+                  color: "rgba(255,255,255,0.5)",
+                  lineHeight: 1.75,
+                  marginBottom: "28px",
                   fontFamily: "var(--font-dm-sans), sans-serif",
-                  marginBottom: 0,
                 }}
               >
                 {p.body}
               </p>
 
-              {/* Stat at bottom */}
+              {/* Stat */}
               <div
                 style={{
-                  marginTop: "24px",
                   paddingTop: "20px",
-                  borderTop: "1px solid var(--gray-light)",
+                  borderTop: "1px solid rgba(255,255,255,0.06)",
                   fontSize: "0.78rem",
                   fontWeight: 700,
-                  color: "#EF4444",
+                  color: "#e8b84b",
                   letterSpacing: "0.03em",
                   fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
@@ -222,11 +192,16 @@ export default function Problem() {
       </div>
 
       <style>{`
+        .problem-card:hover {
+          background: #161616 !important;
+        }
+        .problem-card:hover .card-underline-0,
+        .problem-card:hover .card-underline-1,
+        .problem-card:hover .card-underline-2 {
+          transform: scaleX(1) !important;
+        }
         @media (max-width: 900px) {
           .problem-section { padding: 80px 24px !important; }
-          .problem-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 600px) {
           .problem-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
