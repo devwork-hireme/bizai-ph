@@ -143,26 +143,7 @@ export default async function PostPage({
             {/* Back link */}
             <a
               href="/blog"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                fontSize: "0.82rem",
-                fontWeight: 600,
-                color: "rgba(255,255,255,0.35)",
-                textDecoration: "none",
-                fontFamily: "var(--font-dm-sans), sans-serif",
-                marginBottom: "36px",
-                transition: "color 0.2s ease",
-                letterSpacing: "0.02em",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.color = "var(--gold)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.color =
-                  "rgba(255,255,255,0.35)")
-              }
+              className="blog-back-link"
             >
               ← Back to blog
             </a>
@@ -298,6 +279,20 @@ export default async function PostPage({
       <Footer />
 
       <style>{`
+        .blog-back-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: rgba(255,255,255,0.35);
+          text-decoration: none;
+          font-family: var(--font-dm-sans), sans-serif;
+          margin-bottom: 36px;
+          transition: color 0.2s ease;
+          letter-spacing: 0.02em;
+        }
+        .blog-back-link:hover { color: var(--gold); }
         .blog-prose {
           font-family: var(--font-dm-sans), sans-serif;
           font-size: 1.05rem;

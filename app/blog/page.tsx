@@ -246,24 +246,11 @@ function BlogCard({ post }: { post: PostNode }) {
   return (
     <a
       href={`/blog/${post.slug}`}
-      style={{ textDecoration: "none", color: "inherit", display: "block" }}
+      className="blog-card-link"
     >
       <article
-        className="card-premium"
+        className="card-premium blog-card-article"
         style={{ height: "100%", display: "flex", flexDirection: "column" }}
-        onMouseEnter={(e) => {
-          const el = e.currentTarget as HTMLElement;
-          el.style.borderColor = "rgba(232,184,75,0.3)";
-          el.style.transform = "translateY(-4px)";
-          el.style.boxShadow =
-            "0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(232,184,75,0.1)";
-        }}
-        onMouseLeave={(e) => {
-          const el = e.currentTarget as HTMLElement;
-          el.style.borderColor = "rgba(255,255,255,0.06)";
-          el.style.transform = "translateY(0)";
-          el.style.boxShadow = "none";
-        }}
       >
         {post.coverImage && (
           <div
@@ -351,6 +338,21 @@ function BlogCard({ post }: { post: PostNode }) {
           </span>
         </div>
       </article>
+      <style>{`
+        .blog-card-link {
+          text-decoration: none;
+          color: inherit;
+          display: block;
+        }
+        .blog-card-article {
+          transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .blog-card-link:hover .blog-card-article {
+          border-color: rgba(232,184,75,0.3) !important;
+          transform: translateY(-4px);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(232,184,75,0.1);
+        }
+      `}</style>
     </a>
   );
 }
