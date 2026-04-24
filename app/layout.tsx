@@ -67,6 +67,82 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-PH" className={`${syne.variable} ${dmSans.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "BizAI PH",
+              "description": "AI-powered revenue machines for Philippine businesses. One system that finds customers, answers every inquiry, and grows your revenue automatically.",
+              "url": "https://bizaiph.com",
+              "telephone": "+639602104478",
+              "email": "hello@bizaiph.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Taguig City",
+                "addressRegion": "Metro Manila",
+                "addressCountry": "PH"
+              },
+              "areaServed": "Philippines",
+              "priceRange": "₱₱",
+              "sameAs": ["https://bizaiph.com"]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is the difference between Get Found and Get Customers?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Get Found puts your business on Google Maps and Search so customers can find you. Get Customers adds AI that replies to every inquiry in seconds, 24/7, and follows up automatically for 3 days so no lead ever goes cold."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How fast will I see results?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Your website and Google listing go live within 24 hours. Most clients see their first online inquiry within the first week."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What if it does not generate revenue?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "If your revenue machine does not deliver measurable results in 30 days, we rebuild the entire system at zero cost. No fine print. No conditions."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do I have to sign a long-term contract?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. All plans are month-to-month. Cancel anytime."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much does it cost?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Get Found starts at ₱3,999 one-time. Get Customers is ₱2,999 per month. Get Sales is ₱7,999 per month."
+                  }
+                }
+              ]
+            })
+          }}
+        />
+      </head>
       <body className="min-h-screen antialiased">
         <ScrollProgress />
         {children}
