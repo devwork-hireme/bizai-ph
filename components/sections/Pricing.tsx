@@ -184,7 +184,13 @@ function TierCard({ tier, inView, delay }: { tier: typeof tiers[0]; inView: bool
       animate={inView ? "visible" : "hidden"}
       custom={delay}
       style={{
-        background: tier.featured ? "rgba(232,184,75,0.03)" : tier.comingSoon ? "#0f0f0f" : "#181818",
+        background: tier.featured
+          ? "rgba(232,184,75,0.05)"
+          : tier.comingSoon
+          ? "rgba(15,15,15,0.85)"
+          : "rgba(24,24,24,0.85)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
         border: tier.featured
           ? "2px solid rgba(232,184,75,0.4)"
           : `1px solid rgba(255,255,255,${tier.comingSoon ? "0.04" : "0.07"})`,

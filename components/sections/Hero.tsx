@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import CountdownTimer from "@/components/ui/CountdownTimer";
 import NeuralGrid from "@/components/ui/NeuralGrid";
 import RevenueCounter from "@/components/ui/RevenueCounter";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 const container: Variants = {
   hidden: {},
@@ -300,20 +301,16 @@ export default function Hero() {
               marginBottom: "52px",
             }}
           >
-            <button
-              onClick={() => scrollTo("start")}
-              className="btn-primary"
-              style={{ fontSize: "1rem", padding: "14px 32px" }}
-            >
-              Start Free Session →
-            </button>
-            <button
-              onClick={() => scrollTo("pricing")}
-              className="btn-ghost"
-              style={{ fontSize: "1rem", padding: "14px 32px" }}
-            >
-              See Our Systems
-            </button>
+            <MagneticButton onClick={() => scrollTo("start")}>
+              <button className="btn-primary" style={{ fontSize: "1rem", padding: "14px 32px" }}>
+                Start Free Session →
+              </button>
+            </MagneticButton>
+            <MagneticButton onClick={() => scrollTo("pricing")}>
+              <button className="btn-ghost" style={{ fontSize: "1rem", padding: "14px 32px" }}>
+                See Our Systems
+              </button>
+            </MagneticButton>
           </motion.div>
 
           {/* Trust badges — 2×2 grid on mobile */}
