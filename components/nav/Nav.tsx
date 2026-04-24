@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
@@ -123,33 +124,55 @@ export default function Nav() {
             className="nav-links"
             style={{ display: "flex", alignItems: "center", gap: "36px" }}
           >
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={(e) => {
-                  if (!l.href.startsWith("#")) return;
-                  e.preventDefault();
-                  scrollTo(l.href);
-                }}
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: 500,
-                  color: "rgba(255,255,255,0.65)",
-                  textDecoration: "none",
-                  transition: "color 0.2s ease",
-                  fontFamily: "var(--font-dm-sans), sans-serif",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#ffffff")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(255,255,255,0.65)")
-                }
-              >
-                {l.label}
-              </a>
-            ))}
+            {links.map((l) =>
+              l.href.startsWith("/") ? (
+                <Link
+                  key={l.label}
+                  href={l.href}
+                  style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    color: "rgba(255,255,255,0.65)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#ffffff")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "rgba(255,255,255,0.65)")
+                  }
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(l.href);
+                  }}
+                  style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    color: "rgba(255,255,255,0.65)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#ffffff")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "rgba(255,255,255,0.65)")
+                  }
+                >
+                  {l.label}
+                </a>
+              )
+            )}
           </div>
 
           {/* Desktop CTA */}
@@ -300,6 +323,10 @@ export default function Nav() {
                   transition={{ delay: 0.05 * i, type: "spring", stiffness: 300, damping: 25 }}
                   href={l.href}
                   onClick={(e) => {
+                    if (!l.href.startsWith("#")) {
+                      setMenuOpen(false);
+                      return;
+                    }
                     e.preventDefault();
                     scrollTo(l.href);
                     setMenuOpen(false);
