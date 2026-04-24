@@ -7,6 +7,7 @@ const links = [
   { label: "Systems", href: "#systems" },
   { label: "Pricing", href: "#pricing" },
   { label: "Results", href: "#testimonials" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -127,6 +128,7 @@ export default function Nav() {
                 key={l.label}
                 href={l.href}
                 onClick={(e) => {
+                  if (!l.href.startsWith("#")) return;
                   e.preventDefault();
                   scrollTo(l.href);
                 }}
