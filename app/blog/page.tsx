@@ -1,3 +1,4 @@
+import Script from "next/script";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/layout/Footer";
 
@@ -196,6 +197,70 @@ export default async function BlogPage() {
             )}
           </div>
         </section>
+
+        {/* Newsletter */}
+        <hr className="section-divider" />
+        <section className="section-pad">
+          <div className="section-inner" style={{ textAlign: "center" }}>
+            <p className="section-label" style={{ justifyContent: "center" }}>
+              <span>✦</span> Free Weekly Newsletter
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-syne), sans-serif",
+                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+                color: "var(--white)",
+                marginBottom: "12px",
+              }}
+            >
+              Get the{" "}
+              <span className="gradient-text">Revenue Machine Weekly</span>
+            </h2>
+            <p
+              style={{
+                color: "rgba(255,255,255,0.45)",
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontSize: "1rem",
+                marginBottom: "40px",
+                maxWidth: "460px",
+                margin: "0 auto 40px",
+                lineHeight: 1.7,
+              }}
+            >
+              AI marketing tactics and growth strategies for Philippine
+              businesses. Free every week.
+            </p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <iframe
+                src="https://subscribe-forms.beehiiv.com/09ac9904-5b19-402d-b1b3-fce4de4b4c92"
+                data-test-id="beehiiv-embed"
+                frameBorder={0}
+                scrolling="no"
+                style={{
+                  width: "627px",
+                  height: "339px",
+                  margin: 0,
+                  borderRadius: "0px",
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  maxWidth: "100%",
+                }}
+              />
+            </div>
+          </div>
+        </section>
+        <Script
+          src="https://subscribe-forms.beehiiv.com/embed.js"
+          strategy="afterInteractive"
+        />
 
         {/* CTA */}
         {posts.length > 0 && (
