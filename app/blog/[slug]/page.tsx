@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Navbar from "@/components/layout/Navbar";
+import Nav from "@/components/nav/Nav";
 import Footer from "@/components/layout/Footer";
 
 interface Post {
@@ -77,7 +77,7 @@ export default async function PostPage({
 
   return (
     <>
-      <Navbar />
+      <Nav />
       <main style={{ background: "var(--black)", minHeight: "100vh" }}>
         {/* Top glow */}
         <div

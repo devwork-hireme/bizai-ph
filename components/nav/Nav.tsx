@@ -12,7 +12,21 @@ const links = [
 
 function scrollTo(href: string) {
   const id = href.replace("#", "");
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.location.href = `/${href}`;
+  }
+}
+
+function scrollToStart() {
+  const el = document.getElementById("start");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.location.href = "/#start";
+  }
 }
 
 export default function Nav() {
@@ -140,9 +154,7 @@ export default function Nav() {
           <button
             className="nav-cta"
             onClick={() =>
-              document
-                .getElementById("start")
-                ?.scrollIntoView({ behavior: "smooth" })
+              scrollToStart()
             }
             style={{
               padding: "10px 22px",

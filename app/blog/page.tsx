@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/Navbar";
+import Nav from "@/components/nav/Nav";
 import Footer from "@/components/layout/Footer";
 
 interface PostNode {
@@ -61,7 +61,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Navbar />
+      <Nav />
       <main style={{ background: "var(--black)", minHeight: "100vh" }}>
         {/* Hero */}
         <section
