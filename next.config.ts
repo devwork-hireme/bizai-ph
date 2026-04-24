@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: "/blog",
+        destination: "https://bizaiph.hashnode.dev",
+      },
+      {
+        source: "/blog/:path*",
+        destination: "https://bizaiph.hashnode.dev/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
