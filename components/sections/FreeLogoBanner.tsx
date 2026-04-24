@@ -47,34 +47,33 @@ export default function FreeLogoBanner() {
             <span
               style={{
                 display: "inline-block",
-                fontSize: "0.65rem",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
+                fontSize: "0.6875rem",
+                fontWeight: 500,
+                letterSpacing: "2px",
                 textTransform: "uppercase",
                 color: "#e8b84b",
-                marginBottom: "12px",
-                padding: "4px 12px",
+                marginBottom: "14px",
+                padding: "5px 14px",
                 background: "rgba(232,184,75,0.08)",
-                border: "1px solid rgba(232,184,75,0.2)",
-                borderRadius: "100px",
+                border: "1px solid rgba(232,184,75,0.3)",
+                borderRadius: "40px",
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Free Gift
+              Professional Logo — Free
             </span>
             <h2
               style={{
                 fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.03em",
+                fontWeight: 700,
+                letterSpacing: "-0.02em",
                 lineHeight: 1.15,
                 color: "#ffffff",
                 marginBottom: "12px",
                 fontFamily: "var(--font-syne), sans-serif",
               }}
             >
-              Get a Professional Logo for Your Business.{" "}
-              <span style={{ color: "#e8b84b" }}>Free.</span>
+              Your Business Deserves a Professional Logo.
             </h2>
             <p
               style={{
@@ -86,8 +85,8 @@ export default function FreeLogoBanner() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              Tell us about your negosyo — we design your logo and deliver it
-              to your WhatsApp within 24 hours. No payment. No catch.
+              We design it for you and deliver to your WhatsApp in 24 hours.
+              No payment. No catch. No obligation.
             </p>
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
               {[

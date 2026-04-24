@@ -174,6 +174,7 @@ export default function Problem() {
 
               {/* Stat */}
               <div
+                className="problem-stat"
                 style={{
                   paddingTop: "20px",
                   borderTop: "1px solid rgba(255,255,255,0.06)",
@@ -202,7 +203,25 @@ export default function Problem() {
         }
         @media (max-width: 900px) {
           .problem-section { padding: 80px 24px !important; }
-          .problem-grid { grid-template-columns: 1fr !important; }
+          .problem-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+            background: transparent !important;
+            border-radius: 0 !important;
+          }
+          .problem-card {
+            border: 1px solid rgba(255,255,255,0.06) !important;
+            border-radius: 12px !important;
+            border-left: 3px solid rgba(232,184,75,0.35) !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .problem-stat {
+            border-top: none !important;
+            padding-top: 0 !important;
+            border-left: 2px solid rgba(232,184,75,0.4) !important;
+            padding-left: 12px !important;
+          }
         }
       `}</style>
     </section>

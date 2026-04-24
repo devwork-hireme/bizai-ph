@@ -217,7 +217,7 @@ export default function Proof() {
                   marginBottom: "16px",
                 }}
               >
-                <div style={{ display: "flex", alignItems: "stretch", gap: "0" }}>
+                <div className="testi-ba-row" style={{ display: "flex", alignItems: "stretch", gap: "0" }}>
                   {/* Before */}
                   <div style={{ flex: 1, paddingRight: "14px" }}>
                     <p
@@ -234,6 +234,7 @@ export default function Proof() {
                       Before
                     </p>
                     <p
+                      className="testi-amount"
                       style={{
                         fontSize: "1.1rem",
                         fontWeight: 800,
@@ -261,6 +262,7 @@ export default function Proof() {
 
                   {/* Divider */}
                   <div
+                    className="testi-vs-divider"
                     style={{
                       width: "1px",
                       background: "rgba(255,255,255,0.06)",
@@ -308,6 +310,7 @@ export default function Proof() {
                       After
                     </p>
                     <p
+                      className="testi-amount"
                       style={{
                         fontSize: "1.1rem",
                         fontWeight: 800,
@@ -341,6 +344,7 @@ export default function Proof() {
                   }}
                 >
                   <span
+                    className="testi-savings-pill"
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -362,6 +366,7 @@ export default function Proof() {
 
               {/* Quote */}
               <p
+                className="testi-quote-text"
                 style={{
                   fontSize: "0.88rem",
                   color: "rgba(255,255,255,0.6)",
@@ -426,6 +431,28 @@ export default function Proof() {
         @media (max-width: 900px) {
           .proof-section { padding: 80px 24px !important; }
           .proof-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          .testi-ba-row {
+            flex-direction: column !important;
+            gap: 12px !important;
+          }
+          .testi-ba-row > div {
+            flex: unset !important;
+            width: 100% !important;
+            padding: 12px !important;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+          }
+          .testi-ba-row > div:first-child { padding-right: 12px !important; }
+          .testi-ba-row > div:last-child { padding-left: 12px !important; }
+          .testi-amount { font-size: clamp(18px, 5vw, 24px) !important; }
+          .testi-savings-pill {
+            width: 100% !important;
+            justify-content: center !important;
+            font-size: 13px !important;
+          }
+          .testi-quote-text { font-size: 14px !important; line-height: 1.7 !important; }
         }
       `}</style>
     </section>

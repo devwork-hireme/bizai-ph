@@ -217,15 +217,42 @@ export default function Nav() {
             right: 0,
             bottom: 0,
             background: "rgba(10,10,10,0.98)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
             zIndex: 999,
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "2rem",
+            paddingTop: "80px",
+            paddingLeft: "32px",
+            paddingRight: "32px",
+            paddingBottom: "32px",
           }}
-          onClick={() => setMenuOpen(false)}
         >
+          {/* Close button */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+            style={{
+              position: "absolute",
+              top: "18px",
+              right: "20px",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: "8px",
+              width: "40px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              color: "#ffffff",
+              fontSize: "1.1rem",
+              lineHeight: 1,
+            }}
+          >
+            ✕
+          </button>
+
           {links.map((l) => (
             <a
               key={l.label}
@@ -236,11 +263,16 @@ export default function Nav() {
                 setMenuOpen(false);
               }}
               style={{
-                fontSize: "1.5rem",
+                fontSize: "1.4rem",
                 fontWeight: 700,
                 color: "#ffffff",
                 textDecoration: "none",
                 fontFamily: "var(--font-syne), sans-serif",
+                height: "64px",
+                display: "flex",
+                alignItems: "center",
+                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                letterSpacing: "-0.02em",
               }}
             >
               {l.label}
@@ -248,14 +280,12 @@ export default function Nav() {
           ))}
           <button
             onClick={() => {
-              document
-                .getElementById("start")
-                ?.scrollIntoView({ behavior: "smooth" });
+              document.getElementById("start")?.scrollIntoView({ behavior: "smooth" });
               setMenuOpen(false);
             }}
             style={{
-              marginTop: "1rem",
-              padding: "14px 36px",
+              marginTop: "2rem",
+              padding: "16px 36px",
               background: "#e8b84b",
               color: "#0a0a0a",
               fontFamily: "var(--font-dm-sans), sans-serif",
@@ -264,9 +294,10 @@ export default function Nav() {
               border: "none",
               borderRadius: "8px",
               cursor: "pointer",
+              width: "100%",
             }}
           >
-            Start Free Session
+            Start Free Session →
           </button>
         </div>
       )}

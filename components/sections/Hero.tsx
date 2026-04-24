@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import CountdownTimer from "@/components/ui/CountdownTimer";
 
 const container: Variants = {
   hidden: {},
@@ -167,13 +168,14 @@ export default function Hero() {
           {/* H1 */}
           <motion.h1
             variants={item}
+            className="hero-h1"
             style={{
-              fontSize: "clamp(36px, 7vw, 80px)",
-              fontWeight: 800,
-              letterSpacing: "-0.04em",
-              lineHeight: 1.05,
+              fontSize: "clamp(40px, 6.5vw, 76px)",
+              fontWeight: 700,
+              letterSpacing: "-0.035em",
+              lineHeight: 0.96,
               color: "#ffffff",
-              marginBottom: "24px",
+              marginBottom: "28px",
               fontFamily: "var(--font-syne), sans-serif",
             }}
           >
@@ -227,14 +229,16 @@ export default function Hero() {
             </button>
           </motion.div>
 
-          {/* Trust badges */}
+          {/* Trust badges — 2×2 grid on mobile */}
           <motion.div
             variants={item}
+            className="hero-trust-grid"
             style={{
               display: "flex",
-              gap: "28px",
+              gap: "20px 28px",
               justifyContent: "center",
               flexWrap: "wrap",
+              marginBottom: "40px",
             }}
           >
             {trustBadges.map((badge) => (
@@ -255,6 +259,11 @@ export default function Hero() {
               </div>
             ))}
           </motion.div>
+
+          {/* Countdown timer */}
+          <motion.div variants={item} style={{ display: "flex", justifyContent: "center" }}>
+            <CountdownTimer size="md" />
+          </motion.div>
         </motion.div>
       </div>
 
@@ -265,6 +274,21 @@ export default function Hero() {
             padding-right: 24px !important;
             padding-top: 100px !important;
           }
+          .hero-h1 {
+            font-size: clamp(36px, 8vw, 48px) !important;
+            line-height: 1.05 !important;
+          }
+          .hero-trust-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 12px !important;
+            justify-items: start !important;
+            max-width: 280px !important;
+            margin: 0 auto 40px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-section svg[aria-hidden] { display: none; }
         }
       `}</style>
     </section>

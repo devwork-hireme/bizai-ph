@@ -82,11 +82,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  font-feature-settings: 'ss01' on, 'cv11' on;
 }
 
 body {
@@ -101,7 +104,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Syne", sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
 }
 
@@ -182,6 +185,13 @@ body::before {
   background-clip: text;
 }
 
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,184,75,0.15), transparent);
+  border: none;
+  margin: 0;
+}
+
 /* ============================================================
    BUTTONS
    ============================================================ */
@@ -204,7 +214,7 @@ body::before {
   box-shadow: 0 4px 16px rgba(0,0,0,0.3), 0 8px 30px rgba(232,184,75,0.35);
 }
 .btn-primary:hover {
-  background: var(--gold-3);
+  background: linear-gradient(135deg, #e8b84b, #ffd970);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 12px 40px rgba(232,184,75,0.5);
 }
@@ -329,4 +339,15 @@ body::before {
 @keyframes cursor-ring {
   0% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
   100% { transform: translate(-50%,-50%) scale(2); opacity: 0; }
+}
+
+/* ============================================================
+   MOBILE OVERRIDES
+   ============================================================ */
+@media (max-width: 480px) {
+  body::before { display: none; }
+}
+
+@media (max-width: 768px) {
+  .testi-vs-divider { display: none !important; }
 }

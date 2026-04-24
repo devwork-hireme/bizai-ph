@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.bizaiph.com"),
   title: "BizAI PH — We Don't Do Marketing. We Build Revenue Machines.",
   icons: {
-    icon: "/icon.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
   description:
     "We build AI systems that turn Philippine businesses into automated revenue machines. Starting ₱3,999. Results guaranteed in 30 days.",

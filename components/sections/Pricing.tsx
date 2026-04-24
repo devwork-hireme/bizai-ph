@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, Variants, useInView, AnimatePresence } from "framer-motion";
+import CountdownTimer from "@/components/ui/CountdownTimer";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -194,7 +195,7 @@ function TierCard({ tier, inView, delay }: { tier: typeof tiers[0]; inView: bool
         flexDirection: "column",
         opacity: tier.comingSoon ? 0.7 : 1,
         boxShadow: tier.featured
-          ? "0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(232,184,75,0.08)"
+          ? "0 24px 60px rgba(0,0,0,0.5), 0 0 60px rgba(232,184,75,0.18), 0 0 120px rgba(232,184,75,0.08)"
           : "none",
       }}
     >
@@ -520,26 +521,23 @@ export default function Pricing() {
           </h2>
         </motion.div>
 
-        {/* Promo banner */}
+        {/* Countdown timer */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate={headInView ? "visible" : "hidden"}
           custom={0.1}
           style={{
-            background: "linear-gradient(135deg, rgba(232,184,75,0.1) 0%, rgba(255,217,112,0.06) 100%)",
-            border: "1px solid rgba(232,184,75,0.3)",
-            borderRadius: "12px",
-            padding: "14px 24px",
+            display: "flex",
+            justifyContent: "center",
             marginBottom: "36px",
-            textAlign: "center",
-            fontSize: "0.9rem",
-            fontWeight: 700,
-            color: "#e8b84b",
-            fontFamily: "var(--font-syne), sans-serif",
+            padding: "20px 24px",
+            background: "linear-gradient(135deg, rgba(232,184,75,0.06) 0%, rgba(255,217,112,0.03) 100%)",
+            border: "1px solid rgba(232,184,75,0.2)",
+            borderRadius: "12px",
           }}
         >
-          🔥 Launch Promo — 50% Off All Systems · April and May 2026 Only · Limited Slots
+          <CountdownTimer size="sm" />
         </motion.div>
 
         {/* Pricing grid */}
