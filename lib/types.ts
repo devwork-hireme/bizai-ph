@@ -50,3 +50,18 @@ export interface Recommendation {
   price: string;
   reason: string;
 }
+
+export interface SystemCardProps {
+  number: string;
+  badge: string;
+  badgeVariant: "start" | "unlock" | "complete";
+  problem: string;
+  headline: string;
+  description: string;
+  features: string[];
+  result: string;
+  resultStat: string;
+  ctaText: string;
+  ctaTier: string;
+  isComingSoon?: boolean;
+}

@@ -1,35 +1,34 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, Variants, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, delay, ease: "easeOut" },
-  }),
-};
+import AnimatedStat from "@/components/ui/AnimatedStat";
 
 const problems = [
   {
     num: "01",
     h3: "Right now someone searched for your business. They found your competitor.",
     body: "Your competitor has a website and Google listing. You don't. They get the customer. You get nothing. This happens every single day you're invisible.",
-    stat: "97% of customers search online before buying",
+    statVal: 97,
+    statSuffix: "%",
+    statText: "of customers search online before buying",
   },
   {
     num: "02",
     h3: "A customer messaged you last night. They bought from your competitor this morning.",
     body: "You saw it this morning. By then your competitor — who replied at 10:05PM — already has their payment. That revenue is gone forever.",
-    stat: "67% of customers buy from whoever replies first",
+    statVal: 67,
+    statSuffix: "%",
+    statText: "of customers buy from whoever replies first",
   },
   {
     num: "03",
     h3: "You meant to follow up. You forgot. That revenue is gone forever.",
     body: "Someone asked about your price on Monday. Life happened. By Friday they paid someone else. Every missed follow-up is revenue you will never recover.",
-    stat: "80% of sales need 5 follow-ups to close",
+    statVal: 80,
+    statSuffix: "%",
+    statText: "of sales need 5 follow-ups to close",
   },
 ];
 
@@ -60,9 +59,9 @@ export default function Problem() {
         {/* Header */}
         <motion.div
           ref={headRef}
-          variants={fadeUp}
-          initial="hidden"
-          animate={headInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 28 }}
+          animate={headInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+          transition={{ duration: 0.65, ease: "easeOut" }}
           style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 64px" }}
         >
           <p className="section-label">Why Revenue Is Being Lost</p>
@@ -96,10 +95,9 @@ export default function Problem() {
           {problems.map((p, i) => (
             <motion.div
               key={p.num}
-              variants={fadeUp}
-              initial="hidden"
-              animate={headInView ? "visible" : "hidden"}
-              custom={0.1 * i}
+              initial={{ opacity: 0, x: -24 }}
+              animate={headInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }}
+              transition={{ duration: 0.55, delay: 0.15 * i, ease: "easeOut" }}
               className={`problem-card problem-card-${i}`}
               style={{
                 background: "#111111",
@@ -178,14 +176,23 @@ export default function Problem() {
                 style={{
                   paddingTop: "20px",
                   borderTop: "1px solid rgba(255,255,255,0.06)",
-                  fontSize: "0.78rem",
-                  fontWeight: 700,
-                  color: "#e8b84b",
-                  letterSpacing: "0.03em",
-                  fontFamily: "var(--font-dm-sans), sans-serif",
                 }}
               >
-                {p.stat}
+                <div style={{ fontSize: "2rem", fontWeight: 800, lineHeight: 1.1, marginBottom: "4px" }}>
+                  <AnimatedStat value={p.statVal} suffix={p.statSuffix} />
+                </div>
+                <p
+                  style={{
+                    fontSize: "0.78rem",
+                    fontWeight: 500,
+                    color: "rgba(232,184,75,0.7)",
+                    letterSpacing: "0.03em",
+                    fontFamily: "var(--font-dm-sans), sans-serif",
+                    margin: 0,
+                  }}
+                >
+                  {p.statText}
+                </p>
               </div>
             </motion.div>
           ))}

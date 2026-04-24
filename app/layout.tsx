@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -66,7 +67,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-PH" className={`${syne.variable} ${dmSans.variable}`}>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <ScrollProgress />
+        {children}
+      </body>
     </html>
   );
 }

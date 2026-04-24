@@ -5,7 +5,7 @@ import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import Proof from "@/components/sections/Proof";
 import FreeLogoBanner from "@/components/sections/FreeLogoBanner";
-import Systems from "@/components/sections/Systems";
+import SystemsRoadmap from "@/components/sections/SystemsRoadmap";
 import Pricing from "@/components/sections/Pricing";
 import ChatForm from "@/components/sections/ChatForm";
 import FAQ from "@/components/sections/FAQ";
@@ -23,7 +23,7 @@ export default function Home() {
         <Problem />
         <Proof />
         <FreeLogoBanner />
-        <Systems />
+        <SystemsRoadmap />
         <Pricing />
         <ChatForm />
         <FAQ />

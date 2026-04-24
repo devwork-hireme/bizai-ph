@@ -146,15 +146,22 @@ export default function Proof() {
             gap: "20px",
           }}
         >
-          {testimonials.map((t, i) => (
+          {testimonials.map((t, i) => {
+            const directional = [
+              { opacity: 0, x: -40 },
+              { opacity: 0, y: 40 },
+              { opacity: 0, x: 40 },
+            ];
+            return (
             <motion.div
               key={t.name}
-              variants={fadeUp}
-              initial="hidden"
-              animate={headInView ? "visible" : "hidden"}
-              custom={0.1 * i}
+              initial={directional[i]}
+              animate={headInView ? { opacity: 1, x: 0, y: 0 } : directional[i]}
+              transition={{ duration: 0.6, delay: 0.1 * i, ease: "easeOut" }}
               style={{
-                background: "#181818",
+                background: "rgba(24,24,24,0.85)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
                 border: "1px solid rgba(255,255,255,0.06)",
                 borderRadius: "16px",
                 padding: "28px 24px",
@@ -423,7 +430,8 @@ export default function Proof() {
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

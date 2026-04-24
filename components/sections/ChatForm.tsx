@@ -7,7 +7,12 @@ import type { Recommendation } from "@/lib/types";
 
 const bubbleIn: Variants = {
   hidden: { opacity: 0, y: 8, scale: 0.97 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.3 } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 400, damping: 30 } },
+};
+
+const userBubbleIn: Variants = {
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 400, damping: 30 } },
 };
 
 type Step = "intro" | "pain" | "bizType" | "rec" | "contact" | "final";
@@ -148,7 +153,7 @@ function BizAIBubble({ children }: { children: React.ReactNode }) {
 function UserBubble({ text }: { text: string }) {
   return (
     <motion.div
-      variants={bubbleIn}
+      variants={userBubbleIn}
       initial="hidden"
       animate="visible"
       style={{ display: "flex", justifyContent: "flex-end" }}

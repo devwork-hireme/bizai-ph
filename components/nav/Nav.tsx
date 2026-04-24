@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { label: "Systems", href: "#systems" },
@@ -208,99 +209,131 @@ export default function Nav() {
       </nav>
 
       {/* Mobile drawer */}
-      {menuOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(10,10,10,0.98)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            zIndex: 999,
-            display: "flex",
-            flexDirection: "column",
-            paddingTop: "80px",
-            paddingLeft: "32px",
-            paddingRight: "32px",
-            paddingBottom: "32px",
-          }}
-        >
-          {/* Close button */}
-          <button
-            onClick={() => setMenuOpen(false)}
-            aria-label="Close menu"
-            style={{
-              position: "absolute",
-              top: "18px",
-              right: "20px",
-              background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: "8px",
-              width: "40px",
-              height: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              color: "#ffffff",
-              fontSize: "1.1rem",
-              lineHeight: 1,
-            }}
-          >
-            ✕
-          </button>
-
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo(l.href);
-                setMenuOpen(false);
-              }}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setMenuOpen(false)}
               style={{
-                fontSize: "1.4rem",
-                fontWeight: 700,
-                color: "#ffffff",
-                textDecoration: "none",
-                fontFamily: "var(--font-syne), sans-serif",
-                height: "64px",
+                position: "fixed",
+                inset: 0,
+                background: "rgba(0,0,0,0.5)",
+                zIndex: 998,
+              }}
+            />
+
+            {/* Drawer */}
+            <motion.div
+              key="drawer"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: "rgba(10,10,10,0.98)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                zIndex: 999,
                 display: "flex",
-                alignItems: "center",
-                borderBottom: "1px solid rgba(255,255,255,0.06)",
-                letterSpacing: "-0.02em",
+                flexDirection: "column",
+                paddingTop: "80px",
+                paddingLeft: "32px",
+                paddingRight: "32px",
+                paddingBottom: "32px",
               }}
             >
-              {l.label}
-            </a>
-          ))}
-          <button
-            onClick={() => {
-              document.getElementById("start")?.scrollIntoView({ behavior: "smooth" });
-              setMenuOpen(false);
-            }}
-            style={{
-              marginTop: "2rem",
-              padding: "16px 36px",
-              background: "#e8b84b",
-              color: "#0a0a0a",
-              fontFamily: "var(--font-dm-sans), sans-serif",
-              fontWeight: 700,
-              fontSize: "1rem",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              width: "100%",
-            }}
-          >
-            Start Free Session →
-          </button>
-        </div>
-      )}
+              {/* Close button */}
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+                style={{
+                  position: "absolute",
+                  top: "18px",
+                  right: "20px",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: "8px",
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  color: "#ffffff",
+                  fontSize: "1.1rem",
+                  lineHeight: 1,
+                }}
+              >
+                ✕
+              </button>
+
+              {links.map((l, i) => (
+                <motion.a
+                  key={l.label}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i, type: "spring", stiffness: 300, damping: 25 }}
+                  href={l.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo(l.href);
+                    setMenuOpen(false);
+                  }}
+                  style={{
+                    fontSize: "1.4rem",
+                    fontWeight: 700,
+                    color: "#ffffff",
+                    textDecoration: "none",
+                    fontFamily: "var(--font-syne), sans-serif",
+                    height: "64px",
+                    display: "flex",
+                    alignItems: "center",
+                    borderBottom: "1px solid rgba(255,255,255,0.06)",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  {l.label}
+                </motion.a>
+              ))}
+              <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 25 }}
+                onClick={() => {
+                  document.getElementById("start")?.scrollIntoView({ behavior: "smooth" });
+                  setMenuOpen(false);
+                }}
+                style={{
+                  marginTop: "2rem",
+                  padding: "16px 36px",
+                  background: "#e8b84b",
+                  color: "#0a0a0a",
+                  fontFamily: "var(--font-dm-sans), sans-serif",
+                  fontWeight: 700,
+                  fontSize: "1rem",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  width: "100%",
+                }}
+              >
+                Start Free Session →
+              </motion.button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       <style>{`
         .nav-links { display: flex !important; }
